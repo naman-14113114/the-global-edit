@@ -2,13 +2,38 @@
 
 import Link from 'next/link';
 import { Menu, Search, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function EditorialHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <header className="w-full border-b border-stone-200 bg-[#FAFAFA] sticky top-0 z-50">
+    <header 
+      className={`w-full border-b border-stone-200 bg-[#FAFAFA] sticky top-0 z-50 transition-transform duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
         
         {/* Mobile Hamburger Toggle (Left on mobile) */}

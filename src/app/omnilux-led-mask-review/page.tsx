@@ -56,18 +56,29 @@ export default function OmniluxReviewPage() {
              There is a moment in every product category when the dominant brand stops being the best option and starts being the <em className="italic">default</em> option. The Omnilux Contour Face has, for several years, occupied that precarious position in the UK LED mask market.
            </p>
            <p className="leading-relaxed mb-6">
-             It is not a bad product. Let us be very clear about that. The clinical pedigree is real. The wavelength calibration is precise. Dermatologists recommend it. Celebrities wear it. But when we put it on the bench against the current field — including a newcomer from a direct-to-consumer brand with dramatically lower overhead — a quiet truth emerged: <strong className="font-bold text-stone-900">you are paying a very large premium for a name.</strong>
+             It is not a bad product. Let us be very clear about that. The clinical pedigree is real. The wavelength calibration is precise. Dermatologists recommend it. Celebrities wear it. But when we put it on the bench against the current field — including a <a href="https://buudy.com/pages/buudy-led-mask" className="text-[#b08d57] font-bold underline underline-offset-4 hover:text-[#9a7b4c]">newcomer from a direct-to-consumer brand</a> with dramatically lower overhead — a quiet truth emerged: <strong className="font-bold text-stone-900">you are paying a very large premium for a name.</strong>
            </p>
            <p className="leading-relaxed mb-10">
              This review is for anyone who has typed "omnilux led mask" into a search bar and is now one click away from spending £348. We are asking you to pause for four minutes.
            </p>
 
            {/* Verdict Box */}
-           <div className="bg-[#f4f1ea] border border-stone-200 border-l-4 border-l-[#b08d57] p-6 md:p-8 mb-16 rounded-sm">
+           <div className="bg-[#f4f1ea] border border-stone-200 border-l-4 border-l-[#b08d57] p-6 md:p-8 mb-8 rounded-sm">
              <strong className="block text-stone-900 text-xs font-bold uppercase tracking-[0.08em] mb-3">Quick Verdict — Skip to the Bottom Line</strong>
              <p className="text-stone-700 text-sm leading-relaxed m-0">
                The Omnilux Contour scores 7.9/10 in our testing. It excels at collagen stimulation via red and near-infrared light. It fails to justify its price when a 7-wavelength alternative with neck coverage, identical certifications, and a 90-day return window is available for £169 less. Our top recommendation is below.
              </p>
+           </div>
+
+           {/* Mid-Content CTA 1 */}
+           <div className="flex justify-center mb-16">
+             <a 
+               href="https://buudy.com/pages/buudy-led-mask"
+               className="inline-flex items-center gap-3 bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all relative overflow-hidden group rounded-sm shadow-xl shadow-stone-900/10"
+             >
+               <span className="relative z-10">See Our #1 Alternative (Save £169) &rarr;</span>
+               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+             </a>
            </div>
         </div>
 
@@ -146,6 +157,17 @@ export default function OmniluxReviewPage() {
             <cite className="block text-xs uppercase tracking-widest font-bold text-stone-500 not-italic">
               — Dr. Elizabeth Vance, Lead Medical Editor, The Global Edit
             </cite>
+          </div>
+
+          {/* Mid-Content CTA 2 */}
+          <div className="flex justify-center mb-16">
+             <a 
+               href="https://buudy.com/pages/buudy-led-mask"
+               className="inline-flex items-center gap-3 bg-[#b08d57] hover:bg-[#9a7b4c] text-white font-bold text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all relative overflow-hidden group rounded-sm shadow-xl shadow-[#b08d57]/20"
+             >
+               <span className="relative z-10">Check Buudy Price & Availability &rarr;</span>
+               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+             </a>
           </div>
         </div>
 
@@ -447,19 +469,21 @@ export default function OmniluxReviewPage() {
 
       </div>
 
-      {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-3 bg-white border-t border-stone-200 shadow-[0_-10px_20px_rgba(0,0,0,0.05)] z-50 md:hidden flex items-center justify-between gap-3">
-        <div className="flex flex-col">
-          <span className="font-bold text-sm text-stone-900 leading-tight">Buudy LED Mask</span>
-          <span className="text-[10px] text-red-500 font-bold uppercase tracking-wide">Save £169 vs Omnilux</span>
+      {/* Sticky Bottom CTA (Persistent on all devices) */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 shadow-[0_-10px_20px_rgba(0,0,0,0.1)] z-50">
+        <div className="max-w-5xl mx-auto p-3 px-4 md:px-8 flex items-center justify-between gap-4">
+          <div className="flex flex-col">
+            <span className="font-bold text-sm md:text-base text-stone-900 leading-tight">Buudy 7-Colour LED Mask</span>
+            <span className="text-[10px] md:text-xs text-emerald-600 font-bold uppercase tracking-wide">✓ Save £169 vs Omnilux</span>
+          </div>
+          <a 
+            href="https://buudy.com/pages/buudy-led-mask" 
+            className="bg-[#b08d57] hover:bg-[#9a7b4c] text-white px-6 md:px-10 py-3 md:py-4 font-bold text-xs md:text-sm tracking-[0.2em] uppercase shadow-lg shadow-[#b08d57]/30 whitespace-nowrap relative overflow-hidden group rounded-sm transition-colors"
+          >
+            <span className="relative z-10 flex items-center gap-2">Check Price <span className="group-hover:translate-x-1 transition-transform hidden md:inline-block">&rarr;</span></span>
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+          </a>
         </div>
-        <a 
-          href="https://buudy.com/pages/buudy-led-mask" 
-          className="bg-emerald-600 text-white px-5 py-3 font-bold text-xs tracking-wider uppercase shadow-lg shadow-emerald-500/30 whitespace-nowrap relative overflow-hidden group rounded-sm"
-        >
-          <span className="relative z-10 flex items-center gap-1">Shop <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></span>
-          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
-        </a>
       </div>
     </div>
   );

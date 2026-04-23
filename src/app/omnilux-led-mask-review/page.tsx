@@ -42,11 +42,11 @@ export default function OmniluxReviewPage() {
         </div>
 
         {/* Hero Image Block */}
-        <div className="w-full max-w-5xl mx-auto aspect-video bg-stone-900 mb-16 relative shadow-lg">
+        <div className="w-full max-w-5xl mx-auto bg-stone-900 mb-16 relative shadow-lg">
           <img 
             src="/hero-omnilux-vs-buudy.jpeg" 
             alt="Dermatologist Reviews: Buudy vs Omnilux" 
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-contain"
           />
         </div>
 

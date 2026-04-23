@@ -42,7 +42,7 @@ export default function OmniluxReviewPage() {
         </div>
 
         {/* Hero Image Block */}
-        <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-stone-200 mb-16 relative">
+        <div className="w-full max-w-5xl mx-auto aspect-video bg-stone-900 mb-16 relative shadow-lg">
           <img 
             src="/hero-omnilux-vs-buudy.jpeg" 
             alt="Dermatologist Reviews: Buudy vs Omnilux" 
@@ -341,21 +341,21 @@ export default function OmniluxReviewPage() {
                     <span className="text-sm">💡</span> Active Promotion — Free Gift Bundle (Worth £128)
                   </div>
                   
-                  <div className="flex flex-wrap gap-4 mb-4">
+                  <div className="flex justify-between sm:justify-start gap-3 sm:gap-6 mb-5">
                     <div className="flex flex-col items-center gap-2">
-                      <img src="https://img.thesitebase.net/10650/10650730/themes/17682450181b5f55beb5.png" alt="Travel Box" className="w-14 h-14 object-contain bg-white border border-stone-200 p-1 shadow-sm" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
-                      <span className="text-[10px] text-stone-600 font-medium">Travel Box</span>
+                      <img src="https://img.thesitebase.net/10650/10650730/themes/17682450181b5f55beb5.png" alt="Travel Box" className="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-stone-200 p-1.5 shadow-sm" />
+                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
+                      <span className="text-[10px] md:text-xs text-stone-600 font-medium text-center leading-tight max-w-[80px]">Travel Box</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
-                      <img src="https://img.thesitebase.net/10650/10650730/products/ver_1/176738038817f3610740.png" alt="LED Torch" className="w-14 h-14 object-contain bg-white border border-stone-200 p-1 shadow-sm" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
-                      <span className="text-[10px] text-stone-600 font-medium">LED Torch</span>
+                      <img src="https://img.thesitebase.net/10650/10650730/products/ver_1/176738038817f3610740.png" alt="LED Torch" className="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-stone-200 p-1.5 shadow-sm" />
+                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
+                      <span className="text-[10px] md:text-xs text-stone-600 font-medium text-center leading-tight max-w-[80px]">LED Torch</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
-                      <img src="https://img.thesitebase.net/10650/10650730/themes/17682431737d583cc2df.png" alt="E-Book" className="w-14 h-14 object-contain bg-white border border-stone-200 p-1 shadow-sm" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
-                      <span className="text-[10px] text-stone-600 font-medium">Expert Guide</span>
+                      <img src="https://img.thesitebase.net/10650/10650730/themes/17682431737d583cc2df.png" alt="E-Book" className="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-stone-200 p-1.5 shadow-sm" />
+                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
+                      <span className="text-[10px] md:text-xs text-stone-600 font-medium text-center leading-tight max-w-[80px]">Expert Guide</span>
                     </div>
                   </div>
                   <p className="text-[11px] text-stone-500 italic mb-6 border-b border-[#d4af7a]/30 pb-4">Web exclusive. Available while stock lasts on the free gift accessories.</p>

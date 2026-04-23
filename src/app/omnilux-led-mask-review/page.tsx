@@ -44,9 +44,9 @@ export default function OmniluxReviewPage() {
         {/* Hero Image Block */}
         <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-stone-200 mb-16 relative">
           <img 
-            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" 
-            alt="LED face mask clinical testing" 
-            className="w-full h-full object-cover saturate-[0.8] brightness-95"
+            src="/hero-omnilux-vs-buudy.jpeg" 
+            alt="Dermatologist Reviews: Buudy vs Omnilux" 
+            className="w-full h-full object-cover"
           />
         </div>
 

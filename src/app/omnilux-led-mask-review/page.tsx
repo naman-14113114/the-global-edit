@@ -360,7 +360,7 @@ export default function OmniluxReviewPage() {
                   </div>
                   <p className="text-[11px] text-stone-500 italic mb-6 border-b border-[#d4af7a]/30 pb-4">Web exclusive. Available while stock lasts on the free gift accessories.</p>
 
-                  <div className="flex items-center gap-2 bg-[#eaf7f0] border border-[#9ad4ba] text-emerald-700 px-3 py-1.5 rounded-full text-xs font-bold mb-4 w-max">
+                  <div className="inline-flex items-center gap-2 bg-[#eaf7f0] border border-[#9ad4ba] text-emerald-700 px-4 py-2 rounded-sm text-xs font-bold mb-4">
                     ✓ You save £169 vs. the Omnilux — same clinical outcomes
                   </div>
 
@@ -369,10 +369,10 @@ export default function OmniluxReviewPage() {
                     <span className="text-red-500 line-through text-sm font-medium pb-1">Omnilux: £348</span>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col gap-3">
                     <a 
                       href="https://buudy.com/pages/buudy-led-mask"
-                      className="flex-1 bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs tracking-widest uppercase px-6 py-4 transition-all text-center relative overflow-hidden group rounded-sm shadow-md shadow-stone-900/20"
+                      className="bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs tracking-widest uppercase px-6 py-4 transition-all text-center relative overflow-hidden group rounded-sm shadow-md shadow-stone-900/20"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         Check Free Gift Availability 
@@ -382,7 +382,7 @@ export default function OmniluxReviewPage() {
                     </a>
                     <a 
                       href="https://buudy.com/pages/buudy-led-mask"
-                      className="flex-1 border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white font-bold text-xs tracking-widest uppercase px-6 py-4 transition-all text-center rounded-sm"
+                      className="border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white font-bold text-xs tracking-widest uppercase px-6 py-4 transition-all text-center rounded-sm"
                     >
                       Read Full Review
                     </a>

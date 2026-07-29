@@ -12,8 +12,52 @@ body {
   color: var(--color-foreground);
 }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
+:focus-visible {
+  outline: 3px solid #0f766e;
+  outline-offset: 3px;
+}
+
+.legal-copy {
+  color: #44403c;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.legal-copy h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: #0c0a09;
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+.legal-copy h2:first-child {
+  margin-top: 0;
+}
+
+.legal-copy h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #1c1917;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.legal-copy p,
+.legal-copy ul {
+  margin-bottom: 1rem;
+}
+
+.legal-copy ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.legal-copy a {
+  color: #115e59;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: #99f6e4;
+  text-underline-offset: 3px;
 }

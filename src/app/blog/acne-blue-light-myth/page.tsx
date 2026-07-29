@@ -19,7 +19,7 @@ export default function BlueLightAcne() {
 
         <div className="w-full aspect-[16/9] bg-stone-200 mb-12">
           <img 
-            src="https://img.shopbase.com/10677/10677322/themes/17710782713159684b8b.jpeg" 
+            src="/images/editorial/acne-skincare.jpg" 
             alt="Skin treatment" 
             className="w-full h-full object-cover saturate-50"
           />

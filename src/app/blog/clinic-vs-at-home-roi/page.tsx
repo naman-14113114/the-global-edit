@@ -19,7 +19,7 @@ export default function RedLightROI() {
 
         <div className="w-full aspect-[16/9] bg-stone-200 mb-12">
           <img 
-            src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            src="/images/editorial/clinic-treatment.jpg" 
             alt="Clinic vs At-Home" 
             className="w-full h-full object-cover saturate-50"
           />

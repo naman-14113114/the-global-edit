@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export const metadata = {
   title: "Omnilux LED Mask Review (2026) — Is the £348 Price Tag Actually Worth It?",
   description: "We tested the Omnilux Contour Face mask head-to-head against every major competitor. Before you spend £348, read our independent clinical comparison.",
@@ -26,7 +24,7 @@ export default function OmniluxReviewPage() {
           <div className="flex flex-col items-center justify-center gap-3 w-full border-t border-stone-200 pt-6">
             <div className="flex items-center gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                src="/images/editorial/author-editor.png" 
                 alt="Dr. Elizabeth Vance" 
                 className="w-12 h-12 rounded-full object-cover border-2 border-emerald-100 grayscale-[20%]"
               />
@@ -44,8 +42,8 @@ export default function OmniluxReviewPage() {
         {/* Hero Image Block */}
         <div className="w-full max-w-5xl mx-auto bg-stone-900 mb-16 relative shadow-lg">
           <img 
-            src="/hero-omnilux-vs-buudy.jpeg" 
-            alt="Dermatologist Reviews: Buudy vs Omnilux" 
+            src="/images/editorial/omnilux-contour-mask.jpeg" 
+            alt="Omnilux Contour Face LED mask" 
             className="w-full h-auto object-contain"
           />
         </div>
@@ -108,7 +106,7 @@ export default function OmniluxReviewPage() {
             <div className="p-6 md:p-8 flex flex-col md:flex-row gap-8">
               <div className="w-full md:w-1/3 flex-shrink-0">
                 <img 
-                  src="https://img.thesitebase.net/10677/10677322/themes/1769107230af732ce69a.jpeg" 
+                  src="/images/editorial/omnilux-contour-mask.jpeg" 
                   alt="Omnilux Contour Face LED mask" 
                   className="w-full h-auto aspect-[4/5] object-cover bg-stone-100 rounded-sm"
                 />
@@ -281,7 +279,7 @@ export default function OmniluxReviewPage() {
              <div className="space-y-6 md:sticky md:top-24 md:self-start">
                 <div className="relative aspect-[4/5]">
                   <img 
-                    src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/39-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvMzktdy53ZWJwIiwiaWF0IjoxNzczODUxMDM1LCJleHAiOjE4MDUzODcwMzV9.xAYRNa4-AGXzabupkOWGKsekRcE9hC2Ny2FZtV9iOKw" 
+                    src="/images/mask-angle.webp" 
                     alt="Buudy Mask Main" 
                     className="w-full h-full object-cover bg-stone-100"
                   />
@@ -298,8 +296,8 @@ export default function OmniluxReviewPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <img src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/O13-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvTzEzLXcud2VicCIsImlhdCI6MTc3Mzg1MTE2NCwiZXhwIjoxODA1Mzg3MTY0fQ.Nm0ZGhozFnKDxehLPy7T1wCks6C8g7PcbxdbkcunC90" alt="Buudy Details" className="w-full aspect-square object-cover bg-stone-100" />
-                  <img src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/91-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvOTEtdy53ZWJwIiwiaWF0IjoxNzczODUwOTUzLCJleHAiOjE4MDUzODY5NTN9.bP5xw78c7yA1bpRK_68nnyF2cKWKFyu8GYGAJKPF7V8" alt="Buudy Neck Coverage" className="w-full aspect-square object-cover bg-stone-100" />
+                  <img src="/images/mask-front.webp" alt="Buudy Details" className="w-full aspect-square object-cover bg-stone-100" />
+                  <img src="/images/mask-stand.webp" alt="Buudy Neck Coverage" className="w-full aspect-square object-cover bg-stone-100" />
                 </div>
              </div>
 
@@ -365,17 +363,17 @@ export default function OmniluxReviewPage() {
                   
                   <div className="flex justify-between sm:justify-start gap-3 sm:gap-6 mb-5">
                     <div className="flex flex-col items-center gap-2">
-                      <img src="https://img.thesitebase.net/10650/10650730/themes/17682450181b5f55beb5.png" alt="Travel Box" className="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-stone-200 p-1.5 shadow-sm" />
+                      <img src="/images/editorial/free-travel-box.png" alt="Travel Box" className="w-20 h-20 md:w-24 md:h-24 object-cover bg-white border border-stone-200 p-1.5 shadow-sm" />
                       <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
                       <span className="text-[10px] md:text-xs text-stone-600 font-medium text-center leading-tight max-w-[80px]">Travel Box</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
-                      <img src="https://img.thesitebase.net/10650/10650730/products/ver_1/176738038817f3610740.png" alt="LED Torch" className="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-stone-200 p-1.5 shadow-sm" />
+                      <img src="/images/editorial/free-led-torch.png" alt="LED Torch" className="w-20 h-20 md:w-24 md:h-24 object-cover bg-white border border-stone-200 p-1.5 shadow-sm" />
                       <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
                       <span className="text-[10px] md:text-xs text-stone-600 font-medium text-center leading-tight max-w-[80px]">LED Torch</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
-                      <img src="https://img.thesitebase.net/10650/10650730/themes/17682431737d583cc2df.png" alt="E-Book" className="w-20 h-20 md:w-24 md:h-24 object-contain bg-white border border-stone-200 p-1.5 shadow-sm" />
+                      <img src="/images/editorial/free-ebook.png" alt="E-Book" className="w-20 h-20 md:w-24 md:h-24 object-cover bg-white border border-stone-200 p-1.5 shadow-sm" />
                       <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white bg-stone-900 px-2 py-0.5">Free</span>
                       <span className="text-[10px] md:text-xs text-stone-600 font-medium text-center leading-tight max-w-[80px]">Expert Guide</span>
                     </div>

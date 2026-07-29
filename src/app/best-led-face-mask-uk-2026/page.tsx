@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const MetricBar = ({ label, value }: { label: string, value: number }) => (
   <div className="mb-3">
     <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest mb-1 text-stone-600">
@@ -37,7 +35,7 @@ export default function AdvertorialPage() {
           <div className="flex flex-col items-center justify-center gap-3 w-full border-t border-stone-200 pt-6">
             <div className="flex items-center gap-4">
               <img 
-                src="https://img.thesitebase.net/10677/10677322/themes/1770302958c850cb975e.png" 
+                src="/images/editorial/author-editor.png" 
                 alt="Dr. Elizabeth Vance" 
                 className="w-12 h-12 rounded-full object-cover border-2 border-emerald-100"
               />
@@ -55,7 +53,7 @@ export default function AdvertorialPage() {
         {/* Hero Image Block */}
         <div className="w-full aspect-[16/9] bg-stone-200 mb-16 relative">
           <img 
-            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" 
+            src="/images/editorial/led-testing-clinic.jpg" 
             alt="LED mask testing facility" 
             className="w-full h-full object-cover saturate-50"
           />
@@ -96,7 +94,7 @@ export default function AdvertorialPage() {
              <div className="space-y-6 md:sticky md:top-24 md:self-start">
                 <div className="relative aspect-[4/5]">
                   <img 
-                    src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/39-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvMzktdy53ZWJwIiwiaWF0IjoxNzczODUxMDM1LCJleHAiOjE4MDUzODcwMzV9.xAYRNa4-AGXzabupkOWGKsekRcE9hC2Ny2FZtV9iOKw" 
+                    src="/images/mask-angle.webp" 
                     alt="Buudy Mask Main" 
                     className="w-full h-full object-cover bg-stone-100"
                   />
@@ -113,8 +111,8 @@ export default function AdvertorialPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <img src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/O13-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvTzEzLXcud2VicCIsImlhdCI6MTc3Mzg1MTE2NCwiZXhwIjoxODA1Mzg3MTY0fQ.Nm0ZGhozFnKDxehLPy7T1wCks6C8g7PcbxdbkcunC90" alt="Buudy Details" className="w-full aspect-square object-cover bg-stone-100" />
-                  <img src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/91-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvOTEtdy53ZWJwIiwiaWF0IjoxNzczODUwOTUzLCJleHAiOjE4MDUzODY5NTN9.bP5xw78c7yA1bpRK_68nnyF2cKWKFyu8GYGAJKPF7V8" alt="Buudy Neck Coverage" className="w-full aspect-square object-cover bg-stone-100" />
+                  <img src="/images/mask-front.webp" alt="Buudy Details" className="w-full aspect-square object-cover bg-stone-100" />
+                  <img src="/images/mask-stand.webp" alt="Buudy Neck Coverage" className="w-full aspect-square object-cover bg-stone-100" />
                 </div>
              </div>
 
@@ -196,19 +194,19 @@ export default function AdvertorialPage() {
                       {/* Box 1 */}
                       <div className="bg-white p-4 border border-stone-100 shadow-sm text-center relative group hover:-translate-y-1 transition-transform">
                         <div className="absolute -top-2 -right-2 bg-emerald-600 text-white font-bold text-[10px] uppercase tracking-widest px-2 py-1 animate-pulse">FREE</div>
-                        <img src="https://img.thesitebase.net/10650/10650730/themes/17682450181b5f55beb5.png" alt="Travel Box" className="w-full aspect-square object-cover mb-3 bg-stone-50" />
+                        <img src="/images/editorial/free-travel-box.png" alt="Travel Box" className="w-full aspect-square object-cover mb-3 bg-stone-50" />
                         <p className="font-bold text-stone-800 text-[10px] uppercase tracking-widest">Travel Box</p>
                       </div>
                       {/* Box 2 */}
                       <div className="bg-white p-4 border border-stone-100 shadow-sm text-center relative mt-2 sm:mt-0 group hover:-translate-y-1 transition-transform">
                         <div className="absolute -top-2 -right-2 bg-emerald-600 text-white font-bold text-[10px] uppercase tracking-widest px-2 py-1 animate-pulse" style={{ animationDelay: '0.5s' }}>FREE</div>
-                        <img src="https://img.thesitebase.net/10650/10650730/products/ver_1/176738038817f3610740.png" alt="LED Torch" className="w-full aspect-square object-cover mb-3 bg-stone-50" />
+                        <img src="/images/editorial/free-led-torch.png" alt="LED Torch" className="w-full aspect-square object-cover mb-3 bg-stone-50" />
                         <p className="font-bold text-stone-800 text-[10px] uppercase tracking-widest">LED Torch</p>
                       </div>
                       {/* Box 3 */}
                       <div className="bg-white p-4 border border-stone-100 shadow-sm text-center relative mt-2 sm:mt-0 group hover:-translate-y-1 transition-transform">
                         <div className="absolute -top-2 -right-2 bg-emerald-600 text-white font-bold text-[10px] uppercase tracking-widest px-2 py-1 animate-pulse" style={{ animationDelay: '1s' }}>FREE</div>
-                        <img src="https://img.thesitebase.net/10650/10650730/themes/17682431737d583cc2df.png" alt="E-Book" className="w-full aspect-square object-cover mb-3 bg-stone-50" />
+                        <img src="/images/editorial/free-ebook.png" alt="E-Book" className="w-full aspect-square object-cover mb-3 bg-stone-50" />
                         <p className="font-bold text-stone-800 text-[10px] uppercase tracking-widest">Expert Guide</p>
                       </div>
                     </div>
@@ -254,7 +252,7 @@ export default function AdvertorialPage() {
         <div className="max-w-3xl mx-auto mb-20">
            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
               <div className="w-full md:w-5/12 relative">
-                <img src="https://img.thesitebase.net/10677/10677322/themes/176872504642f0322d65.jpeg" alt="CurrentBody Skin" className="w-full aspect-square object-cover" />
+                <img src="/images/editorial/currentbody-skin-mask.jpeg" alt="CurrentBody Skin" className="w-full aspect-square object-cover" />
                 <div className="absolute top-4 left-4 bg-stone-900 text-white text-[10px] uppercase tracking-widest px-3 py-1">#2 Rank</div>
               </div>
               <div className="w-full md:w-7/12">
@@ -305,7 +303,7 @@ export default function AdvertorialPage() {
         <div className="max-w-3xl mx-auto mb-20">
            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
               <div className="w-full md:w-5/12 relative">
-                <img src="https://img.thesitebase.net/10677/10677322/themes/1769107230af732ce69a.jpeg" alt="Omnilux Contour" className="w-full aspect-square object-cover" />
+                <img src="/images/editorial/omnilux-contour-mask.jpeg" alt="Omnilux Contour" className="w-full aspect-square object-cover" />
                 <div className="absolute top-4 left-4 bg-stone-900 text-white text-[10px] uppercase tracking-widest px-3 py-1">#3 Rank</div>
               </div>
               <div className="w-full md:w-7/12">
@@ -356,7 +354,7 @@ export default function AdvertorialPage() {
         <div className="max-w-3xl mx-auto mb-20">
            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
               <div className="w-full md:w-5/12 relative">
-                <img src="https://img.thesitebase.net/10677/10677322/themes/1768726434a7e6301df7.png" alt="Shark CryoGlow LED Mask" className="w-full aspect-square object-cover" />
+                <img src="/images/editorial/shark-cryoglow-mask.png" alt="Shark CryoGlow LED Mask" className="w-full aspect-square object-cover" />
                 <div className="absolute top-4 left-4 bg-stone-900 text-white text-[10px] uppercase tracking-widest px-3 py-1">#4 Rank</div>
               </div>
               <div className="w-full md:w-7/12">
@@ -407,7 +405,7 @@ export default function AdvertorialPage() {
         <div className="max-w-3xl mx-auto mb-20">
            <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
               <div className="w-full md:w-5/12 relative">
-                <img src="https://m.media-amazon.com/images/I/61OfXQiidUL._AC_SL1500_.jpg" alt="Dr Dennis Gross Spectralite" className="w-full aspect-square object-cover" />
+                <img src="/images/editorial/dr-dennis-gross-spectralite.jpg" alt="Dr Dennis Gross Spectralite" className="w-full aspect-square object-cover" />
                 <div className="absolute top-4 left-4 bg-stone-900 text-white text-[10px] uppercase tracking-widest px-3 py-1">#5 Rank</div>
               </div>
               <div className="w-full md:w-7/12">
@@ -423,7 +421,7 @@ export default function AdvertorialPage() {
                    <ul className="space-y-3">
                      <li className="flex items-start gap-3 text-sm text-stone-700">
                        <span className="text-red-500 font-bold mt-0.5">✗</span>
-                       <span><strong>Astronomical Price Point:</strong> At £455, you are paying a massive premium. It costs more than double the price of Buudy.</span>
+                       <span><strong>Astronomical Price Point:</strong> At £465, you are paying a massive premium. It costs more than double the price of Buudy.</span>
                      </li>
                      <li className="flex items-start gap-3 text-sm text-stone-700">
                        <span className="text-red-500 font-bold mt-0.5">✗</span>
@@ -439,7 +437,7 @@ export default function AdvertorialPage() {
                 <div className="flex items-center justify-between border-t border-stone-200 pt-6">
                   <div>
                     <div className="text-xs text-stone-500 uppercase tracking-widest">Price</div>
-                    <div className="text-xl font-serif text-stone-900 font-bold">£455</div>
+                    <div className="text-xl font-serif text-stone-900 font-bold">£465</div>
                   </div>
                   <div className="text-right">
                     <div className="text-xs text-stone-500 uppercase tracking-widest">Score</div>
@@ -464,7 +462,7 @@ export default function AdvertorialPage() {
               <div className="relative group">
                 <a href="https://buudy.com/pages/buudy-led-mask" className="block relative bg-stone-50 border border-stone-100 p-4 shadow-sm group-hover:shadow-md transition-shadow">
                   <img 
-                    src="https://zcfpobpbuxmeztaflhcn.supabase.co/storage/v1/object/sign/Buudy%20LED%20mask%20Images/39-w.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jNmYyYzVlYi00ZTNjLTQxNTgtOGZlNS1iNTE1MWNmMmRjZDQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCdXVkeSBMRUQgbWFzayBJbWFnZXMvMzktdy53ZWJwIiwiaWF0IjoxNzczODUxMDM1LCJleHAiOjE4MDUzODcwMzV9.xAYRNa4-AGXzabupkOWGKsekRcE9hC2Ny2FZtV9iOKw" 
+                    src="/images/mask-angle.webp" 
                     alt="Buudy LED Mask" 
                     className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
                   />

@@ -19,7 +19,7 @@ export default function AmazonRisks() {
 
         <div className="w-full aspect-[16/9] bg-stone-200 mb-12">
           <img
-            src="https://img.thesitebase.net/10677/10677322/themes/1768726655a4cf8cd691.png"
+            src="/images/editorial/amazon-led-risk-mask.png"
             alt="Cheap LED mask warning"
             className="w-full h-full object-cover saturate-50"
           />

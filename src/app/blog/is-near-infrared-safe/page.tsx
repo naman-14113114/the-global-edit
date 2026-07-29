@@ -19,7 +19,7 @@ export default function NIRSafetyBlog() {
 
         <div className="w-full aspect-[16/9] bg-stone-200 mb-12">
           <img 
-            src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            src="/images/editorial/nir-safety.jpg" 
             alt="Safety of NIR" 
             className="w-full h-full object-cover saturate-50 object-top"
           />

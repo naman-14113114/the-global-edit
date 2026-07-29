@@ -19,7 +19,7 @@ export default function NeckAging() {
 
         <div className="w-full aspect-[16/9] bg-stone-200 mb-12">
           <img 
-            src="https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/57-w-1.webp" 
+            src="/images/editorial/neck-skincare.jpg" 
             alt="Neck care" 
             className="w-full h-full object-cover saturate-50"
           />

@@ -22,7 +22,7 @@ export default function SiliconeBlogArticle() {
         {/* Hero Image */}
         <div className="w-full aspect-[16/9] bg-stone-200 mb-12">
           <img 
-            src="https://img.thesitebase.net/10677/10677322/themes/1769107230af732ce69a.jpeg" 
+            src="/images/editorial/omnilux-contour-mask.jpeg" 
             alt="Silicone LED Mask Issue" 
             className="w-full h-full object-cover saturate-50"
           />

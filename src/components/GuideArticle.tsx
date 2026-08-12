@@ -1,42 +1,36 @@
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Info } from "lucide-react";
+import { ArrowLeft, FileCheck2, Info } from "lucide-react";
 import type { Guide } from "@/lib/guides";
 import GuideVisual from "@/components/GuideVisual";
 
 export default function GuideArticle({ guide }: { guide: Guide }) {
   return (
-    <article className="bg-[#f7f7f5]">
-      {guide.advertisement ? (
-        <div className="border-b border-stone-800 bg-stone-950 px-4 py-3 text-center text-base font-bold uppercase tracking-[0.16em] text-white">
-          Advertisement
-        </div>
-      ) : null}
-
-      <header className="border-b border-stone-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-16">
+    <article className="bg-paper">
+      <header className="border-b border-line bg-surface">
+        <div className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-18">
           <Link
             href="/guides"
-            className="mb-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-stone-500 hover:text-stone-950"
+            className="mb-9 inline-flex min-h-11 items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-muted hover:text-rust focus-visible:text-rust"
           >
             <ArrowLeft size={15} strokeWidth={1.8} aria-hidden="true" />
-            All guides
+            All practical guides
           </Link>
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
-            {guide.eyebrow}
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-rust">
+            {guide.category} guide
           </p>
-          <h1 className="max-w-4xl font-serif text-4xl leading-[1.08] text-stone-950 sm:text-5xl md:text-6xl">
+          <h1 className="max-w-4xl font-serif text-4xl leading-[1.06] text-ink sm:text-5xl md:text-6xl">
             {guide.title}
           </h1>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-stone-600 md:text-lg">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-muted md:text-lg">
             {guide.description}
           </p>
-          <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-2 border-t border-stone-200 pt-5 text-xs text-stone-500">
+          <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-2 border-t border-line pt-5 text-xs text-muted">
             <div>
-              <dt className="inline font-bold text-stone-700">Published: </dt>
+              <dt className="inline font-bold text-ink">Published: </dt>
               <dd className="inline">{guide.published}</dd>
             </div>
             <div>
-              <dt className="inline font-bold text-stone-700">Last reviewed: </dt>
+              <dt className="inline font-bold text-ink">Last reviewed: </dt>
               <dd className="inline">{guide.reviewed}</dd>
             </div>
             <div>
@@ -50,12 +44,12 @@ export default function GuideArticle({ guide }: { guide: Guide }) {
       <div className="mx-auto max-w-5xl px-4 py-10 md:px-8 md:py-14">
         <GuideVisual visual={guide.visual} />
 
-        <aside className="mt-8 flex gap-3 border-l-4 border-teal-700 bg-teal-50 px-5 py-4 text-sm leading-6 text-stone-700">
-          <Info className="mt-0.5 shrink-0 text-teal-800" size={19} aria-hidden="true" />
+        <aside className="mt-8 flex gap-3 border border-line bg-surface px-5 py-4 text-sm leading-6 text-muted">
+          <Info className="mt-0.5 shrink-0 text-rust" size={19} aria-hidden="true" />
           <p>
-            This article provides general consumer information. It is not medical
-            advice, a product recommendation or evidence that any device is
-            suitable for a particular person or concern.
+            This is an original editorial checklist. It does not contain
+            commercial placements, affiliate links or paid recommendations. Adapt the steps
+            to your space, schedule and current travel-provider instructions.
           </p>
         </aside>
 
@@ -64,31 +58,31 @@ export default function GuideArticle({ guide }: { guide: Guide }) {
             <section
               key={section.heading}
               aria-labelledby={`section-${index + 1}`}
-              className="grid gap-7 border-t border-stone-300 pt-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12"
+              className="grid gap-7 border-t border-line pt-8 md:grid-cols-[0.72fr_1.28fr] md:gap-12"
             >
               <div>
-                <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-teal-700">
+                <div className="mb-3 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-rust">
                   {String(index + 1).padStart(2, "0")}
                 </div>
                 <h2
                   id={`section-${index + 1}`}
-                  className="font-serif text-3xl leading-tight text-stone-950"
+                  className="font-serif text-3xl leading-tight text-ink"
                 >
                   {section.heading}
                 </h2>
                 {section.intro ? (
-                  <p className="mt-4 text-sm leading-6 text-stone-600">
+                  <p className="mt-4 text-sm leading-6 text-muted">
                     {section.intro}
                   </p>
                 ) : null}
               </div>
-              <div className="divide-y divide-stone-200 border-y border-stone-200">
+              <div className="divide-y divide-line border-y border-line">
                 {section.points.map((point) => (
                   <div key={point.title} className="py-5">
-                    <h3 className="mb-2 text-base font-bold text-stone-900">
+                    <h3 className="mb-2 text-base font-bold text-ink">
                       {point.title}
                     </h3>
-                    <p className="text-sm leading-6 text-stone-600">{point.body}</p>
+                    <p className="text-sm leading-6 text-muted">{point.body}</p>
                   </div>
                 ))}
               </div>
@@ -97,39 +91,28 @@ export default function GuideArticle({ guide }: { guide: Guide }) {
         </div>
 
         <section
-          aria-labelledby="sources"
-          className="mt-16 border-t border-stone-900 pt-8"
+          aria-labelledby="method"
+          className="mt-16 border-t border-ink pt-8"
         >
-          <h2 id="sources" className="mb-5 font-serif text-3xl text-stone-950">
-            Sources and review record
-          </h2>
-          <p className="mb-6 max-w-3xl text-sm leading-6 text-stone-600">
-            Sources are selected for the specific statements they support. They
-            do not endorse The Global Edit or any product.
-          </p>
-          <ol className="space-y-4">
-            {guide.sources.map((source) => (
-              <li key={source.url} className="text-sm leading-6 text-stone-700">
-                <a
-                  href={source.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-start gap-2 font-bold text-stone-900 underline decoration-stone-300 underline-offset-4 hover:text-teal-800"
-                >
-                  <span>{source.title}</span>
-                  <ExternalLink
-                    size={14}
-                    strokeWidth={1.7}
-                    className="mt-1 shrink-0"
-                    aria-hidden="true"
-                  />
-                </a>
-                <span className="block text-stone-600">
-                  {source.publisher}. Accessed {source.accessed}.
-                </span>
-              </li>
-            ))}
-          </ol>
+          <div className="grid gap-6 md:grid-cols-[auto_1fr] md:gap-8">
+            <FileCheck2
+              className="text-rust"
+              size={34}
+              strokeWidth={1.4}
+              aria-hidden="true"
+            />
+            <div>
+              <h2 id="method" className="font-serif text-3xl text-ink">
+                How this guide was prepared
+              </h2>
+              <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">
+                The Global Edit wrote and reviewed this guide as a practical
+                sequence for ordinary use. It is not sponsored, it does not rank
+                commercial offers, and no outside party paid for inclusion. If you spot an unclear
+                step, use our <Link href="/corrections">corrections process</Link>.
+              </p>
+            </div>
+          </div>
         </section>
       </div>
     </article>

@@ -2,185 +2,204 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpenCheck,
-  FileSearch,
-  Scale,
-  ShieldCheck,
+  House,
+  Luggage,
+  SearchCheck,
+  Shirt,
 } from "lucide-react";
 import GuideCard from "@/components/GuideCard";
 import GuideVisual from "@/components/GuideVisual";
-import { guides } from "@/lib/guides";
+import HomeIllustration from "@/components/HomeIllustration";
+import { categories, guides } from "@/lib/guides";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "UK Beauty Technology Consumer Guides",
+  title: "Practical Guides for Everyday Living",
   description:
-    "Independent consumer education on LED mask claims, specifications, fit, care, seller identity, warranties and returns.",
+    "Original, non-commercial guides for organising your home, packing for travel and caring for clothing.",
   path: "/",
 });
 
-const standards = [
+const categoryIcons = {
+  Home: House,
+  Travel: Luggage,
+  "Clothing care": Shirt,
+};
+
+const principles = [
   {
-    title: "Authoritative sources",
-    body: "We favour regulators, government guidance and primary manufacturer documents, and show the sources used.",
-    icon: FileSearch,
+    title: "Useful on the page",
+    body: "Every guide gives the complete method without a sign-up, download or redirect.",
+    icon: BookOpenCheck,
   },
   {
-    title: "Claims kept in context",
-    body: "We separate cosmetic wording from medical-device claims and do not turn manufacturer statistics into promises.",
-    icon: Scale,
+    title: "Written for ordinary use",
+    body: "The steps are specific enough to follow and flexible enough to adapt to your week.",
+    icon: SearchCheck,
   },
   {
-    title: "No product sales",
-    body: "The publication does not sell products, collect leads or direct readers to a checkout at launch.",
-    icon: ShieldCheck,
+    title: "Nothing for sale",
+    body: "There are no affiliate links, product rankings, paid placements or checkout links.",
+    icon: ArrowRight,
   },
 ];
 
 export default function Home() {
-  const [primaryGuide, ...supportingGuides] = guides;
+  const [featuredGuide, ...recentGuides] = guides;
 
   return (
-    <div className="bg-[#f7f7f5]">
-      <section className="border-b border-stone-200 bg-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 md:px-8 md:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <div className="bg-paper">
+      <section className="border-b border-line bg-surface">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 md:px-8 md:py-20 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:py-24">
           <div>
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
-              UK consumer education
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-rust">
+              Practical living, edited well
             </p>
-            <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] text-stone-950 sm:text-6xl lg:text-7xl">
-              Make sense of beauty-technology claims before you choose.
+            <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-ink sm:text-6xl lg:text-7xl">
+              Useful systems for the things you do every week.
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-stone-600 md:text-lg">
-              The Global Edit explains the questions behind LED mask
-              specifications, instructions, fit, warranties and seller
-              information. It does not perform laboratory or clinical testing.
+            <p className="mt-7 max-w-2xl text-base leading-7 text-muted md:text-lg">
+              Clear, original guides for resetting a room, packing a bag and
+              caring for the clothes you already own. No sales pitch waiting at
+              the end.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href={`/guides/${primaryGuide.slug}`}
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-stone-950 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white hover:bg-teal-900"
+                href={`/guides/${featuredGuide.slug}`}
+                className="inline-flex min-h-12 items-center justify-center gap-2 bg-ink px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-surface hover:bg-rust"
               >
-                Read the UK buyer guide
+                Start with the home reset
                 <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
               </Link>
               <Link
-                href="/editorial-policy"
-                className="inline-flex min-h-12 items-center justify-center gap-2 border border-stone-300 bg-white px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-stone-900 hover:border-stone-900"
+                href="/guides"
+                className="inline-flex min-h-12 items-center justify-center gap-2 border border-ink bg-surface px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-ink hover:bg-cream"
               >
-                How we work
+                Browse all guides
                 <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
               </Link>
             </div>
           </div>
+          <HomeIllustration />
+        </div>
+      </section>
 
-          <div className="border border-stone-300 bg-[#f2f2ef] p-5 sm:p-8">
-            <div className="flex items-center justify-between border-b border-stone-300 pb-5">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-700">
-                  Reader checklist
-                </p>
-                <h2 className="mt-2 font-serif text-2xl text-stone-950">
-                  Three checks before any claim
-                </h2>
-              </div>
-              <BookOpenCheck
-                size={34}
-                strokeWidth={1.3}
-                className="text-stone-500"
-                aria-hidden="true"
-              />
-            </div>
-            <ol className="mt-5 space-y-5">
-              {[
-                "What exactly is the product claiming to do?",
-                "Who published the evidence or specification?",
-                "Can you identify the manufacturer, seller and return terms?",
-              ].map((item, index) => (
-                <li key={item} className="flex gap-4">
-                  <span className="flex size-9 shrink-0 items-center justify-center border border-stone-400 bg-white font-serif text-sm text-stone-950">
-                    {index + 1}
-                  </span>
-                  <span className="pt-1.5 text-sm leading-6 text-stone-700">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ol>
+      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-18">
+        <div className="mb-8 flex flex-col gap-4 border-b border-ink pb-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
+              Choose a starting point
+            </p>
+            <h2 className="mt-3 font-serif text-4xl tracking-[-0.035em] text-ink">
+              Three parts of everyday life.
+            </h2>
           </div>
+          <p className="max-w-xl text-sm leading-6 text-muted">
+            Each section contains complete guides, written to be used rather than
+            skimmed for a recommendation.
+          </p>
+        </div>
+
+        <div className="grid border-y border-line md:grid-cols-3 md:divide-x md:divide-line">
+          {categories.map((category, index) => {
+            const Icon = categoryIcons[category.name];
+            return (
+              <Link
+                key={category.slug}
+                href={`/category/${category.slug}`}
+                className="group border-b border-line px-1 py-7 last:border-b-0 md:border-b-0 md:px-7"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-2xl text-rust">0{index + 1}</span>
+                  <Icon size={24} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
+                </div>
+                <h3 className="mt-8 font-serif text-3xl text-ink group-hover:text-rust">
+                  {category.name}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-muted">{category.description}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-ink">
+                  Open section
+                  <ArrowRight size={15} strokeWidth={1.8} aria-hidden="true" />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="border-y border-line bg-cream">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:px-8 md:py-18 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
+              Featured field guide
+            </p>
+            <h2 className="mt-4 max-w-xl font-serif text-4xl leading-tight tracking-[-0.035em] text-ink md:text-5xl">
+              {featuredGuide.shortTitle}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-muted">
+              {featuredGuide.description}
+            </p>
+            <Link
+              href={`/guides/${featuredGuide.slug}`}
+              className="mt-7 inline-flex min-h-12 items-center gap-2 bg-rust px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-surface hover:bg-ink"
+            >
+              Read the complete guide
+              <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
+            </Link>
+          </div>
+          <GuideVisual visual={featuredGuide.visual} />
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
-        <div className="mb-9 grid gap-5 border-b border-stone-900 pb-7 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+        <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr]">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
-              Published guides
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
+              From the library
             </p>
-            <h2 className="mt-3 font-serif text-4xl text-stone-950">
-              Start with the facts you can check.
+            <h2 className="mt-3 max-w-sm font-serif text-4xl tracking-[-0.035em] text-ink">
+              Practical next reads.
             </h2>
+            <p className="mt-5 max-w-sm text-sm leading-6 text-muted">
+              Seven guides, no filler categories and no product pages hidden in
+              the navigation.
+            </p>
           </div>
-          <p className="max-w-2xl text-sm leading-6 text-stone-600 md:justify-self-end">
-            These guides are educational, date-stamped and linked to their source
-            material. They do not rank products or promise results.
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {supportingGuides.map((guide) => (
-            <GuideCard key={guide.slug} guide={guide} />
-          ))}
+          <div>
+            {recentGuides.slice(0, 4).map((guide, index) => (
+              <GuideCard key={guide.slug} guide={guide} index={index} />
+            ))}
+            <Link
+              href="/guides"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-rust underline decoration-line underline-offset-4"
+            >
+              See all seven guides
+              <ArrowRight size={15} strokeWidth={1.8} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-stone-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
-              Editorial standard
+      <section className="border-y border-line bg-surface">
+        <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-18">
+          <div className="max-w-3xl">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
+              Our editorial promise
             </p>
-            <h2 className="mt-3 font-serif text-4xl text-stone-950">
-              Clear about what we know and what we do not.
+            <h2 className="mt-3 font-serif text-4xl tracking-[-0.035em] text-ink">
+              The useful part comes before everything else.
             </h2>
           </div>
-          <div className="grid divide-y divide-stone-200 border-y border-stone-200 md:grid-cols-3 md:divide-x md:divide-y-0">
-            {standards.map(({ title, body, icon: Icon }) => (
+          <div className="mt-10 grid divide-y divide-line border-y border-line md:grid-cols-3 md:divide-x md:divide-y-0">
+            {principles.map(({ title, body, icon: Icon }) => (
               <div key={title} className="px-1 py-7 md:px-7">
-                <Icon
-                  size={26}
-                  strokeWidth={1.5}
-                  className="mb-5 text-teal-800"
-                  aria-hidden="true"
-                />
-                <h3 className="font-serif text-xl text-stone-950">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-stone-600">{body}</p>
+                <Icon size={25} strokeWidth={1.5} className="mb-5 text-rust" aria-hidden="true" />
+                <h3 className="font-serif text-xl text-ink">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted">{body}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8">
-            <GuideVisual visual="checklist" />
-          </div>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-5xl px-4 py-14 text-center md:px-8 md:py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
-          Questions or corrections
-        </p>
-        <h2 className="mt-3 font-serif text-4xl text-stone-950">
-          Help us keep the record accurate.
-        </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-stone-600">
-          Our corrections process explains how to report a factual issue, a
-          broken source or an accessibility problem.
-        </p>
-        <Link
-          href="/corrections"
-          className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 border border-stone-900 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-stone-900 hover:bg-stone-950 hover:text-white"
-        >
-          View corrections policy
-          <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
-        </Link>
       </section>
     </div>
   );

@@ -43,8 +43,8 @@ const contentRules = [
     pattern: /health\s+canada\s+approv/i,
   },
   {
-    label: "unsupported clinical superiority claim",
-    pattern: /(?:clinic(?:al)?[-\s]grade|clinically\s+proven|dermatologist[-\s](?:tested|approved|recommended))/i,
+    label: "sensitive or regulated-topic claim",
+    pattern: /(?:clinic(?:al)?[-\s]grade|clinically\s+proven|dermatologist[-\s](?:tested|approved|recommended)|treat(?:ment)?\s+(?:a\s+)?(?:condition|disease)|guaranteed\s+(?:income|result|return))/i,
   },
   {
     label: "legacy sales CTA",
@@ -117,11 +117,11 @@ const guidesFile = await fs.readFile(
   "utf8",
 );
 if (
-  !/slug:\s*"led-face-mask-buying-guide-uk"[\s\S]*?advertisement:\s*true/.test(
+  !/slug:\s*"room-by-room-home-reset"[\s\S]*?category:\s*"Home"/.test(
     guidesFile,
   )
 ) {
-  failures.push("paid landing guide is missing advertisement: true");
+  failures.push("intended practical-living landing guide is missing");
 }
 
 if (requireIdentity) {

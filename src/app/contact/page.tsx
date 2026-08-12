@@ -1,5 +1,5 @@
 import LegalPage from "@/components/LegalPage";
-import { EDITORIAL_EMAIL, IDENTITY_IS_CONFIGURED } from "@/lib/site";
+import { EDITORIAL_EMAIL } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
@@ -17,19 +17,10 @@ export default function ContactPage() {
       intro="Use the editorial contact for factual corrections, source questions, privacy requests and accessibility problems."
     >
       <h2>Editorial contact</h2>
-      {IDENTITY_IS_CONFIGURED ? (
-        <p>
-          Email{" "}
-          <a href={`mailto:${EDITORIAL_EMAIL}`}>{EDITORIAL_EMAIL}</a>. Include
-          the page URL and enough detail for us to understand the issue.
-        </p>
-      ) : (
-        <p>
-          A working domain-based editorial email has not yet been configured.
-          This is a launch blocker: the site must not be submitted for paid
-          advertising until a real, monitored address is published here.
-        </p>
-      )}
+      <p>
+        Email <a href={`mailto:${EDITORIAL_EMAIL}`}>{EDITORIAL_EMAIL}</a>. Include
+        the page URL and enough detail for us to understand the issue.
+      </p>
 
       <h2>Corrections</h2>
       <p>
@@ -38,11 +29,10 @@ export default function ContactPage() {
         accordance with our <a href="/corrections">corrections policy</a>.
       </p>
 
-      <h2>Medical questions</h2>
+      <h2>What we cannot help with</h2>
       <p>
-        We cannot advise whether a device is suitable for a health condition or
-        an individual. Seek advice from an appropriately qualified healthcare
-        professional.
+        We do not provide purchase support, personal travel booking or
+        professional advice.
       </p>
     </LegalPage>
   );

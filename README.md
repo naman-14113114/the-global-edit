@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Global Edit
 
-## Getting Started
+The Global Edit is a Next.js 16 practical-living publication deployed at `https://www.theglobaledit.shop`.
 
-First, run the development server:
+## Purpose
+
+The site publishes original, non-commercial guides for home organisation, travel packing and clothing care. It contains no product sales, affiliate links, sponsored rankings, lead capture or non-essential tracking.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Verification
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run audit:ads
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the identity-required audit with the production values:
 
-## Learn More
+```bash
+npm run audit:launch
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Production configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `NEXT_PUBLIC_SITE_URL=https://www.theglobaledit.shop`
+- `NEXT_PUBLIC_OPERATOR_NAME=Naman Kharbanda`
+- `NEXT_PUBLIC_EDITORIAL_EMAIL=namananya5@gmail.com`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The linked Vercel project is recorded in `.vercel/project.json`. Preserve that link and the existing custom domain.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Policy and content rules live in `docs/ADS_COMPLIANCE.md`, `docs/CLAIMS_REGISTER.md` and `docs/ASSET_RIGHTS_REGISTER.md`.

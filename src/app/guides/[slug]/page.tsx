@@ -25,6 +25,7 @@ export async function generateMetadata({
     title: guide.title,
     description: guide.description,
     path: `/guides/${guide.slug}`,
+    type: "article",
   });
 }
 

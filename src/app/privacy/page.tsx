@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Privacy",
   description:
-    "Privacy information for visitors to The Global Edit UK consumer publication.",
+    "Privacy information for visitors to The Global Edit practical-living publication.",
   path: "/privacy",
 });
 
@@ -12,8 +12,8 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       eyebrow="Privacy"
-      title="A simple launch, with no advertising trackers."
-      intro="This notice describes the initial publication configuration. Last reviewed 29 July 2026."
+      title="A simple publication, with no advertising trackers."
+      intro="This notice describes the current publication configuration. Last reviewed 12 August 2026."
     >
       <h2>Information we collect</h2>
       <p>
@@ -46,8 +46,7 @@ export default function PrivacyPage() {
       <h2>Your questions</h2>
       <p>
         Use the <a href="/contact">contact page</a> for privacy questions or
-        requests. The real publisher identity and contact address must be
-        configured before public advertising begins.
+        requests.
       </p>
     </LegalPage>
   );

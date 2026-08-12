@@ -1,63 +1,97 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #FAFAFA;
-  --color-foreground: #1A1A1A;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --color-paper: oklch(0.965 0.012 79);
+  --color-surface: oklch(0.99 0.006 82);
+  --color-cream: oklch(0.93 0.035 78);
+  --color-wash: oklch(0.9 0.045 64);
+  --color-rust: oklch(0.5 0.14 35);
+  --color-ink: oklch(0.24 0.025 58);
+  --color-muted: oklch(0.47 0.018 60);
+  --color-line: oklch(0.79 0.018 70);
+  --font-sans: var(--font-albert), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-literata), ui-serif, Georgia, serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button {
+  transition-duration: 180ms;
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :focus-visible {
-  outline: 3px solid #0f766e;
-  outline-offset: 3px;
+  outline: 3px solid var(--color-rust);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--color-wash);
+  color: var(--color-ink);
 }
 
 .legal-copy {
-  color: #44403c;
-  font-size: 0.95rem;
+  color: var(--color-muted);
+  font-size: 1rem;
   line-height: 1.75;
 }
 
 .legal-copy h2 {
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
-  color: #0c0a09;
-  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  color: var(--color-ink);
+  font-family: var(--font-literata), ui-serif, Georgia, serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.2;
+  margin-top: 2.75rem;
 }
 
 .legal-copy h2:first-child {
   margin-top: 0;
 }
 
-.legal-copy h3 {
-  margin-top: 1.75rem;
-  margin-bottom: 0.5rem;
-  color: #1c1917;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
 .legal-copy p,
 .legal-copy ul {
-  margin-bottom: 1rem;
+  margin-top: 0.9rem;
+  max-width: 70ch;
 }
 
 .legal-copy ul {
-  padding-left: 1.25rem;
   list-style: disc;
+  padding-left: 1.25rem;
 }
 
 .legal-copy a {
-  color: #115e59;
+  color: var(--color-rust);
   font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: #99f6e4;
-  text-underline-offset: 3px;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 0.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

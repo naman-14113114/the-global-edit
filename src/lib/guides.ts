@@ -1,10 +1,3 @@
-export type GuideSource = {
-  title: string;
-  publisher: string;
-  url: string;
-  accessed: string;
-};
-
 export type GuidePoint = {
   title: string;
   body: string;
@@ -16,431 +9,531 @@ export type GuideSection = {
   points: GuidePoint[];
 };
 
+export type GuideCategory = "Home" | "Travel" | "Clothing care";
+
+export type GuideVisual =
+  | "home-reset"
+  | "small-kitchen"
+  | "guest-room"
+  | "carry-on"
+  | "weekend-bag"
+  | "clothing-care"
+  | "wardrobe-rotation";
+
 export type Guide = {
   slug: string;
   title: string;
   shortTitle: string;
   description: string;
-  eyebrow: string;
+  category: GuideCategory;
   published: string;
   reviewed: string;
   readingTime: string;
-  advertisement?: boolean;
-  visual: "checklist" | "specifications" | "claims" | "comfort" | "warranty";
+  visual: GuideVisual;
   sections: GuideSection[];
-  sources: GuideSource[];
 };
 
-const accessed = "29 July 2026";
-
-const asaSource: GuideSource = {
-  title: "Face facts: are cosmetic device ads making medicinal claims?",
-  publisher: "Advertising Standards Authority",
-  url: "https://www.asa.org.uk/news/face-facts-are-your-cosmetic-device-ads-making-medicinal-claims.html",
-  accessed,
+export type Category = {
+  slug: string;
+  name: GuideCategory;
+  description: string;
 };
 
-const mhraSource: GuideSource = {
-  title: "Medical devices: how to comply with legal requirements in Great Britain",
-  publisher: "Medicines and Healthcare products Regulatory Agency",
-  url: "https://www.gov.uk/guidance/medical-devices-how-to-comply-with-legal-requirements-in-great-britain",
-  accessed,
-};
+const published = "12 August 2026";
 
-const returnsSource: GuideSource = {
-  title: "Accepting returns and giving refunds",
-  publisher: "GOV.UK",
-  url: "https://www.gov.uk/accepting-returns-and-giving-refunds",
-  accessed,
-};
-
-const cmaSource: GuideSource = {
-  title: "Unfair commercial practices",
-  publisher: "Competition and Markets Authority",
-  url: "https://www.gov.uk/government/publications/unfair-commercial-practices-cma207/unfair-commercial-practices",
-  accessed,
-};
+export const categories: Category[] = [
+  {
+    slug: "home",
+    name: "Home",
+    description:
+      "Room-by-room systems for keeping everyday spaces useful, calm and easy to reset.",
+  },
+  {
+    slug: "travel",
+    name: "Travel",
+    description:
+      "Packing methods that begin with the trip you are taking, not a shopping list.",
+  },
+  {
+    slug: "clothing-care",
+    name: "Clothing care",
+    description:
+      "Simple routines for sorting, caring for and storing the clothes you already own.",
+  },
+];
 
 export const guides: Guide[] = [
   {
-    slug: "led-face-mask-buying-guide-uk",
-    title: "LED Face Mask Buying Guide UK: What to Check Before You Choose",
-    shortTitle: "LED Face Mask Buying Guide UK",
+    slug: "room-by-room-home-reset",
+    title: "A Room-by-Room Home Reset You Can Finish in a Weekend",
+    shortTitle: "The room-by-room home reset",
     description:
-      "A neutral UK checklist for comparing cosmetic LED face masks without relying on rankings, medical promises or unsupported performance scores.",
-    eyebrow: "UK consumer guide",
-    published: "29 July 2026",
-    reviewed: "29 July 2026",
-    readingTime: "8 minute read",
-    advertisement: true,
-    visual: "checklist",
-    sections: [
-      {
-        heading: "Start with the purpose stated by the manufacturer",
-        intro:
-          "The first useful distinction is not price or LED count. It is what the manufacturer says the device is intended to do.",
-        points: [
-          {
-            title: "Cosmetic wording",
-            body: "A cosmetic device may be presented for appearance-led use. That does not automatically support claims about treating a health condition.",
-          },
-          {
-            title: "Medicinal wording",
-            body: "Claims to treat or prevent a condition can bring different legal and evidence requirements. Check the precise wording rather than relying on a badge or marketing phrase.",
-          },
-          {
-            title: "Instructions take priority",
-            body: "Read the supplied instructions, warnings, exclusions and recommended session guidance before deciding whether a device suits you.",
-          },
-        ],
-      },
-      {
-        heading: "Compare practical features in context",
-        intro:
-          "Numbers are useful only when brands define and measure them consistently. Treat specification tables as questions to investigate, not automatic proof of quality.",
-        points: [
-          {
-            title: "Fit and coverage",
-            body: "Look at how the device is secured, where it sits around the eyes and whether the shape can be adjusted comfortably.",
-          },
-          {
-            title: "Controls and session feedback",
-            body: "Check whether controls are understandable, whether a timer is included and how the device indicates that a session has finished.",
-          },
-          {
-            title: "Cleaning and storage",
-            body: "Confirm which surfaces may be cleaned, what products should be avoided and how the device should be stored between uses.",
-          },
-          {
-            title: "Power and accessories",
-            body: "Identify what is supplied in the box, which items are essential for normal use and whether replacements are available.",
-          },
-        ],
-      },
-      {
-        heading: "Do not compare headline numbers in isolation",
-        points: [
-          {
-            title: "Wavelength labels",
-            body: "A wavelength figure does not by itself establish output, coverage, consistency or a particular cosmetic outcome.",
-          },
-          {
-            title: "LED totals",
-            body: "A larger number is not automatically better. Position, distance, device geometry and the manufacturer’s measurement method also affect what the figure means.",
-          },
-          {
-            title: "Session length",
-            body: "A shorter stated session is not proof that one product is stronger. Follow the instructions for the specific device rather than transferring guidance between products.",
-          },
-        ],
-      },
-      {
-        heading: "Check the seller before considering the offer",
-        points: [
-          {
-            title: "Identity and contact details",
-            body: "The seller should be clearly identifiable and provide a practical way to ask questions before and after purchase.",
-          },
-          {
-            title: "Complete price",
-            body: "Check the total payable amount, delivery costs and any conditions attached to a promotion. Ignore countdowns or savings that cannot be independently verified.",
-          },
-          {
-            title: "Returns and warranty",
-            body: "Read the returns process, exclusions, timescales, return address and warranty terms before ordering.",
-          },
-          {
-            title: "Reviews are not clinical evidence",
-            body: "Consumer feedback may describe an individual experience, but it does not prove that a device will produce the same result for another person.",
-          },
-        ],
-      },
-      {
-        heading: "A simple pre-purchase checklist",
-        points: [
-          {
-            title: "Save the product information",
-            body: "Keep a copy of the product description, instructions, price and returns terms that applied when you made your decision.",
-          },
-          {
-            title: "Ask about unclear claims",
-            body: "Request the exact source for any objective performance or certification statement that materially affects your decision.",
-          },
-          {
-            title: "Stop when the information conflicts",
-            body: "If specifications, prices or company details differ between pages, resolve the inconsistency before purchasing.",
-          },
-        ],
-      },
-    ],
-    sources: [asaSource, mhraSource, returnsSource, cmaSource],
-  },
-  {
-    slug: "how-to-read-led-mask-specifications",
-    title: "How to Read LED Mask Specifications Without Overinterpreting Them",
-    shortTitle: "How to Read LED Mask Specifications",
-    description:
-      "A plain-English guide to reading wavelength, LED count, session and power specifications without turning them into unsupported performance claims.",
-    eyebrow: "Specification guide",
-    published: "29 July 2026",
-    reviewed: "29 July 2026",
-    readingTime: "6 minute read",
-    visual: "specifications",
-    sections: [
-      {
-        heading: "A specification describes a device, not a guaranteed result",
-        points: [
-          {
-            title: "Read the definition",
-            body: "Confirm what the brand has counted or measured and whether the figure refers to the whole device, a component or a single operating mode.",
-          },
-          {
-            title: "Look for measurement conditions",
-            body: "A number is easier to interpret when the distance, mode, unit and testing conditions are explained.",
-          },
-          {
-            title: "Separate fact from interpretation",
-            body: "The statement that a component is present is different from a claim that it will produce a particular outcome.",
-          },
-        ],
-      },
-      {
-        heading: "Common figures that need context",
-        points: [
-          {
-            title: "Wavelength",
-            body: "Check whether the figure is a stated target, a range or a measured value. Do not assume the same label means identical delivery across products.",
-          },
-          {
-            title: "LED count",
-            body: "Ask how the emitters are arranged and whether a quoted total includes more than one component within each unit.",
-          },
-          {
-            title: "Session time",
-            body: "Use only the guidance supplied for that device. Session length is not a reliable shortcut for comparing power or effectiveness.",
-          },
-          {
-            title: "Battery and mains operation",
-            body: "Check charging time, expected operating time, cable requirements and whether the device can be used while connected to power.",
-          },
-        ],
-      },
-      {
-        heading: "What a useful specification page should include",
-        points: [
-          {
-            title: "Clear model identification",
-            body: "The model name on the page, packaging and instructions should be consistent.",
-          },
-          {
-            title: "Complete box contents",
-            body: "Accessories needed for normal operation should be listed separately from optional or promotional items.",
-          },
-          {
-            title: "Warnings and care",
-            body: "Safety information, cleaning guidance and situations requiring professional advice should be easy to find before purchase.",
-          },
-        ],
-      },
-    ],
-    sources: [asaSource, mhraSource],
-  },
-  {
-    slug: "cosmetic-vs-medical-device-claims-uk",
-    title: "Cosmetic and Medical-Device Claims in the UK: A Consumer Primer",
-    shortTitle: "Cosmetic vs Medical-Device Claims",
-    description:
-      "How to recognise when beauty-device marketing moves from appearance-led wording into claims that may require stronger evidence and regulatory status.",
-    eyebrow: "Claims guide",
-    published: "29 July 2026",
-    reviewed: "29 July 2026",
+      "A practical order for clearing surfaces, returning misplaced items and preparing each room for the week ahead.",
+    category: "Home",
+    published,
+    reviewed: published,
     readingTime: "7 minute read",
-    visual: "claims",
+    visual: "home-reset",
     sections: [
       {
-        heading: "The wording of a claim matters",
+        heading: "Decide what finished means",
+        intro:
+          "A reset is easier when the finish line is visible. Aim for a functional home, not a complete reorganisation project.",
         points: [
           {
-            title: "Appearance-led language",
-            body: "Cosmetic descriptions generally focus on appearance or routine. They should still be accurate and supported where they make an objective promise.",
+            title: "Choose three visible outcomes",
+            body: "Use a short definition such as clear floors, usable worktops and every room ready for its next activity. This keeps side projects from taking over the day.",
           },
           {
-            title: "Treatment language",
-            body: "Wording about treating, preventing or diagnosing a condition can change how a product and its advertising are regulated.",
+            title: "Carry one return basket",
+            body: "Put items that belong elsewhere into one basket while you work. Return them in a single lap instead of walking between rooms for every object.",
           },
           {
-            title: "Disclaimers do not repair the headline",
-            body: "A small disclaimer cannot neutralise a prominent claim that gives consumers a materially different impression.",
+            title: "Separate decisions from actions",
+            body: "Create four destinations: keep here, return elsewhere, recycle or discard, and decide later. Limit the decide-later group to one small container.",
           },
         ],
       },
       {
-        heading: "Badges and technical words are not evidence",
+        heading: "Work in an order that stays finished",
+        intro:
+          "Start where the household enters, then move through the rooms that collect the most daily activity.",
         points: [
           {
-            title: "Ask what a badge covers",
-            body: "A mark may relate to electrical, manufacturing or regulatory requirements. It should not be treated as proof of every advertised benefit.",
+            title: "Entryway first",
+            body: "Hang coats, pair shoes, clear post and leave one open surface. A clear arrival point stops new clutter from spreading while the rest of the reset is underway.",
           },
           {
-            title: "Check the exact product",
-            body: "Evidence about another device, component or general technology may not substantiate a claim about the model being advertised.",
+            title: "Kitchen and bathroom next",
+            body: "Put away clean items, remove empties, clear the main surfaces and restock only the basics. These rooms feel complete quickly when their working zones are open.",
           },
           {
-            title: "Look for accessible documentation",
-            body: "Important objective claims should be supported by information that identifies the product, method and limitation clearly.",
+            title: "Living areas and bedrooms last",
+            body: "Return shared items, fold throws, clear bedside surfaces and prepare clothes for the next morning. Leave detailed drawer sorting for another session.",
           },
         ],
       },
       {
-        heading: "What to do when a claim concerns your health",
+        heading: "Close the loop before you stop",
+        intro:
+          "The last fifteen minutes prevent half-finished piles from becoming tomorrow's first problem.",
         points: [
           {
-            title: "Do not rely on a buying guide",
-            body: "General editorial information cannot determine whether a device is appropriate for an individual health concern.",
+            title: "Empty the return basket",
+            body: "Make one final circuit and put each object in its home. If an object has no home, place it in the decide-later container rather than starting a new cupboard project.",
           },
           {
-            title: "Use qualified advice",
-            body: "Speak with an appropriately qualified healthcare professional when a condition, medicine, photosensitivity or other personal factor is involved.",
+            title: "Remove outgoing items",
+            body: "Take rubbish and recycling out, put donations by the door, and move anything that must leave the house into the car or next to your keys.",
+          },
+          {
+            title: "Set a ten-minute weekly reset",
+            body: "Repeat the entryway, worktops and return-basket routine at the same time each week. A small predictable reset is easier to maintain than another full weekend session.",
           },
         ],
       },
     ],
-    sources: [asaSource, mhraSource],
   },
   {
-    slug: "led-mask-fit-comfort-and-care",
-    title: "LED Mask Fit, Comfort and Care: Questions to Ask Before Buying",
-    shortTitle: "Fit, Comfort and Care",
+    slug: "small-kitchen-organisation",
+    title: "How to Organise a Small Kitchen Around the Way You Use It",
+    shortTitle: "Organising a small kitchen",
     description:
-      "A practical checklist covering fit, eye-area comfort, controls, cleaning, storage and manufacturer instructions.",
-    eyebrow: "Practical guide",
-    published: "29 July 2026",
-    reviewed: "29 July 2026",
-    readingTime: "5 minute read",
-    visual: "comfort",
-    sections: [
-      {
-        heading: "Fit is more than a product photograph",
-        points: [
-          {
-            title: "Adjustment range",
-            body: "Check how straps or supports adjust and whether the manufacturer describes any fit limitations.",
-          },
-          {
-            title: "Eye area",
-            body: "Read the instructions about eye protection and visual comfort. Do not assume that guidance from another device applies.",
-          },
-          {
-            title: "Weight and pressure",
-            body: "Consider where the device is supported and whether the returns policy allows you to assess practical comfort.",
-          },
-        ],
-      },
-      {
-        heading: "Care information should be available before purchase",
-        points: [
-          {
-            title: "Cleaning method",
-            body: "Confirm which materials and cleaning products are permitted and whether any components must remain dry.",
-          },
-          {
-            title: "Shared use",
-            body: "Follow the manufacturer’s hygiene guidance rather than assuming a device can be shared safely.",
-          },
-          {
-            title: "Storage",
-            body: "Check temperature, moisture and charging guidance, especially if the device will be stored in a bathroom or transported.",
-          },
-        ],
-      },
-      {
-        heading: "Controls should be understandable",
-        points: [
-          {
-            title: "Mode identification",
-            body: "A user should be able to identify the selected mode without relying on guesswork.",
-          },
-          {
-            title: "Session completion",
-            body: "Look for clear information about timers, indicators and how to stop a session.",
-          },
-          {
-            title: "Instructions and support",
-            body: "Confirm that instructions are available in a language you understand and that the seller offers a practical support channel.",
-          },
-        ],
-      },
-    ],
-    sources: [mhraSource, returnsSource],
-  },
-  {
-    slug: "warranties-returns-and-manufacturer-checklist",
-    title: "Beauty-Tech Warranties, Returns and Seller Checks",
-    shortTitle: "Warranties, Returns and Seller Checks",
-    description:
-      "A UK consumer checklist for reviewing seller identity, complete prices, returns, warranties and promotional language.",
-    eyebrow: "Consumer checklist",
-    published: "29 July 2026",
-    reviewed: "29 July 2026",
+      "A zone-based method for deciding what stays near the hob, sink, worktop and everyday eating area.",
+    category: "Home",
+    published,
+    reviewed: published,
     readingTime: "6 minute read",
-    visual: "warranty",
+    visual: "small-kitchen",
     sections: [
       {
-        heading: "Identify who is responsible for the sale",
+        heading: "Map the work before the cupboards",
         points: [
           {
-            title: "Seller identity",
-            body: "Look for a consistent business or trader name and a working contact method across the product page, policies and payment journey.",
+            title: "Name the repeated actions",
+            body: "List what happens most days: making a hot drink, preparing breakfast, chopping, cooking, washing up and packing food. These actions should determine where equipment lives.",
           },
           {
-            title: "Delivery information",
-            body: "Check where the seller delivers, the expected timing and whether additional costs appear later in the journey.",
+            title: "Mark four working zones",
+            body: "Use the sink, preparation surface, hob and serving area as anchors. Items should live beside the place where they are first used, not wherever an empty shelf happens to be.",
           },
           {
-            title: "Support after purchase",
-            body: "A support address should be usable for questions, returns and warranty requests rather than existing only as decoration.",
+            title: "Protect one clear worktop",
+            body: "Choose the most useful stretch of surface and keep it free of permanent storage. A small kitchen feels larger when one task can begin without moving several objects first.",
           },
         ],
       },
       {
-        heading: "Read the return and warranty terms separately",
+        heading: "Give the easiest space to everyday items",
         points: [
           {
-            title: "Returns",
-            body: "Check the time limit, required condition, return method, costs and any exclusions before ordering.",
+            title: "Use prime shelves for frequent tools",
+            body: "Keep daily plates, glasses, pans and ingredients between knee and eye level. Reserve high, low and awkward corners for occasional pieces.",
           },
           {
-            title: "Warranty",
-            body: "Confirm the duration, covered faults, exclusions and who handles a claim. A warranty does not replace statutory rights.",
+            title: "Store by complete task",
+            body: "Keep tea, coffee, mugs and the kettle together. Keep chopping boards, knives and mixing bowls near the main preparation surface. Fewer crossings make the room easier to use.",
           },
           {
-            title: "Trials and guarantees",
-            body: "Read the conditions behind a trial or money-back statement and save the version that applied when you purchased.",
+            title: "Avoid duplicate categories",
+            body: "One open packet area, one spare-food area and one container shelf are easier to scan than the same category spread across several cupboards.",
           },
         ],
       },
       {
-        heading: "Treat promotional pressure as a reason to slow down",
+        heading: "Build a five-minute closing routine",
         points: [
           {
-            title: "Countdowns",
-            body: "A timer should reflect a genuine deadline. Repeating or unexplained countdowns are not a sound basis for a decision.",
+            title: "Reset the main surface",
+            body: "Put away the last tools, wipe the protected worktop and leave the sink usable. This is the smallest action that changes how the kitchen feels the next morning.",
           },
           {
-            title: "Previous prices",
-            body: "A crossed-out price should represent a meaningful comparison and should not be used to create a misleading saving impression.",
+            title: "Use one overflow limit",
+            body: "Choose a single shelf or basket for back-up supplies. When it is full, use what is there before adding more.",
           },
           {
-            title: "Free items",
-            body: "Check whether the item is genuinely additional, whether conditions apply and whether the stated value is supported.",
+            title: "Review one zone at a time",
+            body: "If a cupboard stops working, adjust that task zone only. Reorganising the whole kitchen each time makes useful habits harder to see.",
           },
         ],
       },
     ],
-    sources: [returnsSource, cmaSource],
+  },
+  {
+    slug: "guest-room-checklist",
+    title: "A Guest-Room Checklist for a Comfortable Overnight Stay",
+    shortTitle: "The guest-room checklist",
+    description:
+      "A short room-preparation sequence covering sleep, storage, lighting and the practical details guests need on arrival.",
+    category: "Home",
+    published,
+    reviewed: published,
+    readingTime: "5 minute read",
+    visual: "guest-room",
+    sections: [
+      {
+        heading: "Prepare the room for arrival",
+        points: [
+          {
+            title: "Clear one luggage surface",
+            body: "Leave a chair, bench or section of floor open so a bag does not have to sit on the bed. Empty a few hangers or a drawer if the stay is longer than one night.",
+          },
+          {
+            title: "Check the room at guest height",
+            body: "Stand beside the bed and look for the light switch, a clear path to the door, a socket and a place for water or a phone. Move anything that requires explanation.",
+          },
+          {
+            title: "Remove private overflow",
+            body: "Relocate laundry, paperwork and storage boxes rather than hiding them in the wardrobe your guest may need to use.",
+          },
+        ],
+      },
+      {
+        heading: "Set up the sleep basics",
+        points: [
+          {
+            title: "Make choices visible",
+            body: "Provide an extra blanket and a second pillow where they can be found without asking. Keep the room simple enough that nothing looks off-limits.",
+          },
+          {
+            title: "Test light and temperature",
+            body: "Confirm the bedside light works and explain any unfamiliar heating control. Curtains or blinds should close fully and be easy to operate.",
+          },
+          {
+            title: "Leave a quiet landing spot",
+            body: "A small empty surface beside the bed is more useful than decoration. It gives glasses, keys and a phone an obvious place to go.",
+          },
+        ],
+      },
+      {
+        heading: "Share only the information they need",
+        points: [
+          {
+            title: "Write down the essentials",
+            body: "Provide the Wi-Fi name and password, bathroom location and any simple door instructions. Keep the note brief enough to read at a glance.",
+          },
+          {
+            title: "Mention the morning plan",
+            body: "Tell guests when the household usually wakes, where they can make a drink and whether breakfast is planned. Clear expectations are more useful than a perfectly styled room.",
+          },
+          {
+            title: "Reset after departure",
+            body: "Air the room, collect laundry, empty the bin and return the spare blanket and information card to their usual places. The next setup will take minutes.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "carry-on-packing-list",
+    title: "How to Build a Carry-On Packing List for the Trip You Are Taking",
+    shortTitle: "Building a carry-on packing list",
+    description:
+      "A repeatable planning method that starts with days and activities, then turns them into outfits and a final bag check.",
+    category: "Travel",
+    published,
+    reviewed: published,
+    readingTime: "7 minute read",
+    visual: "carry-on",
+    sections: [
+      {
+        heading: "Plan from the itinerary, not the wardrobe",
+        points: [
+          {
+            title: "List the fixed activities",
+            body: "Write one line for each day and mark travel, work, walking, dinner, weather exposure and any event with a clear dress requirement.",
+          },
+          {
+            title: "Build one flexible outfit formula",
+            body: "Choose a repeatable base, such as two bottoms, several tops and one outer layer that work together. Each extra item should complete more than one outfit.",
+          },
+          {
+            title: "Wear the bulkiest useful pieces",
+            body: "If practical for the journey, wear the heaviest shoes and outer layer. Do not add uncomfortable items simply to save bag space.",
+          },
+        ],
+      },
+      {
+        heading: "Pack in modules you can inspect",
+        points: [
+          {
+            title: "Keep the first night together",
+            body: "Place sleepwear, underwear and the next morning's top in one easy-to-reach group. This prevents a full unpack after a late arrival.",
+          },
+          {
+            title: "Separate small categories",
+            body: "Use one pouch each for toiletries, cables and small essentials. The purpose is quick inspection, not squeezing every item into the smallest possible space.",
+          },
+          {
+            title: "Leave a small return margin",
+            body: "A bag that only closes under pressure is difficult to use during the trip. Leave room for laundry separation and the ordinary expansion that happens after unpacking.",
+          },
+        ],
+      },
+      {
+        heading: "Run a final door-side check",
+        points: [
+          {
+            title: "Confirm rules with the carrier",
+            body: "Check the airline or transport operator's current size, weight and restricted-item rules directly before travel. This guide does not replace those requirements.",
+          },
+          {
+            title: "Check the items that cannot be improvised",
+            body: "Confirm identification, tickets, essential medication, keys, phone and charging cable separately from the clothing list.",
+          },
+          {
+            title: "Save the list after the trip",
+            body: "Mark what went unused and what was missed. Your next packing list should begin with that record rather than starting again from memory.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "weekend-bag-packing-plan",
+    title: "A Simple Weekend-Bag Packing Plan",
+    shortTitle: "The weekend-bag packing plan",
+    description:
+      "A compact two-night packing sequence for clothes, toiletries, chargers and the items needed on the journey home.",
+    category: "Travel",
+    published,
+    reviewed: published,
+    readingTime: "5 minute read",
+    visual: "weekend-bag",
+    sections: [
+      {
+        heading: "Start with two complete days",
+        points: [
+          {
+            title: "Write Saturday and Sunday separately",
+            body: "Note the main activity, likely weather and evening plan for each day. Pack to those plans instead of adding disconnected options.",
+          },
+          {
+            title: "Choose one shared layer",
+            body: "A single overshirt, jumper or light jacket that works with both days usually does more than two highly specific extras.",
+          },
+          {
+            title: "Add one change, not a second wardrobe",
+            body: "Keep one spare top or equivalent for delays and spills. More backups often create a heavier bag without changing the trip.",
+          },
+        ],
+      },
+      {
+        heading: "Make the travel day easy",
+        points: [
+          {
+            title: "Keep journey items at the top",
+            body: "Headphones, a cable, water bottle and a small snack should be reachable without opening every clothing layer.",
+          },
+          {
+            title: "Use a small overnight pouch",
+            body: "Group the few toiletries and personal items needed before bed. Check transport rules if the journey includes airport security.",
+          },
+          {
+            title: "Give worn clothes a destination",
+            body: "Pack one light laundry bag or reserve one packing cube. Separating worn items makes the return unpack much faster.",
+          },
+        ],
+      },
+      {
+        heading: "Pack the return before leaving",
+        points: [
+          {
+            title: "Leave one outfit untouched",
+            body: "Set aside the return-day outfit before filling the rest of the bag. It should suit the journey and remain easy to reach.",
+          },
+          {
+            title: "Use the same pocket map both ways",
+            body: "Keep keys, wallet, travel documents and charger in the same pockets throughout the trip. Repetition reduces the final-room search.",
+          },
+          {
+            title: "Do a four-point room scan",
+            body: "Check the bed, bathroom, sockets and behind the door before departure. These four places catch most items left temporarily outside the bag.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "clothing-care-routine",
+    title: "How to Build a Clothing-Care Routine from the Garment Label",
+    shortTitle: "A clothing-care routine from the label",
+    description:
+      "A careful way to sort laundry, follow each garment's instructions and record special-care items before they are forgotten.",
+    category: "Clothing care",
+    published,
+    reviewed: published,
+    readingTime: "6 minute read",
+    visual: "clothing-care",
+    sections: [
+      {
+        heading: "Read before sorting",
+        points: [
+          {
+            title: "Check the label on unfamiliar pieces",
+            body: "Read the care label before placing a new or rarely washed garment into a routine load. The item's own instructions matter more than a general fabric rule.",
+          },
+          {
+            title: "Separate by actual care needs",
+            body: "Create groups for ordinary machine washing, gentle handling, hand washing and professional care. Colour can be a second sort within those groups.",
+          },
+          {
+            title: "Do not guess at a symbol",
+            body: "If a care symbol is unfamiliar, use the garment maker's guidance or an authoritative symbol reference before proceeding.",
+          },
+        ],
+      },
+      {
+        heading: "Make special care visible",
+        points: [
+          {
+            title: "Use a separate holding place",
+            body: "Keep hand-wash and professional-care items out of the main basket. A clearly labelled bag or small basket prevents them entering an automatic load by habit.",
+          },
+          {
+            title: "Record the easy-to-forget detail",
+            body: "If an item has an unusual instruction, add a small note in your laundry area or phone. The goal is to avoid rereading a tiny label under time pressure.",
+          },
+          {
+            title: "Fasten and empty before washing",
+            body: "Check pockets and follow the garment's instructions for zips, buttons, belts and removable parts. Treat manufacturer directions as the final reference.",
+          },
+        ],
+      },
+      {
+        heading: "Finish the routine before storage",
+        points: [
+          {
+            title: "Dry according to the label",
+            body: "Do not assume every item in a wash group can share the same drying method. Recheck special pieces as they leave the machine or basin.",
+          },
+          {
+            title: "Return items only when fully ready",
+            body: "Let garments dry completely, then fold or hang them in their usual place. A clean pile outside the wardrobe is still an unfinished laundry cycle.",
+          },
+          {
+            title: "Review repeated friction",
+            body: "If the same pieces are repeatedly delayed because their care is impractical, store them where the instructions are visible or reconsider how often they belong in rotation.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "seasonal-wardrobe-rotation",
+    title: "A Seasonal Wardrobe Rotation Without the Spare-Room Pile",
+    shortTitle: "The seasonal wardrobe rotation",
+    description:
+      "A keep, repair, clean and store sequence that moves clothes between seasons without creating an unfinished sorting project.",
+    category: "Clothing care",
+    published,
+    reviewed: published,
+    readingTime: "7 minute read",
+    visual: "wardrobe-rotation",
+    sections: [
+      {
+        heading: "Edit the outgoing season first",
+        points: [
+          {
+            title: "Handle one category at a time",
+            body: "Finish coats before moving to knitwear, then shoes and accessories. Small completed categories are easier to store than one mixed floor pile.",
+          },
+          {
+            title: "Use four clear decisions",
+            body: "Choose keep, repair, release or unsure. Give the unsure group a fixed container and review date so it does not return to the wardrobe by default.",
+          },
+          {
+            title: "Check condition in daylight",
+            body: "Look for stains, loose fastenings, worn soles and missing parts before storage. Problems are easier to solve now than on the first cold or warm day of the next season.",
+          },
+        ],
+      },
+      {
+        heading: "Prepare items for storage",
+        points: [
+          {
+            title: "Follow each care label",
+            body: "Clean items according to their own instructions and make sure they are fully dry before packing. Do not use one treatment across different materials without checking.",
+          },
+          {
+            title: "Keep repairs separate and visible",
+            body: "Place repair items in one labelled bag with the needed action. Set a date to complete or outsource the repairs before the next season begins.",
+          },
+          {
+            title: "Label containers by contents",
+            body: "Use descriptions such as winter knitwear or summer shoes rather than a generic clothes label. Add a short contents list if containers are not transparent.",
+          },
+        ],
+      },
+      {
+        heading: "Bring the new season in slowly",
+        points: [
+          {
+            title: "Start with the next two weeks",
+            body: "Move only the pieces that match the current weather and routine. Keeping transitional items available avoids reversing the whole rotation after one change in temperature.",
+          },
+          {
+            title: "Give every category a boundary",
+            body: "Decide how much rail, drawer or shelf space each group can use. The boundary makes overcrowding visible before more items are added.",
+          },
+          {
+            title: "Save a short rotation note",
+            body: "Record missing basics, repairs and anything left unworn. Use the note when the next rotation begins instead of relying on memory or shopping first.",
+          },
+        ],
+      },
+    ],
   },
 ];
 
 export function getGuide(slug: string) {
   return guides.find((guide) => guide.slug === slug);
+}
+
+export function getCategory(slug: string) {
+  return categories.find((category) => category.slug === slug);
+}
+
+export function getGuidesByCategory(category: GuideCategory) {
+  return guides.filter((guide) => guide.category === category);
 }

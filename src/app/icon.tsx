@@ -10,8 +10,8 @@ export default function Icon() {
       <div
         style={{
           fontSize: 24,
-          background: '#1c1917',
-          color: '#f5f5f4',
+          background: '#9f3f2b',
+          color: '#fcfaf6',
           width: '100%',
           height: '100%',
           display: 'flex',

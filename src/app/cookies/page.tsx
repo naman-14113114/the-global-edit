@@ -13,7 +13,7 @@ export default function CookiesPage() {
     <LegalPage
       eyebrow="Cookies"
       title="No non-essential tracking at launch."
-      intro="The initial version of The Global Edit does not use analytics, remarketing or advertising cookies."
+      intro="The current version of The Global Edit does not use analytics, remarketing or advertising cookies."
     >
       <h2>Essential technology</h2>
       <p>

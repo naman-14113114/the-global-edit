@@ -5,7 +5,9 @@ import { absoluteUrl } from "@/lib/site";
 const staticPaths = [
   "/",
   "/guides",
-  "/category/beauty",
+  "/category/home",
+  "/category/travel",
+  "/category/clothing-care",
   "/about",
   "/contact",
   "/editorial-policy",
@@ -17,7 +19,7 @@ const staticPaths = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const reviewed = new Date("2026-07-29T00:00:00.000Z");
+  const reviewed = new Date("2026-08-12T00:00:00.000Z");
 
   return [
     ...staticPaths.map((path) => ({
@@ -30,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl(`/guides/${guide.slug}`),
       lastModified: reviewed,
       changeFrequency: "monthly" as const,
-      priority: guide.advertisement ? 0.9 : 0.7,
+      priority: guide.slug === "room-by-room-home-reset" ? 0.9 : 0.7,
     })),
   ];
 }

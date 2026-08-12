@@ -1,66 +1,81 @@
 import {
-  BadgeCheck,
-  BookOpenCheck,
-  CircleHelp,
-  FileSearch,
-  ScanEye,
-  ShieldCheck,
-  SlidersHorizontal,
+  Archive,
+  Bed,
+  CheckCircle2,
+  CookingPot,
+  DoorOpen,
+  House,
+  ListChecks,
+  Luggage,
+  Map,
+  Package,
+  RotateCcw,
+  Shirt,
   Sparkles,
 } from "lucide-react";
-import type { Guide } from "@/lib/guides";
+import type { GuideVisual as GuideVisualName } from "@/lib/guides";
 
 const visualItems: Record<
-  Guide["visual"],
-  { label: string; icon: typeof BadgeCheck }[]
+  GuideVisualName,
+  { label: string; icon: typeof House }[]
 > = {
-  checklist: [
-    { label: "Check the claim", icon: FileSearch },
-    { label: "Read the instructions", icon: BookOpenCheck },
-    { label: "Review seller terms", icon: ShieldCheck },
+  "home-reset": [
+    { label: "Set the finish line", icon: ListChecks },
+    { label: "Move room by room", icon: House },
+    { label: "Close the loop", icon: RotateCcw },
   ],
-  specifications: [
-    { label: "Find the definition", icon: FileSearch },
-    { label: "Add context", icon: SlidersHorizontal },
-    { label: "Avoid assumptions", icon: CircleHelp },
+  "small-kitchen": [
+    { label: "Map daily actions", icon: CookingPot },
+    { label: "Group complete tasks", icon: Package },
+    { label: "Reset one surface", icon: Sparkles },
   ],
-  claims: [
-    { label: "Read the wording", icon: ScanEye },
-    { label: "Check the product", icon: BadgeCheck },
-    { label: "Find the evidence", icon: FileSearch },
+  "guest-room": [
+    { label: "Clear an arrival zone", icon: DoorOpen },
+    { label: "Prepare sleep basics", icon: Bed },
+    { label: "Share key details", icon: CheckCircle2 },
   ],
-  comfort: [
-    { label: "Assess the fit", icon: ScanEye },
-    { label: "Understand controls", icon: SlidersHorizontal },
-    { label: "Follow care guidance", icon: Sparkles },
+  "carry-on": [
+    { label: "Read the itinerary", icon: Map },
+    { label: "Pack in modules", icon: Luggage },
+    { label: "Run the final check", icon: ListChecks },
   ],
-  warranty: [
-    { label: "Identify the seller", icon: BadgeCheck },
-    { label: "Read the terms", icon: BookOpenCheck },
-    { label: "Keep a record", icon: ShieldCheck },
+  "weekend-bag": [
+    { label: "Plan two full days", icon: Map },
+    { label: "Pack the journey", icon: Luggage },
+    { label: "Prepare the return", icon: RotateCcw },
+  ],
+  "clothing-care": [
+    { label: "Read the garment", icon: Shirt },
+    { label: "Separate special care", icon: Package },
+    { label: "Finish before storage", icon: CheckCircle2 },
+  ],
+  "wardrobe-rotation": [
+    { label: "Edit one category", icon: Shirt },
+    { label: "Prepare for storage", icon: Archive },
+    { label: "Record the rotation", icon: ListChecks },
   ],
 };
 
-export default function GuideVisual({ visual }: { visual: Guide["visual"] }) {
+export default function GuideVisual({ visual }: { visual: GuideVisualName }) {
   return (
     <div
-      className="grid grid-cols-1 sm:grid-cols-3 border-y border-stone-300 bg-white"
+      className="grid border-y border-line bg-surface sm:grid-cols-3"
       role="img"
-      aria-label="Three-step editorial checklist illustration"
+      aria-label="Three-step guide overview"
     >
       {visualItems[visual].map(({ label, icon: Icon }, index) => (
         <div
           key={label}
-          className="flex min-h-32 items-center gap-4 border-stone-200 px-5 py-6 sm:border-r sm:last:border-r-0"
+          className="flex min-h-32 items-center gap-4 border-b border-line px-5 py-6 last:border-b-0 sm:border-r sm:border-b-0 sm:last:border-r-0"
         >
-          <span className="flex size-12 shrink-0 items-center justify-center border border-stone-300 bg-stone-50 text-stone-800">
-            <Icon size={23} strokeWidth={1.5} aria-hidden="true" />
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-paper text-ink">
+            <Icon size={22} strokeWidth={1.6} aria-hidden="true" />
           </span>
           <div>
-            <div className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-teal-700">
+            <div className="mb-1 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-rust">
               Step {index + 1}
             </div>
-            <div className="font-serif text-lg text-stone-950">{label}</div>
+            <div className="font-serif text-lg leading-snug text-ink">{label}</div>
           </div>
         </div>
       ))}

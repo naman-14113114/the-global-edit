@@ -1,24 +1,25 @@
-# Claims Register
+# Content Risk Register
 
-Last reviewed: 29 July 2026
+Last reviewed: 12 August 2026
 
-Only the restrained wording below may be used without a new evidence review. Source links establish the stated consumer or regulatory context; they do not endorse The Global Edit or any product.
+## Approved Content Scope
 
-| Topic | Approved wording | Source | Accessed | Next review |
-| --- | --- | --- | --- | --- |
-| Medical-device status in Great Britain | Products presented as medical devices should be checked against current Great Britain requirements and the manufacturer's stated intended purpose. | https://www.gov.uk/guidance/medical-devices-how-to-comply-with-legal-requirements-in-great-britain | 29 July 2026 | 29 October 2026 |
-| Cosmetic versus medicinal wording | Claims to treat a condition can move cosmetic-device advertising into medicinal territory; readers should distinguish appearance claims from treatment claims. | https://www.asa.org.uk/news/face-facts-are-your-cosmetic-device-ads-making-medicinal-claims.html | 29 July 2026 | 29 October 2026 |
-| Distance-selling returns | UK consumers should check the seller's current returns terms and official distance-selling guidance before purchase. | https://www.gov.uk/accepting-returns-and-giving-refunds | 29 July 2026 | 29 October 2026 |
-| Misleading commercial practices | Reviews, urgency, savings and endorsements must not mislead consumers. | https://www.gov.uk/government/publications/unfair-commercial-practices-cma207/unfair-commercial-practices | 29 July 2026 | 29 October 2026 |
-| Tracking consent | Non-essential advertising and analytics storage or access should not be enabled without an appropriate consent process. | https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/ | 29 July 2026 | 29 October 2026 |
-| Product specifications | LED counts, wavelengths and manufacturer statistics are not automatically comparable when definitions, geometry, measurement methods and intended use differ. | Editorial explanation based on the need to read each manufacturer's definitions and instructions; no performance conclusion is asserted. | 29 July 2026 | 29 October 2026 |
+- Original room-reset and home-organisation sequences.
+- Original travel-packing and arrival checklists.
+- Clothing-care routines that tell readers to follow each garment's own label.
+- Reminders to check current airline or transport-provider rules directly.
+- Factual statements about how The Global Edit operates, authors and reviews its own content.
 
-## Prohibited Without New Review
+## Prohibited Without a New Policy and Evidence Review
 
-- Treatment, cure, prevention or healing claims.
-- Safety guarantees or suitability claims.
-- Clinical equivalence or clinic-grade claims.
-- Result timelines, percentages or before-and-after implications.
-- Professional endorsements, certifications or approvals.
-- Product rankings, customer ratings, testimonials or test results.
-- Comparative superiority claims.
+- Medical, health-condition, financial, legal, political, gambling, adult or other sensitive-topic advice.
+- Safety guarantees, suitability claims or promises of a likely result.
+- Professional endorsements, credentials, certifications or approvals.
+- Product rankings, comparisons, ratings, testimonials or first-hand tests that did not occur.
+- Prices, discounts, gifts, urgency, scarcity, checkout links or lead capture.
+- Affiliate links, paid placement or commercial redirects.
+- Copied, scraped, spun or automatically summarised third-party content.
+
+## Review Rule
+
+Before adding a new topic, ask whether it changes the site's policy category, requires a regulated qualification, depends on time-sensitive rules, introduces a commercial relationship or needs evidence beyond ordinary editorial experience. If any answer is yes, review the current platform policy and document the evidence before publication.

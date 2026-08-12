@@ -6,11 +6,13 @@ export function pageMetadata({
   description,
   path,
   noIndex = false,
+  type = "website",
 }: {
   title: string;
   description: string;
   path: string;
   noIndex?: boolean;
+  type?: "article" | "website";
 }): Metadata {
   return {
     title,
@@ -21,9 +23,10 @@ export function pageMetadata({
     openGraph: {
       title,
       description,
-      type: "article",
+      type,
       url: absoluteUrl(path),
       siteName: SITE_NAME,
+      locale: "en_GB",
     },
     robots: noIndex ? { index: false, follow: false } : undefined,
   };

@@ -1,56 +1,42 @@
 # The Global Edit Working Context
 
-Updated: 29 July 2026
+Updated: 12 August 2026
 
 ## Current Direction
 
-The repository is being rebuilt as a standalone UK beauty-technology consumer publication for informational paid-search traffic.
+The Global Edit is a standalone UK practical-living publication. It publishes original home-organisation, travel-packing and clothing-care guides. It is not a review, comparison, affiliate, ecommerce or lead-generation site.
 
-## Implemented
+## Published Experience
 
-- Replaced the commercial homepage with neutral consumer education.
-- Added five source-linked LED mask guides.
-- Added About, Contact, Editorial Policy, Corrections, Privacy, Cookies, Terms and Accessibility pages.
-- Added a prominent `Advertisement` label to the paid LED mask buying guide.
-- Replaced the legacy advertorial with a direct redirect to the guide.
-- Retired the unsupported review, medical-claim articles and PDF with HTTP 410 routes.
-- Removed inherited photographs, product assets and the PDF.
-- Restricted categories to the published Beauty guide library; unknown categories use a real 404.
-- Added canonical metadata, robots, sitemap and security headers.
-- Added claims, asset-rights and ads-compliance registers.
-- Added automated ads-readiness and launch-identity audits.
+- Seven substantive guides across Home, Travel and Clothing care.
+- About, Contact, Editorial Policy, Corrections, Privacy, Cookies, Terms and Accessibility pages.
+- A truthful public publisher identity and monitored editorial email.
+- Original code-rendered illustrations only; no unverified photography or product assets.
+- No products, prices, rankings, testimonials, ratings, offers, seller redirects or checkout links.
+- No health, finance, legal, political, gambling, adult or other sensitive-topic content.
+- No non-essential tracking, analytics, remarketing or lead capture.
+- Canonical metadata, robots and sitemap use `https://www.theglobaledit.shop`.
+- Legacy beauty and review routes return HTTP 410; unknown routes return 404.
 
-## Mandatory Inputs Before Advertising
+## Intended Paid Destination
 
-Set truthful production values for:
+`/guides/room-by-room-home-reset`
 
-- `NEXT_PUBLIC_SITE_URL`
-- `NEXT_PUBLIC_OPERATOR_NAME`
-- `NEXT_PUBLIC_EDITORIAL_EMAIL`
+Ads and keywords must describe the room-by-room home reset on that page. Do not send unrelated ads or keywords to it.
 
-Do not invent these values.
+## Production Identity
 
-## Latest Verification
+- Site URL: `https://www.theglobaledit.shop`
+- Operator: `Naman Kharbanda`
+- Editorial email: `namananya5@gmail.com`
 
-- `npm run lint`: passed.
-- `npm run typecheck`: passed.
-- `npm run build`: passed.
-- `npm run audit:ads`: passed.
-- Paid guide desktop Lighthouse: Performance 100, Accessibility 100, Best Practices 100, SEO 100.
-- Paid guide mobile Lighthouse: Performance 95, Accessibility 100, Best Practices 100, SEO 100.
-- Live routes return 200.
-- Legacy advertorial returns one 308 redirect to the paid guide.
-- Retired review, article and PDF routes return 410.
-- Unknown routes and categories return 404.
-- Desktop and mobile browser screenshots show no horizontal overflow.
-- Browser console reports no errors or warnings.
-- `npm run audit:launch` remains intentionally blocked until the three truthful production identity variables are supplied.
+The same truthful values should remain configured in Vercel production environment variables.
 
 ## Operating Rules
 
-- No Buudy relationship, links, products, prices or seller claims.
-- No affiliate or checkout links.
-- No unsupported medical, clinical, efficacy, review or urgency claims.
-- No non-essential tracking until a compliant consent system exists.
-- Before every code task, check local changes and compare the current branch with its remote before editing.
-- Keep work local unless the user explicitly requests a commit, push or deployment.
+- Keep the site useful without a purchase, sign-up, download or redirect.
+- Do not reintroduce product reviews, affiliate links, advertorial layouts or regulated topics.
+- No new media without a recorded rights basis in `docs/ASSET_RIGHTS_REGISTER.md`.
+- No advertising or analytics tag before consent requirements and notices are reviewed.
+- Ad copy, keywords and final URL must remain directly relevant to one another.
+- A compliant site cannot cure an account-history, billing, identity-verification or ad-copy violation.

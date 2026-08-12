@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Terms",
   description:
-    "Terms for using The Global Edit's UK beauty-technology consumer guides.",
+    "Terms for using The Global Edit's practical-living guides.",
   path: "/terms",
 });
 
@@ -13,32 +13,32 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="Terms"
       title="Terms of use."
-      intro="These terms apply when you read or use The Global Edit. Last reviewed 29 July 2026."
+      intro="These terms apply when you read or use The Global Edit. Last reviewed 12 August 2026."
     >
       <h2>General information</h2>
       <p>
-        The content is general consumer information. It is not medical, legal or
-        financial advice and is not a substitute for product instructions or
-        advice from an appropriately qualified professional.
+        The content is general practical information. It is not professional
+        advice. Follow the current instructions of
+        airlines, transport operators, garment makers and other relevant
+        providers when their requirements apply.
       </p>
 
-      <h2>No sales contract</h2>
+      <h2>No sales or service contract</h2>
       <p>
-        The Global Edit does not sell the products discussed in its guides.
-        Reading the site does not create a sales, clinical or advisory
-        relationship.
+        The Global Edit does not sell products or services. Reading the site does
+        not create a sales, booking, support or advisory relationship.
       </p>
 
       <h2>Sources and changes</h2>
       <p>
-        We aim to explain source material accurately, but external information
-        can change. Check current manufacturer instructions, seller terms and
-        official guidance before acting.
+        We aim to keep guides clear and current, but spaces, schedules and
+        provider rules differ. Check current garment labels, travel-provider
+        requirements and other instructions that apply to your situation.
       </p>
 
       <h2>External websites</h2>
       <p>
-        Links to regulators and other sources are provided for reference. We do
+        Links to external references may be provided when they are useful. We do
         not control those websites or their availability.
       </p>
 

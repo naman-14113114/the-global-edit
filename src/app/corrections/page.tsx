@@ -18,8 +18,8 @@ export default function CorrectionsPage() {
       <h2>How to report an issue</h2>
       <p>
         Use the details on our <a href="/contact">contact page</a>. Include the
-        page URL, the wording in question, why it may be inaccurate and a
-        supporting source where possible.
+        page URL, the wording in question, why it may be inaccurate and the
+        clearest supporting detail available.
       </p>
 
       <h2>What happens next</h2>

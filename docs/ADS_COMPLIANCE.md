@@ -18,7 +18,7 @@ The campaign must describe that guide accurately and link directly to it without
 - Keep the canonical hostname consistent: `https://www.theglobaledit.shop`.
 - Provide substantial original content on the final URL.
 - Keep navigation predictable and all visible links functional.
-- Show the publisher, contact route, editorial policy, privacy notice and terms.
+- Show the publication purpose, editorial policy, privacy notice and terms.
 - Do not add pop-ups, interstitial gates, forced downloads, login walls or unexpected redirects.
 - Do not show different subject matter to crawlers and people.
 

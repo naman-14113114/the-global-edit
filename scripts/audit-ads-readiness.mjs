@@ -2,7 +2,6 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
-const requireIdentity = process.argv.includes("--require-identity");
 const textExtensions = new Set([
   ".css",
   ".html",
@@ -124,15 +123,9 @@ if (
   failures.push("intended practical-living landing guide is missing");
 }
 
-if (requireIdentity) {
-  const operator = process.env.NEXT_PUBLIC_OPERATOR_NAME?.trim();
-  const email = process.env.NEXT_PUBLIC_EDITORIAL_EMAIL?.trim();
+if (process.argv.includes("--require-site-url")) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
-  if (!operator) failures.push("NEXT_PUBLIC_OPERATOR_NAME is not configured");
-  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    failures.push("NEXT_PUBLIC_EDITORIAL_EMAIL is not a valid public email");
-  }
   if (!siteUrl || !/^https:\/\//i.test(siteUrl)) {
     failures.push("NEXT_PUBLIC_SITE_URL must be a public HTTPS URL");
   }

@@ -1,5 +1,4 @@
 import LegalPage from "@/components/LegalPage";
-import { OPERATOR_NAME } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
@@ -29,9 +28,6 @@ export default function AboutPage() {
         We do not sell anything, collect leads, publish affiliate links, accept
         payment for rankings or use the site to provide regulated advice.
       </p>
-
-      <h2>Publisher</h2>
-      <p>{OPERATOR_NAME} publishes The Global Edit.</p>
 
       <h2>Our standard</h2>
       <p>

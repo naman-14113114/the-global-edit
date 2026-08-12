@@ -9,7 +9,6 @@ const staticPaths = [
   "/category/travel",
   "/category/clothing-care",
   "/about",
-  "/contact",
   "/editorial-policy",
   "/corrections",
   "/privacy",

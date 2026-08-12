@@ -42,10 +42,10 @@ export default function TermsPage() {
         not control those websites or their availability.
       </p>
 
-      <h2>Reporting problems</h2>
+      <h2>Corrections</h2>
       <p>
-        Please use the <a href="/contact">contact page</a> to report an error,
-        rights concern or accessibility problem.
+        Material factual corrections are recorded through the publication&apos;s{" "}
+        <a href="/corrections">corrections process</a>.
       </p>
     </LegalPage>
   );

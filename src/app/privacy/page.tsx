@@ -43,10 +43,11 @@ export default function PrivacyPage() {
         their own privacy notices.
       </p>
 
-      <h2>Your questions</h2>
+      <h2>Scope of this notice</h2>
       <p>
-        Use the <a href="/contact">contact page</a> for privacy questions or
-        requests.
+        This notice applies to the current read-only publication. It will be
+        updated before accounts, forms, comments or other data-submission tools
+        are introduced.
       </p>
     </LegalPage>
   );

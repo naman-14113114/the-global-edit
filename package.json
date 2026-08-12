@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "audit:ads": "node scripts/audit-ads-readiness.mjs",
-    "audit:launch": "node scripts/audit-ads-readiness.mjs --require-identity"
+    "audit:launch": "node scripts/audit-ads-readiness.mjs --require-site-url"
   },
   "dependencies": {
     "lucide-react": "^1.8.0",

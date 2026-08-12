@@ -9,8 +9,7 @@ The Global Edit is a standalone UK practical-living publication. It publishes or
 ## Published Experience
 
 - Seven substantive guides across Home, Travel and Clothing care.
-- About, Contact, Editorial Policy, Corrections, Privacy, Cookies, Terms and Accessibility pages.
-- A truthful public publisher identity and monitored editorial email.
+- About, Editorial Policy, Corrections, Privacy, Cookies, Terms and Accessibility pages.
 - Original code-rendered illustrations only; no unverified photography or product assets.
 - No products, prices, rankings, testimonials, ratings, offers, seller redirects or checkout links.
 - No health, finance, legal, political, gambling, adult or other sensitive-topic content.
@@ -24,13 +23,9 @@ The Global Edit is a standalone UK practical-living publication. It publishes or
 
 Ads and keywords must describe the room-by-room home reset on that page. Do not send unrelated ads or keywords to it.
 
-## Production Identity
+## Production Configuration
 
 - Site URL: `https://www.theglobaledit.shop`
-- Operator: `Naman Kharbanda`
-- Editorial email: `namananya5@gmail.com`
-
-The same truthful values should remain configured in Vercel production environment variables.
 
 ## Operating Rules
 

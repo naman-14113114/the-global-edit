@@ -10,7 +10,7 @@ Adults in the United Kingdom who arrive from search because they want a clear, p
 
 ## Product Purpose
 
-The Global Edit is an independent practical-living publication. It publishes original, step-by-step guides and checklists that help readers organise ordinary tasks with less friction. Success means the advertised page directly answers the query, the publisher and editorial process are easy to identify, and the reader can leave with a useful method without being redirected to a seller.
+The Global Edit is an independent practical-living publication. It publishes original, step-by-step guides and checklists that help readers organise ordinary tasks with less friction. Success means the advertised page directly answers the query, the editorial process is easy to understand, and the reader can leave with a useful method without being redirected to a seller.
 
 The publication does not sell products, collect leads, publish affiliate links, provide regulated advice, or use health, financial, political, legal, gambling, adult, or other sensitive topics to attract traffic.
 

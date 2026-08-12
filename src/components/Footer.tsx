@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { EDITORIAL_EMAIL, OPERATOR_NAME, SITE_NAME } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
 
 const editorialLinks = [
   { href: "/guides", label: "All guides" },
   { href: "/about", label: "About" },
   { href: "/editorial-policy", label: "Editorial policy" },
   { href: "/corrections", label: "Corrections" },
-  { href: "/contact", label: "Contact" },
 ];
 
 const legalLinks = [
@@ -27,15 +26,6 @@ export default function Footer() {
           <p className="mt-5 max-w-xl text-sm leading-6 text-surface/70">
             Original practical-living guides for the home, travel and clothing
             care. No product sales, affiliate links, paid rankings or lead capture.
-          </p>
-          <p className="mt-5 text-sm text-surface/70">
-            Published by {OPERATOR_NAME}.{" "}
-            <a
-              href={`mailto:${EDITORIAL_EMAIL}`}
-              className="underline decoration-surface/30 underline-offset-4 hover:text-cream"
-            >
-              {EDITORIAL_EMAIL}
-            </a>
           </p>
         </div>
 

@@ -24,11 +24,11 @@ export default function AccessibilityPage() {
         <li>Original code-rendered illustrations include text alternatives.</li>
       </ul>
 
-      <h2>Report a barrier</h2>
+      <h2>Ongoing review</h2>
       <p>
-        If a page, link or control is difficult to use, contact us through the{" "}
-        <a href="/contact">contact page</a>. Include the page URL, device,
-        browser and the problem encountered where possible.
+        Accessibility is checked during scheduled site reviews, including
+        keyboard navigation, responsive layout, focus visibility and document
+        structure.
       </p>
     </LegalPage>
   );

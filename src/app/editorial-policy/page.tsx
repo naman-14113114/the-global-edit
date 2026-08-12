@@ -13,7 +13,7 @@ export default function EditorialPolicyPage() {
     <LegalPage
       eyebrow="Editorial policy"
       title="How our guides are researched and reviewed."
-      intro="This policy applies to every guide published by The Global Edit. Last reviewed 12 August 2026."
+      intro="This policy applies to every guide on The Global Edit. Last reviewed 12 August 2026."
     >
       <h2>Purpose</h2>
       <p>

@@ -13,13 +13,13 @@ export default function CorrectionsPage() {
     <LegalPage
       eyebrow="Corrections"
       title="Accuracy is a continuing obligation."
-      intro="Readers can report factual errors, broken sources, unclear wording and accessibility problems."
+      intro="Published guides are periodically reviewed for factual errors, broken sources, unclear wording and accessibility problems."
     >
-      <h2>How to report an issue</h2>
+      <h2>Review process</h2>
       <p>
-        Use the details on our <a href="/contact">contact page</a>. Include the
-        page URL, the wording in question, why it may be inaccurate and the
-        clearest supporting detail available.
+        Each guide carries a review date. During a review, sources, instructions,
+        links and material factual statements are checked against the current
+        scope of the page.
       </p>
 
       <h2>What happens next</h2>

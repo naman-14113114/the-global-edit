@@ -22,7 +22,7 @@ npm run build
 npm run audit:ads
 ```
 
-Run the identity-required audit with the production values:
+Run the public-URL audit with the production value:
 
 ```bash
 npm run audit:launch
@@ -31,8 +31,6 @@ npm run audit:launch
 ## Production configuration
 
 - `NEXT_PUBLIC_SITE_URL=https://www.theglobaledit.shop`
-- `NEXT_PUBLIC_OPERATOR_NAME=Naman Kharbanda`
-- `NEXT_PUBLIC_EDITORIAL_EMAIL=namananya5@gmail.com`
 
 The linked Vercel project is recorded in `.vercel/project.json`. Preserve that link and the existing custom domain.
 

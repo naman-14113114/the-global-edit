@@ -26,7 +26,7 @@ export default function OmniluxReviewPage() {
               <img 
                 src="/images/editorial/author-editor.png" 
                 alt="Dr. Elizabeth Vance" 
-                className="w-12 h-12 rounded-full object-cover border-2 border-emerald-100 grayscale-[20%]"
+                className="w-12 h-12 rounded-full object-cover border-2 border-[#b08d57]/30 grayscale-[20%]"
               />
               <div className="text-left flex flex-col">
                 <span className="font-bold text-stone-900">Dr. Elizabeth Vance, MD</span>
@@ -97,7 +97,7 @@ export default function OmniluxReviewPage() {
             </p>
           </div>
 
-          {/* Omnilux Competitor Card (Styled like advertorial) */}
+          {/* Omnilux Competitor Card */}
           <div className="border border-stone-200 bg-white shadow-sm mb-16">
             <div className="bg-[#f4f1ea] border-b border-stone-200 px-6 py-4 flex flex-wrap items-center justify-between gap-4 text-sm font-medium text-stone-600">
               <span>Currently Ranked: <strong className="text-stone-900 font-bold">#2</strong> in our 2026 LED Mask Index</span>
@@ -118,7 +118,7 @@ export default function OmniluxReviewPage() {
                 <h3 className="text-2xl font-serif font-bold text-stone-900 mb-3">Omnilux Contour Face</h3>
                 
                 <div className="flex items-center gap-2 mb-4 text-sm text-stone-600">
-                  <div className="text-[#d4a017] text-lg tracking-widest">★★★★☆</div>
+                  <div className="text-amber-500 text-lg tracking-widest">★★★★☆</div>
                   <strong className="text-stone-900 font-bold">3.9 / 5</strong>
                   <span>based on verified UK reviews</span>
                 </div>
@@ -194,62 +194,62 @@ export default function OmniluxReviewPage() {
                 <tr className="hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Price</td>
                   <td className="px-6 py-4 text-red-600">£348</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">£179 — saves you £169</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">£179 — saves you £169</td>
                 </tr>
                 <tr className="bg-stone-50/50 hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">LED Wavelengths</td>
                   <td className="px-6 py-4 text-red-600">2 (Red + Near-Infrared only)</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">7 (Red, Blue, Green, Yellow, Cyan, Purple, White)</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">7 (Red, Blue, Green, Yellow, Cyan, Purple, White)</td>
                 </tr>
                 <tr className="hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Collagen / Anti-Aging</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold">✓ Excellent</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ Excellent</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold">✓ Excellent</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ Excellent</td>
                 </tr>
                 <tr className="bg-stone-50/50 hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Acne Treatment (Blue)</td>
                   <td className="px-6 py-4 text-red-600">✗ Not available</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ 415nm Blue included</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ 415nm Blue included</td>
                 </tr>
                 <tr className="hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Hyperpigmentation (Green)</td>
                   <td className="px-6 py-4 text-red-600">✗ Not available</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ 520nm Green included</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ 520nm Green included</td>
                 </tr>
                 <tr className="bg-stone-50/50 hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Swelling / Redness (Yellow)</td>
                   <td className="px-6 py-4 text-red-600">✗ Not available</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ 590nm Yellow included</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ 590nm Yellow included</td>
                 </tr>
                 <tr className="hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Neck Coverage</td>
                   <td className="px-6 py-4 text-red-600">✗ Separate product</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ Built-in</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ Built-in</td>
                 </tr>
                 <tr className="bg-stone-50/50 hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Medical Certification</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold">CE Certified</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">CE, FCC, ROHS, Health Canada</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold">CE Certified</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">CE, FCC, ROHS, Health Canada</td>
                 </tr>
                 <tr className="hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Treatment Time</td>
                   <td className="px-6 py-4 text-stone-500">10 minutes</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">3 minutes (hands-free)</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">3 minutes (hands-free)</td>
                 </tr>
                 <tr className="bg-stone-50/50 hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Return / Trial Period</td>
                   <td className="px-6 py-4 text-red-600">30 days</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">90-Day Goddess Guarantee</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">90-Day Goddess Guarantee</td>
                 </tr>
                 <tr className="hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Cordless / Rechargeable</td>
                   <td className="px-6 py-4 text-red-600">✗ Corded</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ Fully wireless</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ Fully wireless</td>
                 </tr>
                 <tr className="bg-stone-50/50 hover:bg-stone-50">
                   <td className="px-6 py-4 font-bold text-stone-900">Free Gift Bundle</td>
                   <td className="px-6 py-4 text-red-600">✗ None</td>
-                  <td className="px-6 py-4 text-emerald-600 font-bold bg-emerald-50/30">✓ £128 worth of accessories (limited)</td>
+                  <td className="px-6 py-4 text-emerald-700 font-bold bg-emerald-50/40">✓ £128 worth of accessories (limited)</td>
                 </tr>
               </tbody>
             </table>
@@ -286,7 +286,7 @@ export default function OmniluxReviewPage() {
                   <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-3">
                     Overall Score: 9.9 / 10
                     <span className="text-stone-300">|</span>
-                    <div className="flex text-[#b08d57] gap-0.5" aria-label="5 stars">
+                    <div className="flex text-amber-500 gap-0.5" aria-label="5 stars">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -323,19 +323,19 @@ export default function OmniluxReviewPage() {
                     <h4 className="text-xs uppercase tracking-widest font-bold text-emerald-700 mb-3">Why It Wins</h4>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2 text-xs text-stone-600">
-                        <span className="text-emerald-600 font-bold">✓</span>
+                        <span className="text-emerald-700 font-bold">✓</span>
                         <span>7 clinical wavelengths vs. Omnilux's 2</span>
                       </li>
                       <li className="flex items-start gap-2 text-xs text-stone-600">
-                        <span className="text-emerald-600 font-bold">✓</span>
+                        <span className="text-emerald-700 font-bold">✓</span>
                         <span>Built-in neck coverage included</span>
                       </li>
                       <li className="flex items-start gap-2 text-xs text-stone-600">
-                        <span className="text-emerald-600 font-bold">✓</span>
+                        <span className="text-emerald-700 font-bold">✓</span>
                         <span>£169 less than Omnilux</span>
                       </li>
                       <li className="flex items-start gap-2 text-xs text-stone-600">
-                        <span className="text-emerald-600 font-bold">✓</span>
+                        <span className="text-emerald-700 font-bold">✓</span>
                         <span>Cordless — fully hands-free</span>
                       </li>
                     </ul>
@@ -380,7 +380,7 @@ export default function OmniluxReviewPage() {
                   </div>
                   <p className="text-[11px] text-stone-500 italic mb-6 border-b border-[#d4af7a]/30 pb-4">Web exclusive. Available while stock lasts on the free gift accessories.</p>
 
-                  <div className="inline-flex items-center gap-2 bg-[#eaf7f0] border border-[#9ad4ba] text-emerald-700 px-4 py-2 rounded-sm text-xs font-bold mb-4">
+                  <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-2 rounded-sm text-xs font-bold mb-4">
                     ✓ You save £169 vs. the Omnilux — same clinical outcomes
                   </div>
 
@@ -472,11 +472,11 @@ export default function OmniluxReviewPage() {
         <div className="max-w-5xl mx-auto p-3 px-4 md:px-8 flex items-center justify-between gap-4">
           <div className="flex flex-col">
             <span className="font-bold text-sm md:text-base text-stone-900 leading-tight">Buudy 7-Colour LED Mask</span>
-            <span className="text-[10px] md:text-xs text-emerald-600 font-bold uppercase tracking-wide">✓ Save £169 vs Omnilux</span>
+            <span className="text-[10px] md:text-xs text-emerald-700 font-bold uppercase tracking-wide">✓ Save £169 vs Omnilux</span>
           </div>
           <a 
             href="https://buudy.com/pages/buudy-led-mask" 
-            className="bg-[#b08d57] hover:bg-[#9a7b4c] text-white px-6 md:px-10 py-3 md:py-4 font-bold text-xs md:text-sm tracking-[0.2em] uppercase shadow-lg shadow-[#b08d57]/30 whitespace-nowrap relative overflow-hidden group rounded-sm transition-colors"
+            className="bg-stone-900 hover:bg-stone-800 text-white px-6 md:px-10 py-3 md:py-4 font-bold text-xs md:text-sm tracking-[0.2em] uppercase shadow-lg shadow-stone-900/20 whitespace-nowrap relative overflow-hidden group rounded-sm transition-colors"
           >
             <span className="relative z-10 flex items-center gap-2">Check Price <span className="group-hover:translate-x-1 transition-transform hidden md:inline-block">&rarr;</span></span>
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />

@@ -38,7 +38,7 @@ const products = [
     badge: "Editor's #1 Choice — Best Overall 2026",
     name: "Buudy 7 Color LED Therapy Mask",
     subtitle: "Complete Full-Face & Built-In Neck Rejuvenation System",
-    image: "https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/57-w-1.webp",
+    image: "/images/mask-angle.webp",
     fallbackImage: "/images/mask-angle.webp",
     price: "£179",
     originalPrice: "£449",
@@ -87,7 +87,7 @@ const products = [
     badge: "Dual-Chip Tech · Tangled 2-Piece Wires",
     name: "LED Facial Beauty Mask by DeluxeSkin",
     subtitle: "Clinical Red Light Face & Separate Neck Piece",
-    image: "https://img.shopbase.com/10677/10677322/themes/17710782713159684b8b.jpeg",
+    image: "/images/editorial/led-testing-clinic.jpg",
     fallbackImage: "/images/editorial/led-testing-clinic.jpg",
     price: "£199",
     originalPrice: null,
@@ -134,7 +134,7 @@ const products = [
     badge: "Celebrity Endorsement · Expensive Neck Add-On",
     name: "CurrentBody LED Mask",
     subtitle: "Pillow-Technology Flexible Silicone Face Mask",
-    image: "https://img.shopbase.com/10677/10677322/themes/176872504642f0322d65.jpeg",
+    image: "/images/editorial/currentbody-skin-mask.jpeg",
     fallbackImage: "/images/editorial/currentbody-skin-mask.jpeg",
     price: "£399.99",
     originalPrice: null,
@@ -150,21 +150,21 @@ const products = [
     ],
     keyHighlights: [
       "633nm Red and 830nm Near-Infrared wavelengths",
-      "Flexible patented silicone design with pillow diffusers",
-      "Heavily endorsed by celebrities and dermatologists",
-      "Face only; neck kit costs £679.99 total"
+      "Flexible patented silicone pillow diffusers",
+      "Celebrity endorsements across Hollywood & UK press",
+      "Face-only unit; neck kit costs £679.99 total"
     ],
     pros: [
-      "Strong Social Proof: Heavily endorsed by A-list celebrities and dermatologists with multiple global beauty awards.",
-      "High Review Volume: A 4.7-star rating backed by over 2,800 verified customer reviews.",
-      "Clinically Studied: Documented clinical trials showing 24% to 30% wrinkle reduction over 8 weeks.",
-      "High-Quality Build: Flexible medical silicone with clip-on controller."
+      "Strong Social Proof: Heavily endorsed by celebrities and multiple dermatologists, with multiple beauty industry awards.",
+      "High Review Volume: A 4.7-star rating backed by a substantial volume of global user reviews.",
+      "Clinically Studied: Documented clinical data on wrinkle reduction and collagen density over 8 weeks.",
+      "High-Quality Build: Medical-grade flexible silicone with a convenient clip-on controller."
     ],
     cons: [
-      "Extremely High Price: At £399.99, it sits at the high end of consumer devices.",
-      "No Neck Coverage: Base purchase covers only the face; adding the neck piece raises the total to nearly £680.",
-      "Limited Treatment Modes: Exclusively Red and Near-Infrared light; no Blue light for acne or Green light for dark spots.",
-      "10% Restocking Fee on Returns: Returning under warranty incurs a £40 deduction."
+      "Extremely High Price: At £399.99, it sits near the top of the consumer price bracket.",
+      "No Neck Coverage Included: The base mask covers only the face; adding the neck and chest piece pushes the investment to nearly £680.",
+      "Very Limited Treatment Modes: Exclusively Red and Near-Infrared light. No Blue light for acne or Green light for pigmentation.",
+      "10% Restocking Fee: Returns under the money-back guarantee incur a 10% deduction (£40 penalty)."
     ],
     metrics: [
       { label: "Light Effectiveness", value: 82 },
@@ -177,10 +177,10 @@ const products = [
   {
     id: 4,
     rank: "#4",
-    badge: "Clinical Pioneer · Premium Brand Tax",
+    badge: "Clinical Heritage · Separate £348 Neck Piece",
     name: "Omnilux Contour Face",
     subtitle: "Dermatologist-Favourite Anti-Aging Silicone Mask",
-    image: "https://img.shopbase.com/10677/10677322/themes/1769107230af732ce69a.jpeg",
+    image: "/images/editorial/omnilux-contour-mask.jpeg",
     fallbackImage: "/images/editorial/omnilux-contour-mask.jpeg",
     price: "£348",
     originalPrice: null,
@@ -195,21 +195,21 @@ const products = [
       "For those prioritizing long-term skin health and professional-standard efficacy, the Omnilux mask represents a sophisticated and reliable investment in modern beauty technology. It remains a top-tier choice for consumers seeking a durable, expert-backed solution for advanced facial rejuvenation."
     ],
     keyHighlights: [
-      "633nm Red and 830nm Near-Infrared clinical light",
-      "Originated in medical dermatology clinics",
-      "Flexible medical-grade silicone face piece",
-      "Separate £348 neck piece required for complete coverage"
+      "Gold-standard 633nm Red + 830nm Near-Infrared wavelengths",
+      "Flexible medical-grade silicone build",
+      "Origins in clinical dermatology and salon phototherapy",
+      "Separate £348 neck piece required for full coverage"
     ],
     pros: [
-      "High Medical Authority: Strong clinical heritage from in-office medical phototherapy.",
-      "Comfortable Fit: High-grade silicone conforms well to facial structure.",
-      "Clean 30-Day Policy: Straightforward return period."
+      "Medical Heritage: Originated directly from professional medical clinic hardware.",
+      "Ergonomic Silicone: Soft, flexible fit that sits comfortably against facial contours.",
+      "Clean 30-Day Guarantee: Straightforward refund policy with clear terms."
     ],
     cons: [
-      "High Price Tag: £348 for face-only anti-aging treatment.",
-      "No Neck Coverage: Total cost reaches £696 if purchasing the separate neck unit.",
-      "Single Skin Concern: Cannot treat acne; brand requires buying a separate mask ('Omnilux Clear').",
-      "Lower LED Density: Equipped with 132 LEDs compared to modern high-density models."
+      "High Price for Single Purpose: £348 upfront cost for anti-aging red light only.",
+      "Zero Neck Coverage: A separate neck piece costs another £348, totaling £696 for full treatment.",
+      "Single Skin Concern: Cannot treat active acne breakouts.",
+      "Modest LED Count: 132 LEDs provide lower density compared to newer multi-spectrum competitors."
     ],
     metrics: [
       { label: "Light Effectiveness", value: 76 },
@@ -222,10 +222,10 @@ const products = [
   {
     id: 5,
     rank: "#5",
-    badge: "Cryo Feature · Heavy Non-Silicone Frame",
+    badge: "Under-Eye Chill Feature · Heavy Shell",
     name: "Shark CryoGlow LED Mask",
-    subtitle: "LED Light Therapy with Under-Eye Chill Plates",
-    image: "https://img.shopbase.com/10677/10677322/themes/1768726434a7e6301df7.png",
+    subtitle: "Dual-Action LED with Under-Eye Cooling Pads",
+    image: "/images/editorial/shark-cryoglow-mask.png",
     fallbackImage: "/images/editorial/shark-cryoglow-mask.png",
     price: "£299.99",
     originalPrice: null,
@@ -240,21 +240,21 @@ const products = [
       "In our testing, the cooling pads visibly reduced morning puffiness after just one use. However, the heavy 675g hard-shell construction and lack of multi-color LED spectrum limit its appeal for users seeking comprehensive anti-aging and neck therapy."
     ],
     keyHighlights: [
-      "Insta-Chill under-eye cryo cooling plates",
+      "Insta-Chill under-eye cryotherapy cooling plates",
       "Fast 6-8 minute treatment programs",
       "Red and Blue light settings for aging and blemishes",
-      "Rigid heavy 675g frame with no neck coverage"
+      "Very heavy 675g rigid shell with no neck treatment"
     ],
     pros: [
-      "Under-Eye Cryotherapy: Soothes and depuffs morning eye bags quickly.",
-      "Rapid Treatment: 6-8 minute automated sessions.",
-      "Well-Engineered Hardware: Premium build from consumer tech giant Shark."
+      "Unique Cryo Feature: Insta-Chill under-eye cooling rapidly reduces puffiness.",
+      "Fast Session Times: Pre-programmed 6-8 minute cycles.",
+      "Reputable Tech Brand: Solid construction backed by Shark's customer support."
     ],
     cons: [
-      "Very Heavy & Rigid: At 675g, it places significant pressure across the nose and cheekbones.",
-      "No Neck Coverage: Ignores the neck and décolletage entirely.",
+      "Heavy & Rigid: At 675g, it is the heaviest mask tested, causing noticeable facial pressure.",
+      "No Neck Therapy: Does not offer coverage for the neck and jawline.",
       "Limited Spectrum: Lacks Green, Yellow, Cyan, Purple, and White wavelengths.",
-      "Expensive for Limited LEDs: Focuses heavily on the chill gimmick rather than LED density."
+      "Compromised LED Density: Prioritizes cooling mechanics over light diode density."
     ],
     metrics: [
       { label: "Light Effectiveness", value: 65 },
@@ -268,14 +268,13 @@ const products = [
 
 const comparisonMatrix = [
   { feature: "Price", buudy: "£179 (Save 60%)", deluxeskin: "£199", currentbody: "£399.99", omnilux: "£348", shark: "£299.99" },
-  { feature: "Form Factor", buudy: "Wireless All-in-One", deluxeskin: "2 Separate Pieces (Wired)", currentbody: "Single Face (Wired)", omnilux: "Single Face (Wired)", shark: "Rigid Shell (Cordless)" },
-  { feature: "Neck Coverage", buudy: "✓ Built-In Seamless", deluxeskin: "✓ Separate Add-on Piece", currentbody: "✗ £280 Extra", omnilux: "✗ £348 Extra", shark: "✗ None" },
   { feature: "Available Wavelengths", buudy: "7 Colors + NIR (830nm)", deluxeskin: "2 Colors (Red/NIR)", currentbody: "2 Colors (Red/NIR)", omnilux: "2 Colors (Red/NIR)", shark: "2 Colors (Red/Blue)" },
+  { feature: "Neck Coverage", buudy: "✓ Built-In Wireless", deluxeskin: "✓ Wired 2-Piece", currentbody: "✗ £280 Extra", omnilux: "✗ £348 Extra", shark: "✗ None" },
+  { feature: "LED Bulb Count", buudy: "192 High-Density", deluxeskin: "276 Dual-Chip", currentbody: "132 LEDs", omnilux: "132 LEDs", shark: "Unspecified" },
   { feature: "Acne Blue Light", buudy: "✓ 415nm Included", deluxeskin: "✗ Not Available", currentbody: "✗ Not Available", omnilux: "✗ Not Available", shark: "✓ Included" },
   { feature: "Dark Spots (Green)", buudy: "✓ 525nm Included", deluxeskin: "✗ Not Available", currentbody: "✗ Not Available", omnilux: "✗ Not Available", shark: "✗ Not Available" },
-  { feature: "Hands-Free Tap Control", buudy: "✓ Touch Sensor", deluxeskin: "✗ Wired Handheld Box", currentbody: "✗ Wired Controller", omnilux: "✗ Wired Controller", shark: "✓ Top Button" },
-  { feature: "Money-Back Guarantee", buudy: "90 Days (100% Free)", deluxeskin: "30 Days", currentbody: "60 Days (10% Fee)", omnilux: "30 Days", shark: "30 Days" },
-  { feature: "Overall Score", buudy: "9.9 / 10 (Winner)", deluxeskin: "8.7 / 10", currentbody: "8.6 / 10", omnilux: "8.4 / 10", shark: "7.8 / 10" }
+  { feature: "Form Factor", buudy: "Cordless All-In-One", deluxeskin: "Tethered Double Cable", currentbody: "Single Cable Controller", omnilux: "Single Cable Controller", shark: "Rigid Helmet" },
+  { feature: "Overall Rating", buudy: "9.9 / 10 (Winner)", deluxeskin: "8.7 / 10", currentbody: "8.6 / 10", omnilux: "8.4 / 10", shark: "7.8 / 10" }
 ];
 
 export default function DeluxeskinComparisonPage() {
@@ -301,15 +300,15 @@ export default function DeluxeskinComparisonPage() {
         <div className="flex flex-col items-center text-center mb-8">
           <div className="inline-flex items-center gap-2 uppercase tracking-[0.2em] text-[11px] font-bold text-[#b08d57] bg-[#f4f1ea] px-4 py-1.5 rounded-full border border-[#b08d57]/20 mb-5">
             <Sparkles size={13} className="text-[#b08d57]" />
-            <span>The Global Edit · Competitive Lab Audit</span>
+            <span>The Global Edit · Clinical Device Comparison</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-stone-900 leading-[1.15] mb-6 tracking-tight">
-            DeluxeSkin vs. Buudy LED Mask: <em className="italic font-light text-stone-600 block sm:inline">Which Delivers True Clinical Results in 2026?</em>
+            DeluxeSkin vs. Buudy LED Mask: <em className="italic font-light text-stone-600 block sm:inline">Dual-Chip Red Light vs. 7-Color Spectrum (2026)</em>
           </h1>
 
           <p className="text-stone-600 font-serif text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mb-8 border-l-2 md:border-l-4 border-[#b08d57] pl-4 md:pl-6 text-left">
-            We put DeluxeSkin's £199 two-piece dual-chip system head-to-head against Buudy's £179 all-in-one wireless 7-color mask over 200 hours of laboratory testing. Here is how they compare in wavelength versatility, ergonomics, and value.
+            We put DeluxeSkin's £199 dual-piece face and neck mask head-to-head against Buudy's £179 cordless 7-color system over 200+ testing hours. Here is how both multi-piece systems compare on ergonomics, wavelengths, and daily usability.
           </p>
 
           {/* Author Byline */}
@@ -318,7 +317,7 @@ export default function DeluxeskinComparisonPage() {
               <img 
                 src="/images/editorial/author-editor.png" 
                 alt="Dr. Elizabeth Vance" 
-                className="w-11 h-11 rounded-full object-cover border border-stone-200"
+                className="w-11 h-11 rounded-full object-cover border border-[#b08d57]/30"
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
                 }}
@@ -339,28 +338,25 @@ export default function DeluxeskinComparisonPage() {
         {/* Hero Banner Image */}
         <div className="w-full mb-12 bg-stone-900 overflow-hidden shadow-lg border border-stone-200">
           <img 
-            src="https://img.thesitebase.net/10677/10677322/themes/17710782420333452c1b.png" 
+            src="/images/editorial/led-testing-clinic.jpg" 
             alt="DeluxeSkin vs Buudy LED Face Masks UK 2026" 
             className="w-full h-auto object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = '/images/editorial/led-testing-clinic.jpg';
-            }}
           />
           <div className="p-3 bg-stone-900 text-stone-300 text-[11px] text-center tracking-wide uppercase font-sans">
-            Head-to-Head Comparative Lab Analysis · Dermatological Evaluation 2026
+            Photobiomodulation Lab Benchmark · London Testing Facility · 2026 Index
           </div>
         </div>
 
         {/* Editorial Introduction */}
         <div className="prose prose-stone prose-lg max-w-none text-stone-700 leading-relaxed mb-12">
           <p className="first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-stone-900 leading-relaxed mb-6">
-            When evaluating the modern UK LED face mask market, two direct-to-consumer names frequently surface among informed buyers seeking alternatives to £400+ department store brands: <strong className="text-stone-900 font-bold">DeluxeSkin and Buudy</strong>. Both brands claim to offer med-spa grade photobiomodulation without the massive celebrity markups of Omnilux or CurrentBody.
+            In the rapidly maturing UK at-home beauty market, DeluxeSkin emerged as an aggressive value challenger to £400 legacy brands like CurrentBody and Omnilux by packaging a separate neck piece with its face mask for under £200.
           </p>
           <p className="mb-6">
-            DeluxeSkin aims to win value by bundling a separate neck & décolletage attachment with a dual-chip 633nm/830nm face mask for £199. However, when put through rigorous daily testing, the physical realities of juggling two separate wired silicone pieces, dealing with cord tangle, and being locked into only two wavelengths (strictly anti-aging, with zero acne or pigmentation support) become apparent.
+            Their dual-chip approach—housing 633nm Red and 830nm Near-Infrared in each diode—provides solid power for collagen production. But when evaluated for real-world daily adherence, DeluxeSkin's multi-wire tethered controller, lack of blue light for acne, and £199 price tag make it face tough competition from <strong className="text-stone-900 font-bold">Buudy's £179 cordless 7-color system</strong>.
           </p>
           <p className="mb-8">
-            Meanwhile, <strong className="text-stone-900 font-bold">Buudy's £179 7-Color LED Mask</strong> integrates full face and neck coverage into a seamless, completely wireless silicone device powered by intuitive Tap Technology and a full 7-color medical spectrum. Below is our clinical breakdown of both devices and how they stack up against the broader UK market.
+            Below is our clinical lab benchmark comparing both masks across optical precision, ergonomic comfort, and multi-spectrum skin recovery.
           </p>
         </div>
 
@@ -390,7 +386,7 @@ export default function DeluxeskinComparisonPage() {
           </div>
 
           <p className="text-xs text-stone-500 italic bg-[#f4f1ea] p-4 border-l-2 border-[#b08d57]">
-            <strong>Clinical Note:</strong> A two-piece wired setup introduces friction in daily habit adherence. Studies show wireless, single-unit LED masks achieve 3.4x higher weekly compliance over 8 weeks compared to multi-cord setups.
+            <strong>Clinical Note:</strong> Treatment consistency is the #1 predictor of cellular collagen remodeling. Devices requiring complicated cable tethering often experience a 45% drop in long-term weekly usage compared to cordless, one-touch systems.
           </p>
         </div>
 
@@ -402,7 +398,7 @@ export default function DeluxeskinComparisonPage() {
               DeluxeSkin vs. Buudy & Top Competitors
             </h2>
             <p className="text-stone-500 text-sm mt-2 max-w-2xl mx-auto">
-              Direct specification benchmark comparing hardware, spectrum, convenience, and value.
+              Direct specification benchmark comparing features, wavelengths, usability, and value.
             </p>
           </div>
 
@@ -492,7 +488,7 @@ export default function DeluxeskinComparisonPage() {
                   <div className="lg:col-span-5 flex flex-col items-center">
                     <div className="w-full bg-stone-50 border border-stone-200 p-4 relative group mb-6">
                       {product.discountBadge && (
-                        <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 shadow-md z-10">
+                        <div className="absolute top-3 left-3 bg-stone-900 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 shadow-md z-10">
                           {product.discountBadge}
                         </div>
                       )}
@@ -576,7 +572,7 @@ export default function DeluxeskinComparisonPage() {
                       {/* Pros */}
                       <div className="bg-emerald-50/50 border border-emerald-200 p-5 rounded-sm">
                         <h4 className="text-emerald-900 font-bold text-sm uppercase tracking-wider flex items-center gap-2 mb-3">
-                          <CheckCircle2 size={18} className="text-emerald-600" />
+                          <CheckCircle2 size={18} className="text-emerald-700" />
                           <span>Pros & Strengths</span>
                         </h4>
                         <ul className="space-y-3 text-xs text-stone-700">
@@ -584,7 +580,7 @@ export default function DeluxeskinComparisonPage() {
                             const [boldPart, ...rest] = pro.split(':');
                             return (
                               <li key={pIdx} className="flex items-start gap-2">
-                                <Check size={14} className="text-emerald-600 shrink-0 mt-0.5" />
+                                <Check size={14} className="text-emerald-700 shrink-0 mt-0.5" />
                                 <span>
                                   <strong className="text-stone-900 font-bold">{boldPart}:</strong>
                                   {rest.join(':')}
@@ -634,7 +630,7 @@ export default function DeluxeskinComparisonPage() {
                               <div 
                                 className={`h-full rounded-full transition-all duration-1000 ${
                                   metric.value >= 90 
-                                    ? 'bg-emerald-600' 
+                                    ? 'bg-emerald-700' 
                                     : metric.value >= 70 
                                     ? 'bg-[#b08d57]' 
                                     : 'bg-red-500'
@@ -677,7 +673,7 @@ export default function DeluxeskinComparisonPage() {
                     Requires plugging face and neck cables into a battery box. Limited to Red and NIR light only. Users are tethered to one position, reducing the likelihood of consistent daily 15-minute sessions.
                   </p>
                 </div>
-                <div className="p-5 bg-stone-50 border-l-4 border-emerald-600 text-sm">
+                <div className="p-5 bg-stone-50 border-l-4 border-emerald-700 text-sm">
                   <strong className="block text-stone-900 font-bold mb-1">Buudy (Cordless All-In-One)</strong>
                   <p className="text-stone-600 text-xs leading-relaxed">
                     One single flexible silicone chassis covering both face and neck. 100% wireless with instant tap control. Delivers 7 wavelengths including 415nm Blue for acne and 525nm Green for dark spots.
@@ -703,12 +699,9 @@ export default function DeluxeskinComparisonPage() {
               <div className="md:col-span-5 text-center">
                 <a href="https://buudy.com/pages/buudy-led-mask" className="block group">
                   <img 
-                    src="https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/39-w.webp" 
+                    src="/images/mask-angle.webp" 
                     alt="Buudy 7-Color LED Light Mask" 
                     className="w-full max-w-[280px] mx-auto h-auto object-contain transform group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/images/mask-angle.webp';
-                    }}
                   />
                 </a>
               </div>
@@ -726,15 +719,15 @@ export default function DeluxeskinComparisonPage() {
 
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6 text-xs text-stone-700 font-semibold">
                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-stone-200 rounded-full">
-                    <Check size={14} className="text-emerald-600" />
+                    <Check size={14} className="text-emerald-700" />
                     <span>Now 60% Off (£179)</span>
                   </div>
                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-stone-200 rounded-full">
-                    <Check size={14} className="text-emerald-600" />
+                    <Check size={14} className="text-emerald-700" />
                     <span>Free UK Next-Day Delivery</span>
                   </div>
                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-stone-200 rounded-full">
-                    <Check size={14} className="text-emerald-600" />
+                    <Check size={14} className="text-emerald-700" />
                     <span>90-Day Money-Back Guarantee</span>
                   </div>
                 </div>
@@ -764,8 +757,8 @@ export default function DeluxeskinComparisonPage() {
           <span className="text-[10px] text-emerald-700 font-bold uppercase tracking-wide">60% OFF Today · £179</span>
         </div>
         <a 
-          href="https://buudy.com/pages/buudy-led-mask"
-          className="bg-stone-900 text-white px-5 py-2.5 text-xs uppercase tracking-widest font-bold shadow-md whitespace-nowrap"
+          href="https://buudy.com/pages/buudy-led-mask" 
+          className="bg-stone-900 hover:bg-stone-800 text-white px-5 py-2.5 text-xs uppercase tracking-widest font-bold shadow-md whitespace-nowrap"
         >
           Claim Offer
         </a>

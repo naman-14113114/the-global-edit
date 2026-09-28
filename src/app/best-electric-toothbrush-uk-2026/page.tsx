@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ToothbrushRankingClient from "@/components/ToothbrushRankingClient";
+import ElectricToothbrushesAdvertorial from "@/features/electric-toothbrushes/ElectricToothbrushesAdvertorial";
 import { toothbrushProducts } from "@/data/toothbrushes";
 import { SITE_NAME, SITE_URL } from "@/lib/brand";
 
@@ -119,7 +119,7 @@ export default function BestElectricToothbrushPage() {
           __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
-      <ToothbrushRankingClient />
+      <ElectricToothbrushesAdvertorial />
     </>
   );
 }

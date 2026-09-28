@@ -39,7 +39,7 @@ const products = [
     badge: "Editor's #1 Choice — Best Overall 2026",
     name: "Buudy 7 Color LED Therapy Mask",
     subtitle: "Complete Full-Face & Built-In Neck Rejuvenation System",
-    image: "https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/57-w-1.webp",
+    image: "/images/mask-angle.webp",
     fallbackImage: "/images/mask-angle.webp",
     price: "£179",
     originalPrice: "£449",
@@ -137,7 +137,7 @@ const products = [
     badge: "Celebrity Endorsement · Expensive Extras",
     name: "CurrentBody LED Mask",
     subtitle: "Pillow-Technology Flexible Silicone Face Mask",
-    image: "https://img.shopbase.com/10677/10677322/themes/176872504642f0322d65.jpeg",
+    image: "/images/editorial/currentbody-skin-mask.jpeg",
     fallbackImage: "/images/editorial/currentbody-skin-mask.jpeg",
     price: "£399.99",
     originalPrice: null,
@@ -183,7 +183,7 @@ const products = [
     badge: "Clinical Pioneer · Premium Pricing",
     name: "Omnilux Contour Face",
     subtitle: "Dermatologist-Favourite Anti-Aging Silicone Mask",
-    image: "https://img.shopbase.com/10677/10677322/themes/1769107230af732ce69a.jpeg",
+    image: "/images/editorial/omnilux-contour-mask.jpeg",
     fallbackImage: "/images/editorial/omnilux-contour-mask.jpeg",
     price: "£348",
     originalPrice: null,
@@ -228,7 +228,7 @@ const products = [
     badge: "Cryo Feature · Heavy Non-Silicone Frame",
     name: "Shark CryoGlow LED Mask",
     subtitle: "LED Light Therapy with Under-Eye Chill Plates",
-    image: "https://img.shopbase.com/10677/10677322/themes/1768726434a7e6301df7.png",
+    image: "/images/editorial/shark-cryoglow-mask.png",
     fallbackImage: "/images/editorial/shark-cryoglow-mask.png",
     price: "£299.99",
     originalPrice: null,
@@ -705,12 +705,9 @@ export default function QureskincareComparisonPage() {
               <div className="md:col-span-5 text-center">
                 <a href="https://buudy.com/pages/buudy-led-mask" className="block group">
                   <img 
-                    src="https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/39-w.webp" 
+                    src="/images/mask-angle.webp" 
                     alt="Buudy 7-Color LED Light Mask" 
                     className="w-full max-w-[280px] mx-auto h-auto object-contain transform group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/images/mask-angle.webp';
-                    }}
                   />
                 </a>
               </div>

@@ -18,11 +18,14 @@ import {
   ArrowRight,
   Gift,
   ExternalLink,
+  Activity,
+  Zap,
 } from "lucide-react";
-import { GreenStarRating } from "@/components/GreenStarRating";
+import { GreenStarIcon, GreenStarRating } from "@/components/GreenStarRating";
 import { OutboundLoader } from "@/components/OutboundLoader";
 import {
   type ToothbrushGuide,
+  getToothbrushGuide,
   MIROOOO_URL,
   MIROOOO_PACKAGE_CONTENTS,
 } from "@/data/toothbrushGuides";
@@ -34,10 +37,10 @@ import {
 
 const defaultEvaluationCriteria = [
   "Deep cleaning & plaque biofilm removal",
-  "Gentle on gums & enamel safe (CEJ protection)",
+  "Gentle on gums & enamel safe (45° Bass angle protection)",
   "Lightweight ergonomic handling & wrist dexterity",
-  "Long battery life & universal USB-C charging",
-  "Travel friendly with protective travel case",
+  "Long battery life & universal USB-C fast charging (90+ days)",
+  "Travel friendly with protective luxury travel case",
   "Whisper-quiet acoustic motor sound (<50dB)",
   "Precision 3D contour brush head quality",
   "100% mould-resistant aerospace aluminium & IPX7 waterproof",
@@ -63,6 +66,15 @@ type TrackingWindow = Window & {
   };
 };
 
+function formatLondonDate(date: Date) {
+  return new Intl.DateTimeFormat("en-GB", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "Europe/London",
+  }).format(date);
+}
+
 function handleOutboundClick(
   event: MouseEvent<HTMLAnchorElement>,
   setLoadingTarget: (target: string) => void,
@@ -71,7 +83,10 @@ function handleOutboundClick(
 ) {
   try {
     const destination = new URL(event.currentTarget.href, window.location.href);
-    if (destination.hostname === "www.trymiroooo.com") {
+    if (
+      destination.hostname === "www.trymiroooo.com" ||
+      destination.hostname.includes("miroooo.com")
+    ) {
       const current = new URL(window.location.href);
       attributionQueryKeys.forEach((key) => {
         const value = current.searchParams.get(key);
@@ -106,7 +121,12 @@ function handleOutboundClick(
         ecommerce: null,
         ...payload,
       });
+      trackingWindow.dataLayer.push({
+        event: "affiliate_click",
+        ...payload,
+      });
       trackingWindow.uetq?.push("event", "miroooo_outbound_click", payload);
+      trackingWindow.uetq?.push("event", "affiliate_click", payload);
     }
   } catch {
     // Keep native anchor navigation on parsing failure
@@ -147,9 +167,9 @@ function EditorialCtaButton({
   const isLoading = loadingTarget === targetId;
 
   const bgClasses = {
-    gold: "bg-[#b08d57] hover:bg-[#9a7b4c] text-white shadow-[#b08d57]/20",
-    dark: "bg-stone-900 hover:bg-stone-800 text-white shadow-stone-900/10",
-    emerald: "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/30",
+    gold: "bg-[#b08d57] hover:bg-[#9a7b4c] text-white shadow-xl shadow-[#b08d57]/20",
+    dark: "bg-stone-900 hover:bg-stone-800 text-white shadow-xl shadow-stone-900/10",
+    emerald: "bg-emerald-600 hover:bg-emerald-700 text-white shadow-xl shadow-emerald-600/30",
   }[variant];
 
   return (
@@ -176,16 +196,59 @@ function EditorialCtaButton({
   );
 }
 
+function OfficialButton({
+  href,
+  targetId,
+  loadingTarget,
+  setLoadingTarget,
+  slug,
+  children,
+  className = "",
+}: {
+  href: string;
+  targetId: string;
+  loadingTarget: string | null;
+  setLoadingTarget: (target: string) => void;
+  slug: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  const isLoading = loadingTarget === targetId;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer sponsored"
+      onClick={(event) => handleOutboundClick(event, setLoadingTarget, targetId, slug)}
+      className={`group relative inline-flex min-h-12 w-full items-center justify-center overflow-hidden rounded-full bg-emerald-600 px-6 py-3.5 text-center text-sm md:text-base font-bold text-white shadow-lg shadow-emerald-600/30 transition-transform duration-300 hover:scale-[1.02] hover:bg-emerald-700 ${className}`}
+      aria-busy={isLoading}
+    >
+      {isLoading ? (
+        <OutboundLoader />
+      ) : (
+        <>
+          <span className="relative z-10 flex items-center justify-center gap-2 whitespace-nowrap">
+            {children}
+            <ChevronRight className="h-5 w-5 shrink-0" aria-hidden="true" />
+          </span>
+          <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+        </>
+      )}
+    </a>
+  );
+}
+
 function MetricBarItem({ label, value }: ToothbrushMetric) {
   return (
     <div className="mb-3">
       <div className="flex justify-between text-[11px] font-bold uppercase tracking-widest mb-1 text-stone-600">
         <span>{label}</span>
-        <span>{value}%</span>
+        <span className="text-emerald-700">{value}%</span>
       </div>
       <div className="h-2 bg-stone-200 overflow-hidden w-full rounded-full">
         <div
-          className="h-full bg-emerald-500 rounded-full transition-all duration-1000"
+          className="h-full bg-emerald-600 rounded-full transition-all duration-1000"
           style={{ width: `${value}%` }}
         />
       </div>
@@ -193,7 +256,405 @@ function MetricBarItem({ label, value }: ToothbrushMetric) {
   );
 }
 
-interface Top5RowProduct {
+function RankRibbon({
+  rank,
+  featured = false,
+}: {
+  rank: string;
+  featured?: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span
+        className={`text-xs font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-xs ${
+          featured
+            ? "bg-stone-900 text-white border border-stone-800 shadow-sm"
+            : "bg-stone-200 text-stone-700"
+        }`}
+      >
+        Rank {rank} {featured ? "• Editor's #1 Choice" : ""}
+      </span>
+    </div>
+  );
+}
+
+function PackagePanel({
+  loadingTarget,
+  setLoadingTarget,
+  slug,
+}: {
+  loadingTarget: string | null;
+  setLoadingTarget: (target: string) => void;
+  slug: string;
+}) {
+  return (
+    <div className="mt-10 bg-gradient-to-br from-amber-50/50 via-stone-50 to-blue-50/30 border-2 border-[#b08d57]/40 rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-lg shadow-stone-200/50">
+      <div className="relative z-10">
+        <div className="inline-flex items-center gap-2 bg-[#f4f1ea] text-[#b08d57] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-[#d4af7a]/40">
+          <span className="text-base">🎁</span> Free Gifts Included
+        </div>
+
+        <h4 className="font-serif text-2xl md:text-3xl text-stone-900 mb-3 leading-tight font-bold">
+          Free Gifts Included in{" "}
+          <span className="text-[#b08d57] italic">Your Package</span>
+        </h4>
+
+        <p className="text-stone-700 text-sm md:text-base leading-relaxed mb-8">
+          Every Miroooo Brush X2 order includes these essential clinical accessories in the box for complete oral care at home and on the go.
+        </p>
+
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-6 mb-8">
+          {/* Luxury Travel Case */}
+          <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-stone-200 shadow-md text-center transform hover:-translate-y-1 transition-transform relative">
+            <div className="absolute -top-2 sm:-top-3 -right-1 sm:-right-2 bg-emerald-600 text-white font-black text-[9px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg z-20 animate-bounce">
+              FREE
+            </div>
+            <a
+              href={MIROOOO_URL}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={(event) =>
+                handleOutboundClick(event, setLoadingTarget, "package-case-img", slug)
+              }
+              aria-label="View the Miroooo Brush X2 package with Luxury Travel Case"
+              className="block relative mb-2 rounded-lg sm:rounded-xl overflow-hidden bg-stone-50 border border-stone-100"
+            >
+              <img
+                src="/img/toothbrushes/miroooo-brush-x2-luxury-travel-case-gift.webp"
+                alt="Miroooo Brush X2 Luxury Aluminium Travel Case"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-square object-cover"
+              />
+            </a>
+            <p className="font-bold text-stone-900 text-[11px] sm:text-base leading-tight">
+              Luxury Travel Case
+            </p>
+            <p className="text-[10px] text-stone-400 mt-0.5 hidden sm:block">£16 Value</p>
+          </div>
+
+          {/* Wall-Mounted Storage */}
+          <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-stone-200 shadow-md text-center transform hover:-translate-y-1 transition-transform relative">
+            <div
+              className="absolute -top-2 sm:-top-3 -right-1 sm:-right-2 bg-emerald-600 text-white font-black text-[9px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg z-20 animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            >
+              FREE
+            </div>
+            <a
+              href={MIROOOO_URL}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={(event) =>
+                handleOutboundClick(event, setLoadingTarget, "package-mount-img", slug)
+              }
+              aria-label="View the Miroooo Brush X2 package with Wall-Mounted Storage"
+              className="block relative mb-2 rounded-lg sm:rounded-xl overflow-hidden bg-stone-50 border border-stone-100"
+            >
+              <img
+                src="/img/toothbrushes/miroooo-brush-x2-wall-mounted-storage-dock-gift.webp"
+                alt="Miroooo Brush X2 Wall-Mounted Storage Dock"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-square object-cover"
+              />
+            </a>
+            <p className="font-bold text-stone-900 text-[11px] sm:text-base leading-tight">
+              Wall-Mounted Storage
+            </p>
+            <p className="text-[10px] text-stone-400 mt-0.5 hidden sm:block">£10 Value</p>
+          </div>
+
+          {/* Up to 4 Extra Brush Heads */}
+          <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-stone-200 shadow-md text-center transform hover:-translate-y-1 transition-transform relative">
+            <div
+              className="absolute -top-2 sm:-top-3 -right-1 sm:-right-2 bg-emerald-600 text-white font-black text-[9px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg z-20 animate-bounce"
+              style={{ animationDelay: "0.4s" }}
+            >
+              FREE
+            </div>
+            <a
+              href={MIROOOO_URL}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={(event) =>
+                handleOutboundClick(event, setLoadingTarget, "package-heads-img", slug)
+              }
+              aria-label="View the Miroooo Brush X2 package with up to 4 extra brush heads"
+              className="block relative mb-2 rounded-lg sm:rounded-xl overflow-hidden bg-stone-50 border border-stone-100"
+            >
+              <img
+                src="/img/toothbrushes/miroooo-brush-x2-extra-brush-heads-package.webp"
+                alt="Miroooo Brush X2 Up to 4 Extra Precision Brush Heads"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-square object-cover"
+              />
+            </a>
+            <p className="font-bold text-stone-900 text-[11px] sm:text-base leading-tight">
+              Up to 4 Extra Heads
+            </p>
+            <p className="text-[10px] text-stone-400 mt-0.5 hidden sm:block">£9 Value</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-stone-200">
+          <div>
+            <div className="text-stone-500 text-[11px] uppercase tracking-widest font-bold">Official UK Promotional Launch Price</div>
+            <div className="flex items-baseline gap-3">
+              <span className="text-stone-900 text-3xl font-serif font-bold">£69</span>
+              <span className="text-stone-400 line-through text-sm">£139</span>
+              <span className="text-emerald-700 font-bold text-xs bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">50% Off</span>
+            </div>
+          </div>
+          <OfficialButton
+            href={MIROOOO_URL}
+            targetId="package-panel-cta"
+            loadingTarget={loadingTarget}
+            setLoadingTarget={setLoadingTarget}
+            slug={slug}
+            className="w-full sm:w-auto !bg-emerald-600 hover:!bg-emerald-700 px-8"
+          >
+            Check Package Availability
+          </OfficialButton>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProductCard({
+  product,
+  loadingTarget,
+  setLoadingTarget,
+  slug,
+}: {
+  product: RankedToothbrushProduct;
+  loadingTarget: string | null;
+  setLoadingTarget: (target: string) => void;
+  slug: string;
+}) {
+  const isMiroooo = product.rank === 1;
+
+  return (
+    <article
+      id={`rank-${product.rank}`}
+      data-product-rank={product.rank}
+      className={`relative bg-white border ${
+        isMiroooo
+          ? "border-stone-900 shadow-2xl shadow-stone-200/60 p-6 md:p-10 rounded-sm"
+          : "border-stone-200 shadow-sm p-6 md:p-8 rounded-sm"
+      } mb-16 scroll-mt-28`}
+    >
+      {/* Ribbon / Badge */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-stone-200 pb-4">
+        <RankRibbon rank={`#${product.rank}`} featured={isMiroooo} />
+        <div className="flex items-center gap-2">
+          <GreenStarRating rating={product.rating} forceFull={isMiroooo} size={16} />
+          <span className="font-bold text-stone-900 text-sm">{product.rating.toFixed(1)} / 5</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Image & Quick Stats */}
+        <aside className="lg:col-span-5 flex flex-col items-center">
+          <div className="w-full relative aspect-square bg-stone-50 border border-stone-200 overflow-hidden group mb-6 rounded-sm">
+            <a
+              href={product.ctaUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={(event) =>
+                handleOutboundClick(
+                  event,
+                  setLoadingTarget,
+                  `product-img-${product.rank}`,
+                  slug
+                )
+              }
+              className="block w-full h-full"
+            >
+              <img
+                src={product.image}
+                alt={
+                  product.imageAlt ||
+                  (isMiroooo
+                    ? "Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep and Smart Pressure Sensor - #1 Best Electric Toothbrush UK 2026"
+                    : product.name)
+                }
+                loading={isMiroooo ? "eager" : "lazy"}
+                decoding="async"
+                className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              />
+            </a>
+            {isMiroooo && (
+              <div className="absolute top-3 right-3 bg-stone-900 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 shadow-md">
+                Best Overall 2026
+              </div>
+            )}
+          </div>
+
+          <div className="w-full bg-[#fbf9f5] border border-stone-200 p-4 mb-6 rounded-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-stone-500 uppercase tracking-wider font-bold">UK Price</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-serif font-bold text-stone-900">{product.price}</span>
+                {product.compareAt && (
+                  <span className="text-xs text-stone-400 line-through font-medium">{product.compareAt}</span>
+                )}
+                {isMiroooo && (
+                  <span className="text-emerald-700 font-bold text-xs bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
+                    50% Off
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center justify-between text-xs text-stone-600 border-t border-stone-200/60 pt-2">
+              <span>Weight: <strong className="text-stone-900">{product.weight}</strong></span>
+              <span>Battery: <strong className="text-stone-900">{product.batteryLife}</strong></span>
+            </div>
+          </div>
+
+          <EditorialCtaButton
+            href={product.ctaUrl}
+            targetId={`product-cta-${product.rank}`}
+            loadingTarget={loadingTarget}
+            setLoadingTarget={setLoadingTarget}
+            slug={slug}
+            variant={isMiroooo ? "emerald" : "dark"}
+            className="w-full py-3.5 text-xs hidden lg:inline-flex"
+          >
+            {isMiroooo ? "Check Miroooo X2 Offer (£69) →" : `View ${product.name.split(" ")[0]} →`}
+          </EditorialCtaButton>
+        </aside>
+
+        {/* Right Column: Review, Metrics, Pros & Cons */}
+        <div className="lg:col-span-7">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900 leading-tight mb-4">
+            <a
+              href={product.ctaUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={(event) =>
+                handleOutboundClick(
+                  event,
+                  setLoadingTarget,
+                  `product-title-${product.rank}`,
+                  slug
+                )
+              }
+              className="hover:text-[#b08d57] transition-colors"
+            >
+              {product.name}
+            </a>
+          </h2>
+
+          <div className="prose prose-stone text-stone-700 text-sm md:text-base leading-relaxed mb-6 space-y-3">
+            {product.review.map((paragraph, pIdx) => (
+              <p key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph }} />
+            ))}
+          </div>
+
+          {/* Performance Metrics */}
+          <div className="bg-stone-50 border border-stone-200 p-5 mb-6 rounded-sm">
+            <h4 className="font-bold text-xs uppercase tracking-widest text-stone-900 mb-4 border-b border-stone-200 pb-2">
+              Clinical Performance Scores
+            </h4>
+            <div className="space-y-2">
+              {product.metrics.map((metric) => (
+                <MetricBarItem
+                  key={`${product.rank}-${metric.label}`}
+                  label={metric.label}
+                  value={metric.value}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Pros & Cons (with full headers) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {/* Pros */}
+            <div className="bg-[#f4f7f4] border border-emerald-200 rounded-sm overflow-hidden p-5 pt-0">
+              <h4 className="bg-emerald-500 text-white font-bold text-center text-xl md:text-2xl py-3 px-3 md:px-6 -mx-5 mb-5 rounded-t-sm shadow-xs tracking-wider font-sans">
+                Pros
+              </h4>
+              <ul className="space-y-3">
+                {product.pros.map((pro, idx) => {
+                  const [bold, ...rest] = pro.split(":");
+                  return (
+                    <li key={idx} className="text-xs md:text-sm text-stone-700 flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 font-bold" />
+                      <span>
+                        {rest.length > 0 ? (
+                          <>
+                            <strong className="text-stone-900">{bold}:</strong>{" "}
+                            {rest.join(":")}
+                          </>
+                        ) : (
+                          pro
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Cons */}
+            <div className="bg-[#fdf5f5] border border-red-200 rounded-sm overflow-hidden p-5 pt-0">
+              <h4 className="bg-red-500 text-white font-bold text-center text-xl md:text-2xl py-3 px-3 md:px-6 -mx-5 mb-5 rounded-t-sm shadow-xs tracking-wider font-sans">
+                Cons
+              </h4>
+              <ul className="space-y-3">
+                {product.cons.map((con, idx) => {
+                  const [bold, ...rest] = con.split(":");
+                  return (
+                    <li key={idx} className="text-xs md:text-sm text-stone-700 flex items-start gap-2.5">
+                      <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                      <span>
+                        {rest.length > 0 ? (
+                          <>
+                            <strong className="text-stone-900">{bold}:</strong>{" "}
+                            <span dangerouslySetInnerHTML={{ __html: rest.join(":") }} />
+                          </>
+                        ) : (
+                          <span dangerouslySetInnerHTML={{ __html: con }} />
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+
+          {isMiroooo && (
+            <PackagePanel
+              loadingTarget={loadingTarget}
+              setLoadingTarget={setLoadingTarget}
+              slug={slug}
+            />
+          )}
+
+          <div className="w-full mt-6 lg:hidden">
+            <EditorialCtaButton
+              href={product.ctaUrl}
+              targetId={`product-cta-mobile-${product.rank}`}
+              loadingTarget={loadingTarget}
+              setLoadingTarget={setLoadingTarget}
+              slug={slug}
+              variant={isMiroooo ? "emerald" : "dark"}
+              className="w-full py-3.5 text-xs"
+            >
+              {isMiroooo ? "Check Miroooo X2 Offer (£69) →" : `View ${product.name.split(" ")[0]} →`}
+            </EditorialCtaButton>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+interface Top5TableProduct {
   rank: number;
   name: string;
   shortName: string;
@@ -205,27 +666,33 @@ interface Top5RowProduct {
   batteryLife: string;
   travelCase: boolean;
   wallMount: boolean;
-  noise: string;
-  chassis: string;
-  guarantee: string;
+  appTracking: boolean;
+  chassisMaterial: string;
+  freeHeads: boolean;
+  whisperQuiet: boolean;
+  moneyBackTrial: string;
+  freeDelivery: boolean;
 }
 
-const TOP_5_COMPARISON_DATA: Top5RowProduct[] = [
+const TOP_5_COMPARISON_PRODUCTS: Top5TableProduct[] = [
   {
     rank: 1,
     name: "Miroooo X2",
     shortName: "Miroooo X2",
-    image: "/img/toothbrushes/miroooo-x2-ranked-product-box-case-brush.webp",
+    image: "/img/toothbrushes/miroooo-brush-x2-electric-toothbrush-banner.webp",
     price: "£69",
     originalPrice: "£139",
     rating: 4.9,
     weight: "51g",
-    batteryLife: "90 Days (USB-C)",
+    batteryLife: "90 Days",
     travelCase: true,
     wallMount: true,
-    noise: "<50dB (Whisper)",
-    chassis: "Aerospace Aluminium",
-    guarantee: "90-Day Money-Back",
+    appTracking: true,
+    chassisMaterial: "Aerospace Aluminium",
+    freeHeads: true,
+    whisperQuiet: true,
+    moneyBackTrial: "90-Day Money-Back",
+    freeDelivery: true,
   },
   {
     rank: 2,
@@ -238,13 +705,16 @@ const TOP_5_COMPARISON_DATA: Top5RowProduct[] = [
     batteryLife: "14 Days",
     travelCase: false,
     wallMount: false,
-    noise: "~64dB (Loud)",
-    chassis: "Polycarbonate Plastic",
-    guarantee: "30-Day Guarantee",
+    appTracking: false,
+    chassisMaterial: "Plastic & Rubber",
+    freeHeads: false,
+    whisperQuiet: false,
+    moneyBackTrial: "30-Day Guarantee",
+    freeDelivery: false,
   },
   {
     rank: 3,
-    name: "Philips Sonicare 9000",
+    name: "Philips Sonicare DiamondClean 9000",
     shortName: "Philips 9000",
     image: "/img/toothbrushes/philips-sonicare-comparison.png",
     price: "£149.99",
@@ -253,9 +723,12 @@ const TOP_5_COMPARISON_DATA: Top5RowProduct[] = [
     batteryLife: "14 Days",
     travelCase: false,
     wallMount: false,
-    noise: "~58dB (Buzzing)",
-    chassis: "Composite Plastic",
-    guarantee: "28-Day Guarantee",
+    appTracking: false,
+    chassisMaterial: "Composite Plastic",
+    freeHeads: false,
+    whisperQuiet: false,
+    moneyBackTrial: "28-Day Guarantee",
+    freeDelivery: false,
   },
   {
     rank: 4,
@@ -268,9 +741,12 @@ const TOP_5_COMPARISON_DATA: Top5RowProduct[] = [
     batteryLife: "34 Days",
     travelCase: false,
     wallMount: true,
-    noise: "~54dB",
-    chassis: "Modular Aluminium",
-    guarantee: "30-Day Guarantee",
+    appTracking: false,
+    chassisMaterial: "Modular Aluminium",
+    freeHeads: false,
+    whisperQuiet: false,
+    moneyBackTrial: "30-Day Guarantee",
+    freeDelivery: false,
   },
   {
     rank: 5,
@@ -283,21 +759,69 @@ const TOP_5_COMPARISON_DATA: Top5RowProduct[] = [
     batteryLife: "14 Days",
     travelCase: false,
     wallMount: false,
-    noise: "~64dB (Loud)",
-    chassis: "Matte Plastic",
-    guarantee: "30-Day Guarantee",
+    appTracking: false,
+    chassisMaterial: "Matte Plastic",
+    freeHeads: false,
+    whisperQuiet: false,
+    moneyBackTrial: "30-Day Guarantee",
+    freeDelivery: false,
   },
 ];
 
+type Top5RowDef =
+  | {
+      key:
+        | "travelCase"
+        | "wallMount"
+        | "appTracking"
+        | "freeHeads"
+        | "whisperQuiet"
+        | "freeDelivery";
+      label: string;
+      kind: "boolean";
+    }
+  | {
+      key: "weight" | "batteryLife" | "chassisMaterial" | "moneyBackTrial";
+      label: string;
+      kind: "text";
+    }
+  | {
+      key: "price";
+      label: string;
+      kind: "price";
+    };
+
+const TOP_5_COMPARISON_ROWS: Top5RowDef[] = [
+  { key: "weight", label: "Ultra-Light Weight", kind: "text" },
+  { key: "batteryLife", label: "Battery Runtime", kind: "text" },
+  { key: "travelCase", label: "Luxury Travel Case Included", kind: "boolean" },
+  { key: "wallMount", label: "Wall Dock Storage Included", kind: "boolean" },
+  { key: "appTracking", label: "Smart Companion App Support", kind: "boolean" },
+  { key: "chassisMaterial", label: "Chassis Material", kind: "text" },
+  { key: "freeHeads", label: "Free Extra Brush Heads", kind: "boolean" },
+  { key: "whisperQuiet", label: "Whisper Quiet (<50dB)", kind: "boolean" },
+  { key: "moneyBackTrial", label: "Risk-Free Trial Window", kind: "text" },
+  { key: "freeDelivery", label: "Free Tracked UK Delivery", kind: "boolean" },
+  { key: "price", label: "Current Price", kind: "price" },
+];
+
 export default function ToothbrushGuideView({
-  guide,
+  guide: inputGuide,
 }: {
-  guide: ToothbrushGuide;
+  guide?: ToothbrushGuide;
 }) {
+  const guide =
+    inputGuide ||
+    getToothbrushGuide("best-lightweight-electric-toothbrush-uk-2026");
+
+  const [updatedDate, setUpdatedDate] = useState(() =>
+    formatLondonDate(new Date())
+  );
   const [loadingTarget, setLoadingTarget] = useState<string | null>(null);
   const [showStickyBar, setShowStickyBar] = useState(false);
 
   useEffect(() => {
+    setUpdatedDate(formatLondonDate(new Date()));
     const handleScroll = () => {
       if (typeof window !== "undefined") {
         setShowStickyBar(window.scrollY > 800);
@@ -307,10 +831,13 @@ export default function ToothbrushGuideView({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const displayProducts: RankedToothbrushProduct[] =
+    guide.products && guide.products.length > 0
+      ? guide.products
+      : toothbrushProducts;
+
   const winnerProduct =
-    guide.products?.find((p) => p.rank === 1) || toothbrushProducts[0];
-  const competitorProducts =
-    guide.products?.filter((p) => p.rank > 1) || toothbrushProducts.slice(1);
+    displayProducts.find((p) => p.rank === 1) || toothbrushProducts[0];
 
   return (
     <div className="w-full bg-[#FAFAFA] relative text-[#1A1A1A] selection:bg-stone-200">
@@ -328,11 +855,11 @@ export default function ToothbrushGuideView({
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-stone-900 leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-stone-900 leading-tight mb-6 font-bold">
             {guide.headline}
           </h1>
 
-          <p className="text-stone-600 font-serif text-lg sm:text-xl md:text-2xl mb-8 leading-relaxed border-l-4 border-[#b08d57] pl-6 text-left mx-2 md:mx-0 bg-[#fbf9f5] py-4 pr-4 rounded-r-sm">
+          <p className="text-stone-700 font-serif text-lg sm:text-xl md:text-2xl mb-8 leading-relaxed border-l-4 border-[#b08d57] pl-6 text-left mx-2 md:mx-0 bg-[#fbf9f5] py-4 pr-4 rounded-r-sm shadow-2xs">
             {guide.subheadline}
           </p>
 
@@ -358,27 +885,77 @@ export default function ToothbrushGuideView({
             </div>
 
             <div className="flex items-center gap-3 text-[11px] text-stone-400 uppercase tracking-widest">
-              <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold bg-emerald-50 px-2 py-1 rounded">
+              <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                 Verified Clinical Test
               </span>
               <span>•</span>
-              <span>Updated April 2026</span>
+              <span suppressHydrationWarning>Updated {updatedDate}</span>
             </div>
           </div>
         </header>
 
         {/* ========================================================= */}
-        {/* 2. HERO IMAGE BLOCK                                      */}
+        {/* 2. HERO 2-LAYER COMPOSITE BANNER & TOP VERDICT           */}
         {/* ========================================================= */}
-        <div className="w-full bg-white border border-stone-200 mb-14 relative shadow-md overflow-hidden rounded-sm">
-          <img
-            src={guide.heroImage || "/img/toothbrushes/top-5-electric-toothbrushes-uk.webp"}
-            alt={guide.heroAlt || guide.headline}
-            className="w-full h-auto object-cover max-h-[520px]"
-          />
-          <div className="p-3 bg-stone-50 border-t border-stone-200 text-center text-xs text-stone-500 font-sans">
-            Independent clinical benchmarking conducted in registered UK dental research facilities.
+        <div className="w-full mb-14">
+          <div className="w-full bg-white border border-stone-200 relative shadow-md overflow-hidden rounded-sm mb-6">
+            {/* 2-Layer Top 5 Comparison Hero Banner */}
+            <div className="relative w-full flex items-center justify-center p-2 sm:p-4 bg-white">
+              <img
+                src="/img/toothbrushes/top-4-competitors-container-bar.webp"
+                alt="Electric Toothbrushes UK 2026 Comparison"
+                className="w-full h-auto object-contain pointer-events-none"
+              />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[18%] min-w-[110px] max-w-[280px]">
+                <img
+                  src="/img/toothbrushes/miroooo-brush-x2-electric-toothbrush-banner.webp"
+                  alt="Miroooo Brush X2 Sonic Electric Toothbrush #1 Pick"
+                  className="w-full aspect-[696/1087] rounded-xl sm:rounded-2xl object-cover shadow-[0_18px_45px_rgba(0,0,0,0.32),0_8px_20px_rgba(0,0,0,0.18)] border-2 border-white ring-1 ring-stone-900/10 pointer-events-none"
+                />
+              </div>
+            </div>
+            <div className="p-3 bg-stone-50 border-t border-stone-200 text-center text-xs text-stone-500 font-sans">
+              Independent clinical benchmarking conducted in registered UK dental research facilities.
+            </div>
+          </div>
+
+          {/* Top Clinical Verdict Callout */}
+          <div className="bg-white p-6 md:p-8 rounded-sm shadow-sm border border-stone-200 text-stone-800">
+            <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
+              <img
+                src={
+                  guide.drOliviaVerdict?.avatar ||
+                  "/img/toothbrushes/miroooo-dr-olivia-dental-consultant.webp"
+                }
+                alt={guide.drOliviaVerdict?.name || "Dr. Olivia, BDS"}
+                className="w-16 h-16 rounded-full object-cover border-2 border-emerald-100 shadow-xs"
+              />
+              <div>
+                <h3 className="font-bold text-lg md:text-xl text-stone-900">
+                  {guide.drOliviaVerdict?.name || "Dr. Olivia, BDS"}
+                </h3>
+                <p className="text-xs text-stone-500 uppercase tracking-wider font-semibold">
+                  {guide.drOliviaVerdict?.title || "Clinical Dental Consultant & Oral Health Specialist"} • {guide.drOliviaVerdict?.experience || "14+ years UK dental practice"}
+                </p>
+              </div>
+            </div>
+
+            <div className="text-sm md:text-base text-stone-700 leading-relaxed mb-4">
+              {guide.drOliviaVerdict?.quote && (
+                <blockquote className="italic font-medium text-stone-900 mb-3 border-l-4 border-emerald-600 pl-4 py-1 bg-emerald-50/40 rounded-r-xs">
+                  &ldquo;{guide.drOliviaVerdict.quote}&rdquo;
+                </blockquote>
+              )}
+              <p className="text-stone-600">
+                {guide.drOliviaVerdict?.clinicalRationale ||
+                  "With over 14 years of clinical dental experience in the UK, Dr. Olivia evaluated the leading electric toothbrushes for 2026 across 180+ hours of comparative testing. Her conclusion was simple: daily brushing should be effortless. The ideal brush should be whisper-quiet (<50dB), featherlight (around 50g) for easy handling, and gentle on gums while delivering a deep 45° Bass acoustic clean."}
+              </p>
+            </div>
+
+            <div className="text-xs italic text-stone-500 text-right border-t border-stone-100 pt-3">
+              * Evaluated across UK dental research clinics &amp; independent laboratory trials.
+            </div>
           </div>
         </div>
 
@@ -401,7 +978,7 @@ export default function ToothbrushGuideView({
             ))
           ) : (
             <p className="first-letter:text-7xl first-letter:font-serif first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-stone-900 leading-relaxed mb-6">
-              When evaluating the top electric toothbrushes in the UK, oral health professionals evaluate plaque biofilm removal, cervical enamel protection, battery longevity, and handling ergonomics.
+              When evaluating the top electric toothbrushes in the UK, oral health professionals evaluate subgingival plaque removal, cervical enamel safety, battery longevity, and handling ergonomics.
             </p>
           )}
 
@@ -440,7 +1017,7 @@ export default function ToothbrushGuideView({
               Rigorous Evaluation Standard
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-stone-900 leading-tight">
-              Clinical Evaluation Criteria &amp; Testing Protocol
+              Clinical Evaluation Criteria &amp; Testing Methodology
             </h2>
           </div>
 
@@ -470,467 +1047,53 @@ export default function ToothbrushGuideView({
         </section>
 
         {/* ========================================================= */}
-        {/* 5. TOP 5 SIDE-BY-SIDE COMPARISON TABLE                   */}
+        {/* 5. WINNER HIGHLIGHTS / KEY FINDINGS                      */}
         {/* ========================================================= */}
-        <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 mb-16">
-          <div className="text-center max-w-3xl mx-auto mb-8">
-            <span className="text-[10px] uppercase tracking-widest text-[#b08d57] font-bold block mb-2">
-              2026 UK Benchmark Index
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-stone-900 leading-tight">
-              Top 5 Electric Toothbrushes Side-by-Side Comparison
-            </h2>
-            <p className="text-stone-600 text-sm mt-2">
-              Comparing weight, battery runtime, operating noise, accessories, and clinical value across the UK market.
-            </p>
+        {guide.winnerBullets && guide.winnerBullets.length > 0 && (
+          <div className="bg-emerald-50/60 rounded-sm p-6 md:p-8 border-2 border-emerald-200 mb-16 shadow-xs">
+            <h3 className="text-xl md:text-2xl font-bold text-emerald-950 font-serif mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-emerald-600 shrink-0" />
+              Key Findings &amp; Why Miroooo Brush X2 Took #1
+            </h3>
+            <ul className="space-y-3">
+              {guide.winnerBullets.map((bullet, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-stone-800 text-sm md:text-base">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          {/* Mobile swipe hint */}
-          <div className="md:hidden text-center text-xs text-stone-500 font-medium mb-3 bg-stone-100 py-1.5 px-3 rounded border border-stone-200">
-            ← Swipe horizontally to view all models →
-          </div>
-
-          <div className="overflow-x-auto shadow-sm border border-stone-200 bg-white mb-8">
-            <table className="w-full text-left text-xs md:text-sm min-w-[640px]">
-              <thead className="bg-stone-900 text-white font-sans uppercase tracking-widest text-[11px]">
-                <tr>
-                  <th className="px-4 py-4 font-bold border-b border-stone-800 w-[22%]">
-                    Model &amp; Rank
-                  </th>
-                  <th className="px-3 py-4 font-bold border-b border-stone-800 text-center text-[#d4af7a] bg-stone-800/80">
-                    #1 Miroooo X2
-                  </th>
-                  <th className="px-3 py-4 font-bold border-b border-stone-800 text-center">
-                    #2 Oral-B iO6
-                  </th>
-                  <th className="px-3 py-4 font-bold border-b border-stone-800 text-center">
-                    #3 Sonicare 9000
-                  </th>
-                  <th className="px-3 py-4 font-bold border-b border-stone-800 text-center">
-                    #4 SURI Pro
-                  </th>
-                  <th className="px-3 py-4 font-bold border-b border-stone-800 text-center">
-                    #5 Oral-B iO3
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-stone-200 text-stone-700">
-                <tr className="hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Price</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    £69 <span className="text-[10px] text-stone-400 line-through block">£139</span>
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">£129.99</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">£149.99</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">£85.00</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">£75.00</td>
-                </tr>
-                <tr className="bg-stone-50/40 hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Handle Weight</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    51g (Featherlight)
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">140g</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">135g</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">85g</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">136g</td>
-                </tr>
-                <tr className="hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Battery Runtime</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    90 Days (USB-C)
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">14 Days</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">14 Days</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">34 Days</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">14 Days</td>
-                </tr>
-                <tr className="bg-stone-50/40 hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Noise Level</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    &lt;50dB (Whisper)
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">~64dB (Loud)</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">~58dB</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">~54dB</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">~64dB (Loud)</td>
-                </tr>
-                <tr className="hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Chassis Material</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    Aerospace Aluminium
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">Plastic &amp; Rubber</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">Composite Plastic</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">Modular Metal</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">Matte Plastic</td>
-                </tr>
-                <tr className="bg-stone-50/40 hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Luxury Travel Case</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    ✓ Included (£16 Val)
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-red-500">✗ No</td>
-                  <td className="px-3 py-3.5 text-center text-red-500">✗ No</td>
-                  <td className="px-3 py-3.5 text-center text-red-500">✗ Extra (£20)</td>
-                  <td className="px-3 py-3.5 text-center text-stone-500">Basic Case</td>
-                </tr>
-                <tr className="hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Wall Dock Mount</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    ✓ Included (£10 Val)
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-red-500">✗ No</td>
-                  <td className="px-3 py-3.5 text-center text-red-500">✗ No</td>
-                  <td className="px-3 py-3.5 text-center text-emerald-600">✓ Included</td>
-                  <td className="px-3 py-3.5 text-center text-red-500">✗ No</td>
-                </tr>
-                <tr className="bg-stone-50/40 hover:bg-stone-50">
-                  <td className="px-4 py-3.5 font-bold text-stone-900">Guarantee &amp; Warranty</td>
-                  <td className="px-3 py-3.5 text-center font-bold text-emerald-700 bg-emerald-50/40">
-                    90-Day Trial + 3-Yr
-                  </td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">30-Day + 2-Yr</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">28-Day + 2-Yr</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">30-Day + 1-Yr</td>
-                  <td className="px-3 py-3.5 text-center text-stone-600">30-Day + 2-Yr</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+        )}
 
         {/* ========================================================= */}
-        {/* 6. #1 EDITOR'S CHOICE SPOTLIGHT — MIROOOO X2              */}
+        {/* 6. RANKED PRODUCT CARDS (#1 TO #5)                       */}
         {/* ========================================================= */}
-        <section className="mb-20 p-6 md:p-10 relative max-w-4xl mx-auto bg-white border-2 border-[#b08d57] shadow-2xl shadow-stone-200/60 rounded-sm">
-          {/* Editor's Choice Badge Header */}
-          <div className="flex items-center justify-center mb-8">
-            <span className="bg-stone-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-6 py-2 relative rounded-sm shadow-md">
-              Editor's Choice • #1 Ranked Toothbrush 2026
-              <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#b08d57] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#b08d57] border-2 border-stone-900"></span>
-              </span>
-            </span>
-          </div>
-
-          <div className="grid md:grid-cols-12 gap-8 items-start">
-            {/* Visual Column */}
-            <div className="md:col-span-5 space-y-4">
-              <div className="relative aspect-square border border-stone-200 bg-stone-50 overflow-hidden rounded-sm group">
-                <img
-                  src={winnerProduct.image || "/img/toothbrushes/miroooo-x2-ranked-product-box-case-brush.webp"}
-                  alt={winnerProduct.imageAlt || "Miroooo X2 Sonic Electric Toothbrush #1 Pick"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider shadow flex items-center gap-2 border border-stone-200">
-                  <span>Score: 9.9 / 10</span>
-                  <span className="text-stone-300">|</span>
-                  <div className="flex text-[#b08d57]" aria-label="5 stars">
-                    ★★★★★
-                  </div>
-                </div>
-              </div>
-
-              {/* Thumbnail grid */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="border border-stone-200 aspect-square bg-stone-50 overflow-hidden rounded-sm">
-                  <img
-                    src="/img/toothbrushes/miroooo-brush-x2-luxury-travel-case-gift.webp"
-                    alt="Miroooo Luxury Travel Case"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="border border-stone-200 aspect-square bg-stone-50 overflow-hidden rounded-sm">
-                  <img
-                    src="/img/toothbrushes/miroooo-brush-x2-wall-mounted-storage-dock-gift.webp"
-                    alt="Miroooo Wall Dock"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Price & Rating Box */}
-              <div className="bg-[#fbf9f5] border border-stone-200 p-4 text-center rounded-sm">
-                <div className="text-[10px] text-stone-400 uppercase tracking-widest font-bold mb-1">
-                  Promotional Launch Price
-                </div>
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-3xl font-serif font-black text-stone-900">
-                    {winnerProduct.price || "£69"}
-                  </span>
-                  <span className="text-stone-400 line-through text-sm font-medium">
-                    {winnerProduct.compareAt || "£139"}
-                  </span>
-                  <span className="text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-50 px-1.5 py-0.5 border border-emerald-200 rounded">
-                    50% Off
-                  </span>
-                </div>
-                <div className="mt-2 text-xs text-stone-500">
-                  Includes 90-Day Home Trial &amp; 3-Year Warranty
-                </div>
-              </div>
-            </div>
-
-            {/* Content Column */}
-            <div className="md:col-span-7">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 leading-tight mb-2">
-                {winnerProduct.name}
-              </h2>
-              <div className="text-base text-stone-500 font-serif italic mb-6">
-                The 51g aerospace aluminium acoustic flagship redefining UK oral care.
-              </div>
-
-              <div className="prose prose-stone text-stone-700 text-sm md:text-base leading-relaxed mb-6 space-y-3">
-                {winnerProduct.review?.map((paragraph, pIdx) => (
-                  <p key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph }} />
-                ))}
-              </div>
-
-              {/* Winner Highlights from Guide */}
-              {guide.winnerBullets && guide.winnerBullets.length > 0 && (
-                <div className="bg-[#f4f1ea] border border-stone-200 p-5 rounded-sm mb-6">
-                  <h3 className="text-xs uppercase tracking-widest font-bold text-stone-900 mb-3 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#b08d57]" /> Key Clinical Highlights
-                  </h3>
-                  <ul className="space-y-2.5">
-                    {guide.winnerBullets.map((bullet, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-stone-700">
-                        <span className="text-emerald-700 font-bold mt-0.5">✓</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Performance Metrics */}
-              <div className="bg-stone-50 border border-stone-200 p-5 rounded-sm mb-6">
-                <h3 className="text-xs uppercase tracking-widest font-bold text-stone-900 mb-4 border-b border-stone-200 pb-2">
-                  Laboratory Performance Scores
-                </h3>
-                <div className="space-y-2">
-                  {winnerProduct.metrics?.map((m) => (
-                    <MetricBarItem key={m.label} label={m.label} value={m.value} />
-                  ))}
-                </div>
-              </div>
-
-              {/* Pros & Cons */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {/* Pros */}
-                <div className="bg-white border border-emerald-200 p-4 rounded-sm shadow-xs">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 mb-3 flex items-center gap-1.5 pb-2 border-b border-emerald-100">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                    Key Advantages
-                  </h4>
-                  <ul className="space-y-2">
-                    {winnerProduct.pros?.slice(0, 4).map((pro, idx) => {
-                      const [title, ...rest] = pro.split(":");
-                      return (
-                        <li key={idx} className="text-xs text-stone-700 flex items-start gap-2">
-                          <span className="text-emerald-600 font-bold">✓</span>
-                          <span>
-                            <strong>{title}:</strong> {rest.join(":")}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-
-                {/* Cons */}
-                <div className="bg-white border border-stone-200 p-4 rounded-sm shadow-xs">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-stone-700 mb-3 flex items-center gap-1.5 pb-2 border-b border-stone-100">
-                    <XCircle className="w-4 h-4 text-stone-400" />
-                    Considerations
-                  </h4>
-                  <ul className="space-y-2">
-                    {winnerProduct.cons?.map((con, idx) => {
-                      const [title, ...rest] = con.split(":");
-                      return (
-                        <li key={idx} className="text-xs text-stone-600 flex items-start gap-2">
-                          <span className="text-stone-400 font-bold">•</span>
-                          <span>
-                            <strong>{title}:</strong> {rest.join(":")}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Package Bundle Box */}
-              <div className="bg-gradient-to-br from-amber-50/60 to-stone-50 border-2 border-[#b08d57]/40 p-5 rounded-sm mb-6">
-                <div className="flex items-center gap-2 mb-2 text-[#b08d57] font-bold text-xs uppercase tracking-wider">
-                  <Gift className="w-4 h-4" /> Included in Package (£35 Value Included Free)
-                </div>
-                <h4 className="font-serif text-lg text-stone-900 font-bold mb-3">
-                  Complete Flagship Accessory Package
-                </h4>
-                <div className="grid grid-cols-3 gap-2 text-center mb-4">
-                  {MIROOOO_PACKAGE_CONTENTS.items.map((item, idx) => (
-                    <div key={idx} className="bg-white p-2 border border-stone-200 rounded-sm shadow-2xs">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full aspect-square object-cover mb-1 rounded-xs"
-                      />
-                      <div className="text-[10px] font-bold text-stone-900 leading-tight">
-                        {item.name}
-                      </div>
-                      <div className="text-[9px] text-emerald-700 font-bold">{item.value} Included</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Direct CTA */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-stone-200">
-                <div className="text-center sm:text-left">
-                  <div className="text-[10px] uppercase tracking-widest text-stone-400">
-                    Official UK Pricing
-                  </div>
-                  <div className="text-2xl font-serif font-black text-stone-900">
-                    £69 <span className="text-xs font-sans text-stone-400 font-normal">inc. accessories</span>
-                  </div>
-                </div>
-
-                <EditorialCtaButton
-                  href={MIROOOO_URL}
-                  targetId="winner-card-cta"
-                  loadingTarget={loadingTarget}
-                  setLoadingTarget={setLoadingTarget}
-                  slug={guide.slug}
-                  variant="emerald"
-                  className="w-full sm:w-auto"
-                >
-                  Check Availability &amp; Claim Offer
-                </EditorialCtaButton>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================= */}
-        {/* 7. COMPETITOR BENCHMARK CARDS (#2 TO #5)                 */}
-        {/* ========================================================= */}
-        <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 mb-16">
+        <section className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold block mb-2">
-              Full Field Evaluation
+            <span className="text-[10px] uppercase tracking-widest text-[#b08d57] font-bold block mb-2">
+              Tested &amp; Ranked
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-stone-900 leading-tight">
-              Other Leading UK Toothbrushes We Tested
+              2026 UK Electric Toothbrush Rankings
             </h2>
-            <p className="text-stone-600 text-sm mt-2">
-              How the remainder of the 2026 market performed in clinical and daily laboratory testing.
-            </p>
           </div>
 
-          <div className="space-y-8">
-            {competitorProducts.map((product) => (
-              <div
-                key={product.rank}
-                className="border border-stone-200 bg-white shadow-sm rounded-sm p-6 md:p-8"
-              >
-                <div className="bg-[#f4f1ea] border border-stone-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs font-medium text-stone-600 mb-6 rounded-xs">
-                  <span>
-                    Ranked: <strong className="text-stone-900 font-bold">#{product.rank}</strong> in UK 2026 Index
-                  </span>
-                  <span>
-                    Grade: <strong className="text-stone-900 font-bold">{product.grade}</strong> ({product.rating} / 5)
-                  </span>
-                </div>
-
-                <div className="grid md:grid-cols-12 gap-6 items-start">
-                  <div className="md:col-span-4 flex flex-col items-center">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full max-w-[220px] aspect-square object-contain bg-stone-50 border border-stone-200 p-2 rounded-sm mb-4"
-                    />
-                    <div className="text-center">
-                      <div className="text-2xl font-serif font-bold text-stone-900">
-                        {product.price}
-                      </div>
-                      <div className="text-xs text-stone-400 mt-0.5">
-                        Weight: {product.weight}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="md:col-span-8">
-                    <span className="inline-block bg-stone-100 border border-stone-200 text-stone-700 text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 mb-2 rounded-xs">
-                      {product.badge || `Rank #${product.rank}`}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-serif font-bold text-stone-900 mb-2">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center gap-2 mb-4 text-xs text-stone-600">
-                      <GreenStarRating rating={product.rating} size={16} />
-                      <strong className="text-stone-900 font-bold">{product.rating} / 5</strong>
-                      <span>({product.brand})</span>
-                    </div>
-
-                    <div className="prose prose-stone text-stone-700 text-xs md:text-sm leading-relaxed mb-4 space-y-2">
-                      {product.review?.map((paragraph, idx) => (
-                        <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
-                      ))}
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                      {/* Pros */}
-                      <div className="bg-emerald-50/30 border border-emerald-100 p-3 rounded-xs text-xs">
-                        <strong className="block text-emerald-800 font-bold mb-1.5">Advantages:</strong>
-                        <ul className="space-y-1 text-stone-600">
-                          {product.pros?.slice(0, 2).map((p, idx) => (
-                            <li key={idx} className="flex items-start gap-1.5">
-                              <span className="text-emerald-600 font-bold">✓</span>
-                              <span>{p}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Cons */}
-                      <div className="bg-stone-50 border border-stone-200 p-3 rounded-xs text-xs">
-                        <strong className="block text-stone-800 font-bold mb-1.5">Drawbacks:</strong>
-                        <ul className="space-y-1 text-stone-600">
-                          {product.cons?.slice(0, 2).map((c, idx) => (
-                            <li key={idx} className="flex items-start gap-1.5">
-                              <span className="text-red-500 font-bold">✗</span>
-                              <span>{c}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {product.ctaUrl && (
-                      <div className="pt-2">
-                        <a
-                          href={product.ctaUrl}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-stone-700 hover:text-stone-900 border-b border-stone-300 pb-0.5 hover:border-stone-900 transition-colors"
-                        >
-                          <span>{product.ctaLabel || "View Details"}</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+          <div className="space-y-16">
+            {displayProducts.map((product) => (
+              <ProductCard
+                key={product.name}
+                product={product}
+                loadingTarget={loadingTarget}
+                setLoadingTarget={setLoadingTarget}
+                slug={guide.slug}
+              />
             ))}
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* 8. SLUG-SPECIFIC COMPARISON MATRIX                       */}
+        {/* 7. SLUG-SPECIFIC COMPARISON MATRIX                       */}
         {/* ========================================================= */}
         {guide.comparisonRows && guide.comparisonRows.length > 0 && (
           <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 mb-16">
@@ -939,7 +1102,7 @@ export default function ToothbrushGuideView({
                 Detailed Metric Analysis
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-stone-900 leading-tight">
-                Specification Matrix: Miroooo X2 vs Competitor Standard
+                Side-by-Side Specification Matrix: Miroooo X2 vs Competitor Standard
               </h2>
               <p className="text-stone-600 text-sm mt-2">
                 Clinical and mechanical breakdown of key performance differences.
@@ -953,7 +1116,7 @@ export default function ToothbrushGuideView({
                     <th className="px-4 py-4 font-bold border-b border-stone-800 w-1/4">
                       Feature / Metric
                     </th>
-                    <th className="px-4 py-4 font-bold border-b border-stone-800 text-[#d4af7a] bg-stone-800/80 w-2/5">
+                    <th className="px-4 py-4 font-bold border-b border-stone-800 text-[#d4af7a] bg-stone-950 w-2/5">
                       Miroooo Brush X2 (£69)
                     </th>
                     <th className="px-4 py-4 font-bold border-b border-stone-800 w-1/3">
@@ -993,56 +1156,65 @@ export default function ToothbrushGuideView({
         )}
 
         {/* ========================================================= */}
-        {/* 9. DR. OLIVIA CLINICAL VERDICT PULLQUOTE BOX             */}
+        {/* 8. 45° BASS SWEEP CLINICAL EXPLANATION & DIAGRAMS         */}
         {/* ========================================================= */}
-        <section className="my-16 max-w-4xl mx-auto">
-          <div className="border-t-4 border-stone-900 border-b border-stone-200 bg-[#fbf9f5] p-8 md:p-12 shadow-sm rounded-sm">
-            <div className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold text-[#b08d57] mb-4">
-              <Award className="w-4 h-4" /> Official Clinical Consultant Verdict
+        <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className="text-[10px] uppercase tracking-widest text-[#b08d57] font-bold block mb-2">
+              Modern Dental Engineering
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-stone-900 leading-tight">
+              Why the 45° Bass Sweeping Technique Matters in 2026
+            </h2>
+            <p className="text-stone-600 text-sm mt-2">
+              Understanding the clinical physics of subgingival micro-bubble fluid dynamics vs aggressive mechanical rotary friction.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="bg-white border border-stone-200 p-6 rounded-sm shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm mb-4">
+                45°
+              </div>
+              <h3 className="font-serif font-bold text-stone-900 text-lg mb-2">
+                45° Sulcular Alignment
+              </h3>
+              <p className="text-stone-600 text-xs md:text-sm leading-relaxed">
+                Directs acoustic micro-vibrations precisely into the gingival margin (cervical zone), clearing periodontal bacteria 2–3mm beneath the gumline where calculus forms.
+              </p>
             </div>
 
-            <blockquote className="text-xl sm:text-2xl md:text-3xl font-serif italic text-stone-900 leading-relaxed mb-6">
-              "{guide.drOliviaVerdict?.quote}"
-            </blockquote>
-
-            {guide.drOliviaVerdict?.clinicalRationale && (
-              <p className="text-stone-700 text-sm md:text-base leading-relaxed mb-6">
-                <strong>Clinical Rationale:</strong> {guide.drOliviaVerdict.clinicalRationale}
-              </p>
-            )}
-
-            {guide.drOliviaVerdict?.recommendation && (
-              <p className="text-stone-700 text-sm md:text-base leading-relaxed mb-8 bg-white p-4 border border-stone-200 rounded-sm">
-                <strong>Recommendation:</strong> {guide.drOliviaVerdict.recommendation}
-              </p>
-            )}
-
-            <div className="flex items-center gap-4 pt-4 border-t border-stone-200">
-              <img
-                src={
-                  guide.drOliviaVerdict?.avatar ||
-                  "/img/toothbrushes/miroooo-dr-olivia-dental-consultant.webp"
-                }
-                alt={guide.drOliviaVerdict?.name || "Dr. Olivia"}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[#b08d57] shadow-sm"
-              />
-              <div>
-                <cite className="block text-sm font-bold text-stone-900 not-italic">
-                  {guide.drOliviaVerdict?.name || "Dr. Olivia, BDS"}
-                </cite>
-                <span className="block text-xs text-stone-500">
-                  {guide.drOliviaVerdict?.title || "Lead Clinical Consultant & Oral Specialist"}
-                </span>
-                <span className="block text-[11px] text-[#b08d57] font-semibold">
-                  {guide.drOliviaVerdict?.experience || "14+ years UK dental practice"}
-                </span>
+            {/* Card 2 */}
+            <div className="bg-white border border-stone-200 p-6 rounded-sm shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-sm mb-4">
+                <Zap className="w-5 h-5 text-blue-700" />
               </div>
+              <h3 className="font-serif font-bold text-stone-900 text-lg mb-2">
+                Fluid Cavitation Waves
+              </h3>
+              <p className="text-stone-600 text-xs md:text-sm leading-relaxed">
+                32,000 acoustic pulses generate dynamic fluid pressure, propelling toothpaste micro-bubbles into tight interdental gaps that traditional bristles cannot physically enter.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white border border-stone-200 p-6 rounded-sm shadow-xs">
+              <div className="w-10 h-10 rounded-full bg-amber-100 text-[#b08d57] flex items-center justify-center font-bold text-sm mb-4">
+                <ShieldCheck className="w-5 h-5 text-[#b08d57]" />
+              </div>
+              <h3 className="font-serif font-bold text-stone-900 text-lg mb-2">
+                Smart Pressure Defense
+              </h3>
+              <p className="text-stone-600 text-xs md:text-sm leading-relaxed">
+                Active LED halo sensor flashes red if force exceeds 250g, actively defending enamel prisms and delicate gum tissue from abrasive over-brushing.
+              </p>
             </div>
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* 10. BUYER BLOCKS & DECISION SUMMARY                       */}
+        {/* 9. BUYER BLOCKS & DECISION SUMMARY                       */}
         {/* ========================================================= */}
         {guide.buyerBlocks && guide.buyerBlocks.length > 0 && (
           <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 mb-16">
@@ -1075,7 +1247,7 @@ export default function ToothbrushGuideView({
         )}
 
         {/* ========================================================= */}
-        {/* 11. FREQUENTLY ASKED QUESTIONS (FAQ)                     */}
+        {/* 10. FREQUENTLY ASKED QUESTIONS (FAQ)                     */}
         {/* ========================================================= */}
         {guide.faqs && guide.faqs.length > 0 && (
           <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 mb-16">
@@ -1108,7 +1280,200 @@ export default function ToothbrushGuideView({
         )}
 
         {/* ========================================================= */}
-        {/* 12. FINAL EDITORIAL CTA BANNER                           */}
+        {/* 11. DR. OLIVIA BDS BOTTOM DENTIST'S VERDICT BOX          */}
+        {/* ========================================================= */}
+        <section className="mt-20 mb-16 max-w-4xl mx-auto">
+          <div className="bg-[#f8f4e6] rounded-2xl md:rounded-3xl p-6 md:p-10 shadow-lg border border-[#e8dccb] relative">
+            <h2 className="text-2xl md:text-4xl font-bold text-center text-[#8b1528] mb-6 md:mb-8 font-serif tracking-wide">
+              Dentist&apos;s Verdict
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+              {/* Left Image Area */}
+              <div className="relative flex justify-center items-center">
+                <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] aspect-square overflow-hidden rounded-xl border border-[#dfd1bd] bg-white shadow-md">
+                  <img
+                    src="/img/toothbrushes/miroooo-brush-x2-dentist-verdict-dr-olivia.webp"
+                    alt="Dr. Olivia holding Miroooo Brush X2 Electric Toothbrush in dental clinic - Dentist's Verdict"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Right Content Area */}
+              <div className="flex flex-col justify-center text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2 font-serif tracking-tight text-center md:text-left">
+                  Miroooo X2
+                </h3>
+
+                <div className="w-24 h-[1px] bg-[#d4af37] mx-auto md:mx-0 mb-4"></div>
+
+                <div className="text-xl md:text-3xl font-bold text-[#8b1528] mb-4 font-sans text-center md:text-left">
+                  Now at 50% off (£69)
+                </div>
+
+                <p className="text-stone-700 text-xs md:text-sm leading-relaxed mb-6">
+                  Recommended for anyone who wants a dentist-clean feel without the abrasive friction, loud motor buzzing, or high refill costs of legacy brushes.
+                </p>
+
+                {/* Trustpilot-style Badge */}
+                <div className="border border-stone-200 bg-white/80 rounded-xl p-3 mb-6 inline-block shadow-xs text-center md:text-left">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
+                    <span className="font-bold text-sm text-stone-900 font-sans">
+                      Excellent
+                    </span>
+                    <GreenStarRating rating={5} size={18} />
+                  </div>
+                  <div className="text-xs text-stone-600 flex items-center justify-center md:justify-start gap-1 font-sans">
+                    Rated 4.9 / 5 on <GreenStarIcon size={16} />{" "}
+                    <span className="font-bold text-stone-900">Trustpilot</span>
+                  </div>
+                </div>
+
+                <OfficialButton
+                  href={MIROOOO_URL}
+                  targetId="verdict-cta"
+                  loadingTarget={loadingTarget}
+                  setLoadingTarget={setLoadingTarget}
+                  slug={guide.slug}
+                  className="!bg-gradient-to-b !from-[#1a7444] !to-[#0d4a29] hover:!from-[#145c35] hover:!to-[#0a381f] text-white text-sm md:text-base font-bold py-4 px-8 rounded-full shadow-lg"
+                >
+                  CHECK AVAILABILITY &amp; CLAIM £69
+                </OfficialButton>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 12. TOP 5 SIDE-BY-SIDE COMPARISON TABLE                  */}
+        {/* ========================================================= */}
+        <section className="bg-white border border-stone-200 p-6 sm:p-8 md:p-10 shadow-sm mt-16 mb-16 max-w-4xl mx-auto rounded-sm">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <span className="text-[10px] uppercase tracking-widest text-[#b08d57] font-bold block mb-2">
+              2026 UK Benchmark Index
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-stone-900 font-serif leading-tight">
+              Top 5 Electric Toothbrushes Side-by-Side Comparison
+            </h2>
+            <p className="text-stone-600 mt-2 text-xs md:text-sm">
+              Technical specifications, battery endurance, included accessories, and ownership value compared across the UK&apos;s leading 2026 models.
+            </p>
+          </div>
+
+          <div className="block lg:hidden text-center text-xs text-stone-500 font-medium mb-4 bg-stone-50 py-2 px-3 border border-stone-200 rounded-sm">
+            ← Swipe horizontally to compare all 5 toothbrushes →
+          </div>
+
+          <div className="overflow-x-auto shadow-sm border border-stone-200">
+            <table className="w-full text-left border-collapse min-w-[640px] text-xs sm:text-sm">
+              <thead>
+                <tr className="border-b-2 border-stone-200 bg-stone-900 text-white">
+                  <th className="py-4 px-4 font-bold text-[11px] uppercase tracking-wider w-[22%]">
+                    Feature / Metric
+                  </th>
+                  {TOP_5_COMPARISON_PRODUCTS.map((prod) => (
+                    <th
+                      key={prod.rank}
+                      className={`py-4 px-3 text-center w-[15.6%] align-bottom border-l border-stone-800 ${
+                        prod.rank === 1 ? "bg-stone-950 text-[#d4af7a]" : "bg-stone-900"
+                      }`}
+                    >
+                      <div className="flex flex-col items-center">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 mb-1">
+                          #{prod.rank} Ranked
+                        </span>
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 mb-2 flex items-center justify-center p-1 bg-white rounded-sm border border-stone-200">
+                          <img
+                            src={prod.image}
+                            alt={prod.name}
+                            loading="lazy"
+                            decoding="async"
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        </div>
+                        <span className="font-bold text-xs sm:text-sm line-clamp-1 mb-1">
+                          {prod.shortName}
+                        </span>
+                        <div className="mb-1">
+                          <GreenStarRating rating={prod.rating} size={12} />
+                        </div>
+                        <div className="flex items-baseline justify-center gap-1">
+                          <span className="text-sm sm:text-base font-bold text-white">
+                            {prod.price}
+                          </span>
+                        </div>
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-stone-200">
+                {TOP_5_COMPARISON_ROWS.map((row, idx) => (
+                  <tr
+                    key={row.key}
+                    className={idx % 2 === 0 ? "bg-white" : "bg-stone-50/60"}
+                  >
+                    <td className="py-3.5 px-4 font-semibold text-stone-900 align-middle">
+                      {row.label}
+                    </td>
+                    {TOP_5_COMPARISON_PRODUCTS.map((prod) => {
+                      if (row.kind === "boolean") {
+                        const isPassed = prod[row.key];
+                        return (
+                          <td
+                            key={`${prod.rank}-${row.key}`}
+                            className={`py-3.5 px-2 text-center align-middle border-l border-stone-200 ${
+                              prod.rank === 1 ? "bg-emerald-50/20" : ""
+                            }`}
+                          >
+                            <div className="flex items-center justify-center">
+                              {isPassed ? (
+                                <Check className="w-4 h-4 text-emerald-700 font-bold" />
+                              ) : (
+                                <XCircle className="w-4 h-4 text-red-500" />
+                              )}
+                            </div>
+                          </td>
+                        );
+                      }
+
+                      if (row.kind === "price") {
+                        return (
+                          <td
+                            key={`${prod.rank}-price-row`}
+                            className={`py-3.5 px-2 text-center align-middle border-l border-stone-200 ${
+                              prod.rank === 1 ? "bg-emerald-50/20" : ""
+                            }`}
+                          >
+                            <span className="font-bold text-stone-900">
+                              {prod.price}
+                            </span>
+                          </td>
+                        );
+                      }
+
+                      const textVal = prod[row.key];
+                      return (
+                        <td
+                          key={`${prod.rank}-${row.key}`}
+                          className={`py-3.5 px-2 text-center align-middle border-l border-stone-200 ${
+                            prod.rank === 1 ? "bg-emerald-50/20 font-bold text-emerald-900" : "text-stone-700"
+                          }`}
+                        >
+                          <span className="text-xs">{textVal}</span>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* 13. FINAL EDITORIAL CTA BANNER                           */}
         {/* ========================================================= */}
         <section className="max-w-4xl mx-auto border-t border-stone-200 pt-12 text-center">
           <div className="bg-stone-900 text-white p-8 md:p-12 rounded-sm shadow-2xl relative overflow-hidden">
@@ -1131,7 +1496,7 @@ export default function ToothbrushGuideView({
                   setLoadingTarget={setLoadingTarget}
                   slug={guide.slug}
                   variant="gold"
-                  className="w-full sm:w-auto text-sm py-5 px-10"
+                  className="w-full sm:w-auto text-sm py-4 px-10"
                 >
                   Claim £69 Offer &amp; Package
                 </EditorialCtaButton>
@@ -1150,10 +1515,10 @@ export default function ToothbrushGuideView({
       </div>
 
       {/* ========================================================= */}
-      {/* 13. STICKY BOTTOM BAR (Mobile & Desktop)                 */}
+      {/* 14. STICKY BOTTOM BAR (Mobile & Desktop)                 */}
       {/* ========================================================= */}
       <aside
-        className={`fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-stone-200 shadow-2xl transition-transform duration-300 ${
+        className={`fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-t border-stone-200 shadow-2xl transition-transform duration-300 ${
           showStickyBar ? "translate-y-0" : "translate-y-full"
         }`}
         aria-label="Quick order toolbar"
@@ -1171,22 +1536,22 @@ export default function ToothbrushGuideView({
               </div>
               <div className="text-xs text-stone-500">
                 <span className="font-bold text-stone-900">£69</span>{" "}
-                <span className="line-through text-stone-400">£139</span> · Inc. Case &amp; Wall Dock
+                <span className="line-through text-stone-400">£139</span> · Inc. Luxury Case &amp; Wall Dock
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
             <EditorialCtaButton
               href={MIROOOO_URL}
               targetId="sticky-bar-cta"
               loadingTarget={loadingTarget}
               setLoadingTarget={setLoadingTarget}
               slug={guide.slug}
-              variant="gold"
-              className="py-2.5 px-5 text-[11px]"
+              variant="emerald"
+              className="py-3 px-5 text-xs w-full sm:w-auto"
             >
-              Claim £69 Deal
+              Take me to the winning electric toothbrush
             </EditorialCtaButton>
           </div>
         </div>

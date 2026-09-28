@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import ElectricToothbrushesAdvertorial from "@/features/electric-toothbrushes/ElectricToothbrushesAdvertorial";
+import ToothbrushGuideView from "@/components/ToothbrushGuideView";
 import {
   getToothbrushGuide,
   toothbrushGuideMetadata,
 } from "@/data/toothbrushGuides";
 
-export const metadata: Metadata = toothbrushGuideMetadata("miroooo-vs-suri");
+const SLUG = "miroooo-vs-suri";
+
+export const metadata: Metadata = toothbrushGuideMetadata(SLUG);
 
 export default function Page() {
-  const guide = getToothbrushGuide("miroooo-vs-suri");
-  return <ElectricToothbrushesAdvertorial guide={guide} />;
+  const guide = getToothbrushGuide(SLUG);
+  return <ToothbrushGuideView guide={guide} />;
 }
+

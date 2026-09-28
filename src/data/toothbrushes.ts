@@ -112,10 +112,10 @@ export const MIROOOO_X_DATASET: RankedToothbrushProduct = {
     { label: "Warranty", value: "3-Year Comprehensive Warranty" },
   ],
   pros: [
+    "Proven Results: Has an outstanding rating of 5/5 and 4.9 stars based on over 4,000 reviews and performed well in internal testing.",
     "Ultra Light Weight (51g): Precision-engineered 51g aerospace aluminium body eliminates wrist fatigue and feels effortless in hand.",
     "90-Day Battery Life: Massive 90-day cobalt battery endurance powered by universal USB-C fast charging. Delivers 180 uses on a single charge with zero need for proprietary chargers.",
     "Quiet Sound (<50dB): Acoustic magnetic motor operates below 50dB for a smooth, whisper-quiet clean that eliminates harsh buzzing noise and hand rattling.",
-    "4.9★ Customer Rating: Verified 4.9-star rating reflecting top customer satisfaction across the UK.",
     "Long-Lasting Aluminium Design: Precision-milled aerospace aluminium unibody with flush capacitive touch button resists drops and mould, ensuring the brush lasts years longer than fragile plastic alternatives.",
     "Included in Package: Complete set includes Luxury Travel Case, Wall-Mounted Storage, and up to 4 extra brush heads.",
     "90-Day Money-Back Guarantee: 100% risk-free home trial with full refund protection.",

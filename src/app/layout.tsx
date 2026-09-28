@@ -17,6 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://theglobaledit.co"),
   title: "The Global Edit - Curated Premium Discoveries",
   description: "The Global Edit is a premium editorial destination covering the best in beauty, wellness, tech, and lifestyle essentials.",
   robots: "index, follow",

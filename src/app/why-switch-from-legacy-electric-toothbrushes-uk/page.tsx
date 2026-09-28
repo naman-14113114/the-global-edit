@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import ElectricToothbrushesAdvertorial from "@/features/electric-toothbrushes/ElectricToothbrushesAdvertorial";
+import ToothbrushGuideView from "@/components/ToothbrushGuideView";
 import {
   getToothbrushGuide,
   toothbrushGuideMetadata,
 } from "@/data/toothbrushGuides";
 
-export const metadata: Metadata = toothbrushGuideMetadata(
-  "why-switch-from-legacy-electric-toothbrushes-uk"
-);
+const SLUG = "why-switch-from-legacy-electric-toothbrushes-uk";
+
+export const metadata: Metadata = toothbrushGuideMetadata(SLUG);
 
 export default function Page() {
-  const guide = getToothbrushGuide(
-    "why-switch-from-legacy-electric-toothbrushes-uk"
-  );
-  return <ElectricToothbrushesAdvertorial guide={guide} />;
+  const guide = getToothbrushGuide(SLUG);
+  return <ToothbrushGuideView guide={guide} />;
 }
+

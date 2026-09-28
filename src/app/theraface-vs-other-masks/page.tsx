@@ -40,7 +40,7 @@ const products = [
     badge: "Editor's #1 Choice — Best Overall 2026",
     name: "Buudy 7 Color LED Therapy Mask",
     subtitle: "Complete Full-Face & Built-In Neck Rejuvenation System",
-    image: "https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/57-w-1.webp",
+    image: "/images/mask-angle.webp",
     fallbackImage: "/images/mask-angle.webp",
     price: "£179",
     originalPrice: "£449",
@@ -89,7 +89,7 @@ const products = [
     badge: "High Tech Count · Extreme Price Tag",
     name: "TheraFace Mask",
     subtitle: "Therabody Vibration & Hard-Shell LED Device",
-    image: "https://img.thesitebase.net/10677/10677322/themes/177107817340059938e3.jpeg",
+    image: "/images/editorial/led-testing-clinic.jpg",
     fallbackImage: "/images/editorial/led-testing-clinic.jpg",
     price: "£579",
     originalPrice: null,
@@ -138,7 +138,7 @@ const products = [
     badge: "Celebrity Endorsed · Expensive Extras",
     name: "CurrentBody LED Mask",
     subtitle: "Dual-Wavelength Flexible Silicone Mask",
-    image: "https://img.thesitebase.net/10677/10677322/themes/176872504642f0322d65.jpeg",
+    image: "/images/editorial/currentbody-skin-mask.jpeg",
     fallbackImage: "/images/editorial/currentbody-skin-mask.jpeg",
     price: "£399.99",
     originalPrice: null,
@@ -184,7 +184,7 @@ const products = [
     badge: "Clinical Pioneer · Premium Pricing",
     name: "Omnilux Contour Face",
     subtitle: "Dermatologist-Favourite Anti-Aging Silicone Mask",
-    image: "https://img.thesitebase.net/10677/10677322/themes/1769107230af732ce69a.jpeg",
+    image: "/images/editorial/omnilux-contour-mask.jpeg",
     fallbackImage: "/images/editorial/omnilux-contour-mask.jpeg",
     price: "£348",
     originalPrice: null,
@@ -229,7 +229,7 @@ const products = [
     badge: "Cryo Innovation · Heavy Rigid Fit",
     name: "Shark CryoGlow LED Mask",
     subtitle: "Dual-Action LED with Under-Eye Cooling Pads",
-    image: "https://img.thesitebase.net/10677/10677322/themes/1768726434a7e6301df7.png",
+    image: "/images/editorial/shark-cryoglow-mask.png",
     fallbackImage: "/images/editorial/shark-cryoglow-mask.png",
     price: "£299.99",
     originalPrice: null,
@@ -323,7 +323,7 @@ export default function TherafaceComparisonPage() {
               <img 
                 src="/images/editorial/author-editor.png" 
                 alt="Dr. Elizabeth Vance" 
-                className="w-11 h-11 rounded-full object-cover border border-stone-200"
+                className="w-11 h-11 rounded-full object-cover border border-[#b08d57]/30"
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
                 }}
@@ -344,12 +344,9 @@ export default function TherafaceComparisonPage() {
         {/* Hero Banner Image */}
         <div className="w-full mb-12 bg-stone-900 overflow-hidden shadow-lg border border-stone-200">
           <img 
-            src="https://img.thesitebase.net/10677/10677322/themes/17710780438e0fc0fc9d.png" 
+            src="/images/editorial/led-testing-clinic.jpg" 
             alt="TheraFace vs Top LED Face Masks UK 2026" 
             className="w-full h-auto object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = '/images/editorial/led-testing-clinic.jpg';
-            }}
           />
           <div className="p-3 bg-stone-900 text-stone-300 text-[11px] text-center tracking-wide uppercase font-sans">
             Photobiomodulation Lab Benchmark · London Testing Facility · 2026 Index
@@ -497,7 +494,7 @@ export default function TherafaceComparisonPage() {
                   <div className="lg:col-span-5 flex flex-col items-center">
                     <div className="w-full bg-stone-50 border border-stone-200 p-4 relative group mb-6">
                       {product.discountBadge && (
-                        <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 shadow-md z-10">
+                        <div className="absolute top-3 left-3 bg-stone-900 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 shadow-md z-10">
                           {product.discountBadge}
                         </div>
                       )}
@@ -581,7 +578,7 @@ export default function TherafaceComparisonPage() {
                       {/* Pros */}
                       <div className="bg-emerald-50/50 border border-emerald-200 p-5 rounded-sm">
                         <h4 className="text-emerald-900 font-bold text-sm uppercase tracking-wider flex items-center gap-2 mb-3">
-                          <CheckCircle2 size={18} className="text-emerald-600" />
+                          <CheckCircle2 size={18} className="text-emerald-700" />
                           <span>Pros & Strengths</span>
                         </h4>
                         <ul className="space-y-3 text-xs text-stone-700">
@@ -589,7 +586,7 @@ export default function TherafaceComparisonPage() {
                             const [boldPart, ...rest] = pro.split(':');
                             return (
                               <li key={pIdx} className="flex items-start gap-2">
-                                <Check size={14} className="text-emerald-600 shrink-0 mt-0.5" />
+                                <Check size={14} className="text-emerald-700 shrink-0 mt-0.5" />
                                 <span>
                                   <strong className="text-stone-900 font-bold">{boldPart}:</strong>
                                   {rest.join(':')}
@@ -639,7 +636,7 @@ export default function TherafaceComparisonPage() {
                               <div 
                                 className={`h-full rounded-full transition-all duration-1000 ${
                                   metric.value >= 90 
-                                    ? 'bg-emerald-600' 
+                                    ? 'bg-emerald-700' 
                                     : metric.value >= 70 
                                     ? 'bg-[#b08d57]' 
                                     : 'bg-red-500'
@@ -708,12 +705,9 @@ export default function TherafaceComparisonPage() {
               <div className="md:col-span-5 text-center">
                 <a href="https://buudy.com/pages/buudy-led-mask" className="block group">
                   <img 
-                    src="https://lawngreen-kingfisher-468763.hostingersite.com/wp-content/uploads/2026/02/39-w.webp" 
+                    src="/images/mask-angle.webp" 
                     alt="Buudy 7-Color LED Light Mask" 
                     className="w-full max-w-[280px] mx-auto h-auto object-contain transform group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/images/mask-angle.webp';
-                    }}
                   />
                 </a>
               </div>
@@ -731,15 +725,15 @@ export default function TherafaceComparisonPage() {
 
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6 text-xs text-stone-700 font-semibold">
                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-stone-200 rounded-full">
-                    <Check size={14} className="text-emerald-600" />
+                    <Check size={14} className="text-emerald-700" />
                     <span>Now 60% Off (£179)</span>
                   </div>
                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-stone-200 rounded-full">
-                    <Check size={14} className="text-emerald-600" />
+                    <Check size={14} className="text-emerald-700" />
                     <span>Free UK Next-Day Delivery</span>
                   </div>
                   <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 border border-stone-200 rounded-full">
-                    <Check size={14} className="text-emerald-600" />
+                    <Check size={14} className="text-emerald-700" />
                     <span>90-Day Money-Back Guarantee</span>
                   </div>
                 </div>
@@ -769,8 +763,8 @@ export default function TherafaceComparisonPage() {
           <span className="text-[10px] text-emerald-700 font-bold uppercase tracking-wide">60% OFF Today · £179</span>
         </div>
         <a 
-          href="https://buudy.com/pages/buudy-led-mask"
-          className="bg-stone-900 text-white px-5 py-2.5 text-xs uppercase tracking-widest font-bold shadow-md whitespace-nowrap"
+          href="https://buudy.com/pages/buudy-led-mask" 
+          className="bg-stone-900 hover:bg-stone-800 text-white px-5 py-2.5 text-xs uppercase tracking-widest font-bold shadow-md whitespace-nowrap"
         >
           Claim Offer
         </a>

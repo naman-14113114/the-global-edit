@@ -11,10 +11,14 @@ export function GreenStarIcon({
   size = 20,
   fill = 1,
   className = "",
+  starColor = "text-[#b08d57]",
+  emptyColor = "text-[#e7e5e4]",
 }: {
   size?: number;
   fill?: number;
   className?: string;
+  starColor?: string;
+  emptyColor?: string;
 }) {
   const percentage = Math.max(0, Math.min(1, fill)) * 100;
 
@@ -28,7 +32,7 @@ export function GreenStarIcon({
         viewBox="0 0 24 24"
         width={size}
         height={size}
-        className="absolute inset-0 text-[#d7e5df]"
+        className={`absolute inset-0 ${emptyColor}`}
       >
         <polygon points={STAR_POINTS} fill="currentColor" />
       </svg>
@@ -40,7 +44,7 @@ export function GreenStarIcon({
           viewBox="0 0 24 24"
           width={size}
           height={size}
-          className="max-w-none text-[#00b67a]"
+          className={`max-w-none ${starColor}`}
         >
           <polygon points={STAR_POINTS} fill="currentColor" />
         </svg>
@@ -55,12 +59,16 @@ export function GreenStarRating({
   size = 20,
   gap = 4,
   className = "",
+  starColor = "text-[#b08d57]",
+  emptyColor = "text-[#e7e5e4]",
 }: {
   rating: number | string;
   forceFull?: boolean;
   size?: number;
   gap?: number;
   className?: string;
+  starColor?: string;
+  emptyColor?: string;
 }) {
   const numericRating = parseRating(rating);
   const visualRating = forceFull ? 5 : numericRating;
@@ -80,6 +88,8 @@ export function GreenStarRating({
           key={index}
           size={size}
           fill={visualRating - index}
+          starColor={starColor}
+          emptyColor={emptyColor}
         />
       ))}
     </div>

@@ -1,204 +1,186 @@
-import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpenCheck,
-  House,
-  Luggage,
-  SearchCheck,
-  Shirt,
-} from "lucide-react";
-import GuideCard from "@/components/GuideCard";
-import GuideVisual from "@/components/GuideVisual";
-import HomeIllustration from "@/components/HomeIllustration";
-import { categories, guides } from "@/lib/guides";
-import { pageMetadata } from "@/lib/metadata";
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
-export const metadata = pageMetadata({
-  title: "Practical Guides for Everyday Living",
+export const metadata = {
+  title: "The Global Edit - Independent Beauty Reviews",
   description:
-    "Original, non-commercial guides for organising your home, packing for travel and caring for clothing.",
-  path: "/",
-});
-
-const categoryIcons = {
-  Home: House,
-  Travel: Luggage,
-  "Clothing care": Shirt,
+    "Editorial testing and buying guides for beauty, wellness, and lifestyle products, led by our 2026 LED mask rankings.",
 };
 
-const principles = [
+const featureStats = [
+  { value: "5", label: "premium masks compared" },
+  { value: "8 weeks", label: "hands-on review window" },
+  { value: "2026", label: "updated buyer index" },
+];
+
+const articles = [
   {
-    title: "Useful on the page",
-    body: "Every guide gives the complete method without a sign-up, download or redirect.",
-    icon: BookOpenCheck,
+    href: "/best-led-face-mask-uk-2026",
+    image: "/images/editorial/led-testing-clinic.jpg",
+    tag: "Review Index",
+    tagClass: "text-amber-700",
+    title: "Every Premium LED Mask Tested and Ranked",
+    excerpt: "Our 2026 ranking compares Buudy, Omnilux, CurrentBody, Shark, and Dr. Dennis Gross side by side.",
   },
   {
-    title: "Written for ordinary use",
-    body: "The steps are specific enough to follow and flexible enough to adapt to your week.",
-    icon: SearchCheck,
+    href: "/blog/why-silicone-masks-are-failing",
+    image: "/images/editorial/omnilux-contour-mask.jpeg",
+    tag: "Beauty Tech Expose",
+    tagClass: "text-red-700",
+    title: "Why Flexible Silicone LED Masks Keep Failing Real Skin",
+    excerpt: "Comfort looks good on social, but coverage, diode distance, and neck treatment decide the result.",
   },
   {
-    title: "Nothing for sale",
-    body: "There are no affiliate links, product rankings, paid placements or checkout links.",
-    icon: ArrowRight,
+    href: "/blog/neck-neglect-skincare",
+    image: "/images/editorial/neck-skincare.jpg",
+    tag: "Anti-Aging Secrets",
+    tagClass: "text-stone-500",
+    title: "The Neck Neglect Epidemic: Why Skincare Cannot Stop at the Chin",
+    excerpt: "The neck is one of the first places skincare neglect starts to show.",
+  },
+  {
+    href: "/blog/acne-blue-light-myth",
+    image: "/images/editorial/acne-skincare.jpg",
+    tag: "Dermatology Science",
+    tagClass: "text-blue-700",
+    title: "Why Red Light Therapy Often Fails to Cure Clinical Acne",
+    excerpt: "Acne needs a different wavelength strategy than collagen-focused anti-aging.",
+  },
+  {
+    href: "/blog/clinic-vs-at-home-roi",
+    image: "/images/editorial/clinic-treatment.jpg",
+    tag: "Wellness Investment",
+    tagClass: "text-stone-500",
+    title: "At-Home LED vs Dermatology Clinics: The True Cost Breakdown",
+    excerpt: "When consistency matters more than one expensive appointment, the economics change fast.",
+  },
+  {
+    href: "/blog/amazon-led-mask-risks",
+    image: "/images/editorial/amazon-led-risk-mask.png",
+    tag: "Consumer Warning",
+    tagClass: "text-red-700",
+    title: "Why Buying an LED Mask on Amazon Could Damage Your Skin",
+    excerpt: "Unverified wavelength claims, weak LEDs, and missing safety data are not small details.",
   },
 ];
 
 export default function Home() {
-  const [featuredGuide, ...recentGuides] = guides;
-
   return (
-    <div className="bg-paper">
-      <section className="border-b border-line bg-surface">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 md:px-8 md:py-20 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:py-24">
-          <div>
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-rust">
-              Practical living, edited well
-            </p>
-            <h1 className="max-w-4xl font-serif text-5xl leading-[1.02] tracking-[-0.045em] text-ink sm:text-6xl lg:text-7xl">
-              Useful systems for the things you do every week.
+    <div className="w-full bg-[#FAFAFA]">
+      <section className="border-b border-stone-200">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16 grid lg:grid-cols-[0.92fr_1.08fr] gap-10 lg:gap-14 items-center">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 border border-stone-300 bg-white px-3 py-2 text-[10px] uppercase tracking-widest text-stone-600 font-bold mb-5">
+              <Sparkles size={14} strokeWidth={1.7} />
+              Independent Beauty Tech Reviews
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif text-stone-950 leading-[1.04] mb-6">
+              The LED mask edit we would send a friend first.
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-muted md:text-lg">
-              Clear, original guides for resetting a room, packing a bag and
-              caring for the clothes you already own. No sales pitch waiting at
-              the end.
+            <p className="text-stone-600 text-base md:text-lg leading-relaxed mb-7 max-w-xl">
+              Independent beauty-tech reviews for shoppers comparing the most searched LED masks, clinical devices, and at-home skincare tools before they buy.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+
+            <div className="flex flex-col sm:flex-row gap-3 mb-9">
               <Link
-                href={`/guides/${featuredGuide.slug}`}
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-ink px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-surface hover:bg-rust"
+                href="/best-led-face-mask-uk-2026"
+                className="inline-flex items-center justify-center gap-2 bg-stone-950 text-white px-6 py-4 text-xs uppercase tracking-widest font-bold hover:bg-stone-700 transition-colors"
               >
-                Start with the home reset
-                <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
+                Read the ranking
+                <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
               <Link
-                href="/guides"
-                className="inline-flex min-h-12 items-center justify-center gap-2 border border-ink bg-surface px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-ink hover:bg-cream"
+                href="/blog"
+                className="inline-flex items-center justify-center gap-2 border border-stone-300 bg-white px-6 py-4 text-xs uppercase tracking-widest font-bold text-stone-900 hover:border-stone-900 transition-colors"
               >
-                Browse all guides
-                <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
+                Browse the edit
+                <ArrowRight size={15} strokeWidth={1.8} />
               </Link>
             </div>
-          </div>
-          <HomeIllustration />
-        </div>
-      </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-18">
-        <div className="mb-8 flex flex-col gap-4 border-b border-ink pb-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
-              Choose a starting point
-            </p>
-            <h2 className="mt-3 font-serif text-4xl tracking-[-0.035em] text-ink">
-              Three parts of everyday life.
-            </h2>
-          </div>
-          <p className="max-w-xl text-sm leading-6 text-muted">
-            Each section contains complete guides, written to be used rather than
-            skimmed for a recommendation.
-          </p>
-        </div>
-
-        <div className="grid border-y border-line md:grid-cols-3 md:divide-x md:divide-line">
-          {categories.map((category, index) => {
-            const Icon = categoryIcons[category.name];
-            return (
-              <Link
-                key={category.slug}
-                href={`/category/${category.slug}`}
-                className="group border-b border-line px-1 py-7 last:border-b-0 md:border-b-0 md:px-7"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-serif text-2xl text-rust">0{index + 1}</span>
-                  <Icon size={24} strokeWidth={1.5} className="text-muted" aria-hidden="true" />
+            <div className="grid grid-cols-3 border-y border-stone-200 divide-x divide-stone-200">
+              {featureStats.map((item) => (
+                <div key={item.label} className="py-4 pr-3 pl-3 first:pl-0 last:pr-0">
+                  <div className="text-xl md:text-2xl font-serif text-stone-950 leading-none mb-2">{item.value}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-stone-500 font-bold leading-snug">{item.label}</div>
                 </div>
-                <h3 className="mt-8 font-serif text-3xl text-ink group-hover:text-rust">
-                  {category.name}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{category.description}</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-ink">
-                  Open section
-                  <ArrowRight size={15} strokeWidth={1.8} aria-hidden="true" />
-                </span>
-              </Link>
-            );
-          })}
+              ))}
+            </div>
+          </div>
+
+          <div className="relative min-h-[520px] md:min-h-[620px]">
+            <div className="absolute inset-0 bg-stone-200 overflow-hidden rounded-sm">
+              <img
+                src="/images/editorial/led-testing-clinic.jpg"
+                alt="Clinical skincare treatment room"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/45 via-transparent to-transparent" />
+            </div>
+
+            <div className="absolute left-4 right-4 bottom-4 md:left-6 md:right-6 md:bottom-6 bg-white/95 backdrop-blur px-5 py-4 shadow-xl">
+              <div className="text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-2">Latest index</div>
+              <div className="text-2xl font-serif text-stone-950 leading-tight">Premium LED masks, compared by category.</div>
+            </div>
+
+            <div className="hidden md:grid absolute -left-8 top-10 w-44 gap-3">
+              <img src="/images/editorial/currentbody-skin-mask.jpeg" alt="CurrentBody LED mask" className="aspect-square object-cover rounded-sm shadow-xl bg-white" />
+              <img src="/images/editorial/omnilux-contour-mask.jpeg" alt="Omnilux Contour LED mask" className="aspect-square object-cover rounded-sm shadow-xl bg-white" />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-line bg-cream">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:px-8 md:py-18 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
+        <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-12 items-start border-b border-stone-900 pb-7 mb-12">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
-              Featured field guide
-            </p>
-            <h2 className="mt-4 max-w-xl font-serif text-4xl leading-tight tracking-[-0.035em] text-ink md:text-5xl">
-              {featuredGuide.shortTitle}
-            </h2>
-            <p className="mt-5 max-w-xl text-base leading-7 text-muted">
-              {featuredGuide.description}
-            </p>
+            <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-3 block">The verdict</span>
+            <h2 className="text-3xl md:text-5xl font-serif text-stone-950 leading-tight">For shoppers who want the comparison before the checkout page.</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 text-sm text-stone-600 leading-relaxed">
+            <div className="flex gap-3">
+              <ShieldCheck className="mt-0.5 shrink-0 text-emerald-600" size={18} strokeWidth={1.8} />
+              <p>Each guide keeps product imagery tied to the product being discussed, so comparisons feel clear and trustworthy.</p>
+            </div>
+            <div className="flex gap-3">
+              <ShieldCheck className="mt-0.5 shrink-0 text-emerald-600" size={18} strokeWidth={1.8} />
+              <p>Our LED mask ranking still names a winner, but it earns that position through coverage, wavelengths, comfort, and value.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-9">
+          <div>
+            <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold mb-2 block">Recent discoveries</span>
+            <h2 className="text-2xl md:text-3xl font-serif text-stone-950">Start with the latest reviews.</h2>
+          </div>
+          <Link href="/blog" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 hover:text-stone-950 font-bold">
+            View all
+            <ArrowRight size={15} strokeWidth={1.8} />
+          </Link>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-x-8 gap-y-12">
+          {articles.map((article, index) => (
             <Link
-              href={`/guides/${featuredGuide.slug}`}
-              className="mt-7 inline-flex min-h-12 items-center gap-2 bg-rust px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-surface hover:bg-ink"
+              key={article.href}
+              href={article.href}
+              className={index === 0 ? "group block md:col-span-2" : "group block"}
             >
-              Read the complete guide
-              <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
-            </Link>
-          </div>
-          <GuideVisual visual={featuredGuide.visual} />
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
-        <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr]">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
-              From the library
-            </p>
-            <h2 className="mt-3 max-w-sm font-serif text-4xl tracking-[-0.035em] text-ink">
-              Practical next reads.
-            </h2>
-            <p className="mt-5 max-w-sm text-sm leading-6 text-muted">
-              Seven guides, no filler categories and no product pages hidden in
-              the navigation.
-            </p>
-          </div>
-          <div>
-            {recentGuides.slice(0, 4).map((guide, index) => (
-              <GuideCard key={guide.slug} guide={guide} index={index} />
-            ))}
-            <Link
-              href="/guides"
-              className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-rust underline decoration-line underline-offset-4"
-            >
-              See all seven guides
-              <ArrowRight size={15} strokeWidth={1.8} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-surface">
-        <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-18">
-          <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-rust">
-              Our editorial promise
-            </p>
-            <h2 className="mt-3 font-serif text-4xl tracking-[-0.035em] text-ink">
-              The useful part comes before everything else.
-            </h2>
-          </div>
-          <div className="mt-10 grid divide-y divide-line border-y border-line md:grid-cols-3 md:divide-x md:divide-y-0">
-            {principles.map(({ title, body, icon: Icon }) => (
-              <div key={title} className="px-1 py-7 md:px-7">
-                <Icon size={25} strokeWidth={1.5} className="mb-5 text-rust" aria-hidden="true" />
-                <h3 className="font-serif text-xl text-ink">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{body}</p>
+              <div className={index === 0 ? "aspect-[16/10] bg-stone-200 mb-4 overflow-hidden rounded-sm" : "aspect-square bg-stone-200 mb-4 overflow-hidden rounded-sm"}>
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-            ))}
-          </div>
+              <span className={`text-[10px] uppercase tracking-widest ${article.tagClass} font-bold mb-2 block`}>{article.tag}</span>
+              <h3 className={index === 0 ? "text-2xl md:text-4xl font-serif text-stone-950 group-hover:text-stone-600 transition-colors leading-tight mb-3" : "text-xl font-serif text-stone-950 group-hover:text-stone-600 transition-colors leading-tight mb-2"}>
+                {article.title}
+              </h3>
+              <p className="text-sm text-stone-500 leading-relaxed max-w-2xl">{article.excerpt}</p>
+            </Link>
+          ))}
         </div>
       </section>
     </div>

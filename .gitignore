@@ -32,15 +32,12 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-!.env.example
 
 # vercel
 .vercel
-.codex-artifacts/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 .vercel
-.gstack/

@@ -58,16 +58,23 @@ export default function EditorialHeader() {
           The <span className="font-light italic">Global</span> Edit
         </Link>
         
-        <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest text-stone-600 font-medium">
+        <div className="hidden md:flex items-center gap-5 text-xs uppercase tracking-widest text-stone-600 font-medium">
           <Link href="/category/style" className="hover:text-stone-900 transition-colors">Style</Link>
           <Link href="/category/beauty" className="hover:text-stone-900 transition-colors">Beauty</Link>
           <Link href="/category/wellness" className="hover:text-stone-900 transition-colors">Wellness</Link>
           <Link
             href="/best-led-face-mask-uk-2026"
-            className="inline-flex items-center gap-2 bg-stone-900 text-white px-4 py-3 hover:bg-stone-700 transition-colors"
+            className="inline-flex items-center gap-1.5 bg-stone-900 text-white px-3.5 py-2.5 hover:bg-stone-700 transition-colors"
           >
-            <Award size={14} strokeWidth={1.8} />
-            Top Pick
+            <Award size={13} strokeWidth={1.8} />
+            Top LED Mask
+          </Link>
+          <Link
+            href="/best-electric-toothbrush-uk-2026"
+            className="inline-flex items-center gap-1.5 bg-amber-800 text-white px-3.5 py-2.5 hover:bg-amber-900 transition-colors"
+          >
+            <Award size={13} strokeWidth={1.8} />
+            Top Toothbrush
           </Link>
         </div>
 
@@ -75,15 +82,21 @@ export default function EditorialHeader() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden flex flex-col items-center justify-center gap-6 py-6 border-t border-stone-100 bg-white absolute w-full shadow-lg">
+        <div className="md:hidden flex flex-col items-center justify-center gap-5 py-6 border-t border-stone-100 bg-white absolute w-full shadow-lg">
           <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-sm uppercase tracking-widest text-stone-600 font-medium">The Edit</Link>
           <Link href="/category/style" onClick={() => setMobileMenuOpen(false)} className="text-sm uppercase tracking-widest text-stone-600 font-medium">Style</Link>
           <Link href="/category/beauty" onClick={() => setMobileMenuOpen(false)} className="text-sm uppercase tracking-widest text-stone-600 font-medium">Beauty</Link>
           <Link href="/category/wellness" onClick={() => setMobileMenuOpen(false)} className="text-sm uppercase tracking-widest text-stone-600 font-medium">Wellness</Link>
-          <Link href="/best-led-face-mask-uk-2026" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center gap-2 bg-stone-900 text-white px-5 py-3 text-xs uppercase tracking-widest font-bold">
-            <Award size={14} strokeWidth={1.8} />
-            Top LED Mask
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 w-full px-6 pt-2">
+            <Link href="/best-led-face-mask-uk-2026" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center gap-2 bg-stone-900 text-white px-5 py-3 text-xs uppercase tracking-widest font-bold text-center">
+              <Award size={14} strokeWidth={1.8} />
+              Top LED Mask
+            </Link>
+            <Link href="/best-electric-toothbrush-uk-2026" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center justify-center gap-2 bg-amber-800 text-white px-5 py-3 text-xs uppercase tracking-widest font-bold text-center">
+              <Award size={14} strokeWidth={1.8} />
+              Top Toothbrush
+            </Link>
+          </div>
         </div>
       )}
     </header>
